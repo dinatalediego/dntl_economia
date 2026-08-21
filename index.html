@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Nobel Data Lab: un museo vivo para explorar Nobel, modelos, evidencia y conexiones entre disciplinas." />
+  <meta name="theme-color" content="#0c1117" />
+  <title>Nobel Data Lab · Museo Vivo de Ideas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Ir al contenido</a>
+
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+
+  <header class="museum-header">
+    <a class="brand" href="#top" aria-label="Nobel Data Lab, inicio">
+      <span class="brand-mark" aria-hidden="true">✦</span>
+      <span>
+        <strong>Nobel Data Lab</strong>
+        <small>Museo vivo de ideas</small>
+      </span>
+    </a>
+    <nav class="main-nav" aria-label="Navegación principal">
+      <a href="#rutas">Rutas</a>
+      <a href="#galeria">Galería</a>
+      <a href="#gabinete">Gabinete</a>
+      <a href="#laboratorio">Laboratorio</a>
+    </nav>
+    <a class="ghost-button" href="https://github.com/dinatalediego/dntl_economia" target="_blank" rel="noreferrer">Repositorio ↗</a>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="hero-copy">
+        <p class="eyebrow">Colección nocturna · 2021—2025</p>
+        <h1>Cuando cae la noche,<br /><em>las ideas conversan.</em></h1>
+        <p class="hero-lede">
+          Un museo para recorrer los Nobel no como vitrinas aisladas, sino como una red viva de
+          <strong>modelos, evidencia, memoria, causalidad y complejidad</strong>.
+        </p>
+        <div class="hero-actions">
+          <a class="primary-button" href="#rutas">Elegir una ruta</a>
+          <button class="text-button" id="random-exhibit" type="button">Sorpréndeme con una sala →</button>
+        </div>
+      </div>
+
+      <div class="hero-installation" aria-label="Instalación visual de conceptos conectados">
+        <div class="orrery" aria-hidden="true">
+          <div class="orbit orbit-a"><span class="orb">Memoria</span></div>
+          <div class="orbit orbit-b"><span class="orb">Evidencia</span></div>
+          <div class="orbit orbit-c"><span class="orb">Causalidad</span></div>
+          <div class="orrery-core">
+            <span>30</span>
+            <small>Premios</small>
+          </div>
+        </div>
+        <p class="installation-caption">Seis disciplinas · cinco años · una sola conversación intelectual</p>
+      </div>
+    </section>
+
+    <section class="stats-corridor" aria-label="Resumen de la colección">
+      <article><span>30</span><p>ediciones Nobel</p></article>
+      <article><span>6</span><p>salas disciplinares</p></article>
+      <article><span>5</span><p>años completos</p></article>
+      <article><span>2</span><p>experimentos ejecutables</p></article>
+    </section>
+
+    <section class="section routes" id="rutas">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">No empieces por una disciplina</p>
+          <h2>Empieza por una obsesión.</h2>
+        </div>
+        <p>Las mejores visitas cruzan salas. Escoge una pregunta y deja que el museo conecte autores y métodos.</p>
+      </div>
+
+      <div class="route-grid">
+        <button class="route-card" type="button" data-route="memoria">
+          <span class="route-number">I</span>
+          <span class="route-icon" aria-hidden="true">◌</span>
+          <strong>Memoria & reconstrucción</strong>
+          <small>Hopfield · Pääbo · Ernaux · Goldin</small>
+        </button>
+        <button class="route-card" type="button" data-route="causalidad">
+          <span class="route-number">II</span>
+          <span class="route-icon" aria-hidden="true">↯</span>
+          <strong>Causalidad & contrafactuales</strong>
+          <small>Card · Angrist · Imbens · instituciones</small>
+        </button>
+        <button class="route-card" type="button" data-route="complejidad">
+          <span class="route-number">III</span>
+          <span class="route-icon" aria-hidden="true">∞</span>
+          <strong>Complejidad & dinámica</strong>
+          <small>Clima · Parisi · crecimiento · redes</small>
+        </button>
+        <button class="route-card" type="button" data-route="evidencia">
+          <span class="route-number">IV</span>
+          <span class="route-icon" aria-hidden="true">⌁</span>
+          <strong>Evidencia & trazabilidad</strong>
+          <small>Paz · genómica · medición · inferencia</small>
+        </button>
+        <button class="route-card" type="button" data-route="prediccion">
+          <span class="route-number">V</span>
+          <span class="route-icon" aria-hidden="true">△</span>
+          <strong>Predicción & representación</strong>
+          <small>AlphaFold · Hinton · microRNA · quantum</small>
+        </button>
+      </div>
+      <p class="route-status" id="route-status" aria-live="polite">Explora libremente o elige una ruta.</p>
+    </section>
+
+    <section class="section gallery" id="galeria">
+      <div class="section-heading gallery-heading">
+        <div>
+          <p class="eyebrow">Gran Galería</p>
+          <h2>Treinta piezas. Una colección navegable.</h2>
+        </div>
+        <div class="gallery-search">
+          <label for="search">Buscar en la colección</label>
+          <input id="search" type="search" placeholder="laureado, modelo, concepto…" autocomplete="off" />
+        </div>
+      </div>
+
+      <div class="filters" aria-label="Filtros de la galería">
+        <div class="filter-group" id="area-filters" aria-label="Filtrar por área"></div>
+        <div class="filter-group years" id="year-filters" aria-label="Filtrar por año"></div>
+        <button class="filter-reset" id="reset-filters" type="button">Limpiar filtros</button>
+      </div>
+
+      <div class="gallery-meta">
+        <p><span id="result-count">30</span> piezas visibles</p>
+        <p class="legend"><span class="legend-dot direct"></span>Directa <span class="legend-dot method"></span>Metodológica <span class="legend-dot analogue"></span>Analógica</p>
+      </div>
+
+      <div class="exhibit-grid" id="exhibit-grid" aria-live="polite"></div>
+      <div class="empty-state" id="empty-state" hidden>
+        <span aria-hidden="true">◈</span>
+        <h3>Esta vitrina está vacía.</h3>
+        <p>Prueba otra combinación de sala, año o concepto.</p>
+      </div>
+    </section>
+
+    <section class="section cabinet" id="gabinete">
+      <div class="cabinet-shell">
+        <div class="section-heading inverse">
+          <div>
+            <p class="eyebrow">Gabinete del Polímata</p>
+            <h2>Las fronteras son del catálogo,<br />no del conocimiento.</h2>
+          </div>
+          <p>Cuatro pasadizos muestran cómo una misma pregunta reaparece con lenguajes distintos.</p>
+        </div>
+
+        <div class="connection-grid">
+          <article class="connection-card">
+            <p class="connection-label">Pasadizo 01 · Memoria</p>
+            <h3>¿Cómo reconstruimos lo que ya no está?</h3>
+            <div class="connection-pair">
+              <span>Física 2024<br /><strong>Hopfield</strong></span>
+              <i aria-hidden="true">↔</i>
+              <span>Medicina 2022<br /><strong>Pääbo</strong></span>
+            </div>
+            <p>Una red recupera patrones incompletos; la paleogenómica reconstruye historias desde fragmentos degradados.</p>
+          </article>
+
+          <article class="connection-card">
+            <p class="connection-label">Pasadizo 02 · Evidencia</p>
+            <h3>¿Qué transforma observaciones en una afirmación defendible?</h3>
+            <div class="connection-pair">
+              <span>Economía 2021<br /><strong>Angrist & Imbens</strong></span>
+              <i aria-hidden="true">↔</i>
+              <span>Paz 2022<br /><strong>Documentación</strong></span>
+            </div>
+            <p>La identificación causal y la trazabilidad documental exigen separar hechos, supuestos e interpretación.</p>
+          </article>
+
+          <article class="connection-card">
+            <p class="connection-label">Pasadizo 03 · Contexto</p>
+            <h3>¿Cuándo una observación deja de significar lo mismo?</h3>
+            <div class="connection-pair">
+              <span>Economía 2023<br /><strong>Goldin</strong></span>
+              <i aria-hidden="true">↔</i>
+              <span>Literatura 2022<br /><strong>Ernaux</strong></span>
+            </div>
+            <p>Las series históricas y la memoria situada recuerdan que categorías, lenguaje y medición cambian con el tiempo.</p>
+          </article>
+
+          <article class="connection-card">
+            <p class="connection-label">Pasadizo 04 · Sistemas</p>
+            <h3>¿Cómo emerge una regularidad desde millones de interacciones?</h3>
+            <div class="connection-pair">
+              <span>Física 2021<br /><strong>Clima & Parisi</strong></span>
+              <i aria-hidden="true">↔</i>
+              <span>Economía 2025<br /><strong>Aghion & Howitt</strong></span>
+            </div>
+            <p>Ruido local, interacción y reemplazo pueden producir patrones agregados estables que ningún caso individual revela.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section laboratory" id="laboratorio">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Ala experimental</p>
+          <h2>No basta con admirar la pieza.<br />Hay que hacerla funcionar.</h2>
+        </div>
+        <p>Los deep dives más fértiles se convierten en mecanismos ejecutables con una verdad conocida y tests.</p>
+      </div>
+
+      <div class="lab-grid">
+        <article class="lab-card">
+          <div class="lab-badge">EXP · 01</div>
+          <p class="lab-discipline">Economía 2021</p>
+          <h3>Difference-in-Differences</h3>
+          <p>Un mundo sintético donde el efecto causal verdadero es 7.0. El estimador debe recuperarlo.</p>
+          <pre><code>treated Δ = 9.0
+control Δ = 2.0
+──────────────
+effect    = 7.0</code></pre>
+          <a href="https://github.com/dinatalediego/dntl_economia/blob/main/examples/economics_2021_causal_inference.py" target="_blank" rel="noreferrer">Abrir experimento ↗</a>
+        </article>
+
+        <article class="lab-card">
+          <div class="lab-badge">EXP · 02</div>
+          <p class="lab-discipline">Física 2024</p>
+          <h3>Memoria asociativa de Hopfield</h3>
+          <p>El sistema recibe un patrón dañado y debe converger exactamente a la memoria almacenada.</p>
+          <pre><code>target     + + + − − −
+corrupted  + + − − − −
+recovered  + + + − − −</code></pre>
+          <a href="https://github.com/dinatalediego/dntl_economia/blob/main/examples/physics_2024_hopfield.py" target="_blank" rel="noreferrer">Abrir experimento ↗</a>
+        </article>
+
+        <article class="lab-card lab-card-manifesto">
+          <div class="lab-badge">REGLA DEL MUSEO</div>
+          <blockquote>Leer → estructurar → modelar → falsar → transferir.</blockquote>
+          <p>Una idea entra a la colección como historia; solo se vuelve herramienta cuando puede inspeccionarse y fallar.</p>
+          <a href="https://github.com/dinatalediego/dntl_economia/blob/main/wiki/decision-from-wiki-to-nobel-lab.md" target="_blank" rel="noreferrer">Ver arquitectura ↗</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="closing-hall">
+      <p class="eyebrow">Antes de que amanezca</p>
+      <h2>La colección no termina en una respuesta.<br />Termina en una mejor pregunta.</h2>
+      <a class="primary-button" href="#top">Volver al Gran Hall ↑</a>
+    </section>
+  </main>
+
+  <footer>
+    <p><strong>Nobel Data Lab</strong> · dntl_economia</p>
+    <p>Fuentes primarias: NobelPrize.org · Interpretaciones de modelamiento claramente separadas del motivo oficial del premio.</p>
+  </footer>
+
+  <noscript>
+    <div class="noscript">Activa JavaScript para cargar y filtrar el catálogo de 30 premios.</div>
+  </noscript>
+  <script src="assets/app.js" defer></script>
+</body>
+</html>
