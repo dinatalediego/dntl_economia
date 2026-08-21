@@ -7,6 +7,10 @@ ROOT = Path(__file__).resolve().parents[1]
 EXHIBIT = ROOT / "exhibit.html"
 CORE = ROOT / "assets" / "exhibit-core.js"
 APP = ROOT / "assets" / "exhibit.js"
+HOPFIELD = ROOT / "assets" / "exhibit-hopfield.js"
+CAUSAL_GOLDIN = ROOT / "assets" / "exhibit-causal-goldin.js"
+GROWTH_GENERIC = ROOT / "assets" / "exhibit-growth-generic.js"
+BOOTSTRAP = ROOT / "assets" / "exhibit-bootstrap.js"
 ROUTER = ROOT / "assets" / "exhibit-router.js"
 CSS = ROOT / "assets" / "exhibit.css"
 INDEX = ROOT / "index.html"
@@ -14,7 +18,10 @@ INDEX = ROOT / "index.html"
 
 class LivingExhibitsContractTests(unittest.TestCase):
     def test_living_exhibit_entrypoints_exist(self):
-        for path in (EXHIBIT, CORE, APP, ROUTER, CSS, INDEX):
+        for path in (
+            EXHIBIT, CORE, APP, HOPFIELD, CAUSAL_GOLDIN,
+            GROWTH_GENERIC, BOOTSTRAP, ROUTER, CSS, INDEX,
+        ):
             self.assertTrue(path.exists(), f"Missing living exhibit dependency: {path}")
 
     def test_every_gallery_card_is_routed_to_an_individual_exhibit(self):
@@ -25,7 +32,11 @@ class LivingExhibitsContractTests(unittest.TestCase):
         self.assertIn("MutationObserver", router)
 
     def test_four_signature_simulators_are_explicit(self):
-        js = APP.read_text(encoding="utf-8")
+        dispatch = GROWTH_GENERIC.read_text(encoding="utf-8")
+        combined = "\n".join(
+            path.read_text(encoding="utf-8")
+            for path in (HOPFIELD, CAUSAL_GOLDIN, GROWTH_GENERIC)
+        )
         expected = {
             "Física|2024": "renderHopfield",
             "Ciencias Económicas|2021": "renderCausal",
@@ -33,9 +44,9 @@ class LivingExhibitsContractTests(unittest.TestCase):
             "Ciencias Económicas|2025": "renderGrowth",
         }
         for key, renderer in expected.items():
-            self.assertIn(key, js)
-            self.assertIn(renderer, js)
-        self.assertIn("renderGeneric", js)
+            self.assertIn(key, dispatch)
+            self.assertIn(f"function {renderer}", combined)
+        self.assertIn("function renderGeneric", combined)
 
     def test_exhibit_preserves_polymath_lenses_and_connections(self):
         html = EXHIBIT.read_text(encoding="utf-8")
@@ -57,6 +68,16 @@ class LivingExhibitsContractTests(unittest.TestCase):
         ):
             self.assertIn(function, core)
         self.assertIn("globalThis.NobelExhibitCore", app)
+
+    def test_exhibit_loads_all_modules_in_dependency_order(self):
+        html = EXHIBIT.read_text(encoding="utf-8")
+        modules = [
+            "exhibit-core.js", "exhibit.js", "exhibit-hopfield.js",
+            "exhibit-causal-goldin.js", "exhibit-growth-generic.js",
+            "exhibit-bootstrap.js",
+        ]
+        positions = [html.index(module) for module in modules]
+        self.assertEqual(positions, sorted(positions))
 
     def test_home_surfaces_four_living_rooms(self):
         html = INDEX.read_text(encoding="utf-8")
