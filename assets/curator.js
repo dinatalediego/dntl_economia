@@ -37,16 +37,7 @@
       existing.lastVisited = Date.now();
       existing.vector = core.vectorForRow(row);
     } else {
-      state.history.push({
-        key,
-        area: row.area,
-        year: row.year,
-        vector: core.vectorForRow(row),
-        visits: 1,
-        lenses: {},
-        mechanismTouches: 0,
-        lastVisited: Date.now(),
-      });
+      state.history.push({ key, area: row.area, year: row.year, vector: core.vectorForRow(row), visits: 1, lenses: {}, mechanismTouches: 0, lastVisited: Date.now() });
     }
     writeState(state);
     return state;
@@ -70,14 +61,10 @@
   }
 
   function trackMechanism() {
-    mutateCurrent((entry) => {
-      entry.mechanismTouches = Math.min(99, Number(entry.mechanismTouches || 0) + 1);
-    });
+    mutateCurrent((entry) => { entry.mechanismTouches = Math.min(99, Number(entry.mechanismTouches || 0) + 1); });
   }
 
-  function percent(score) {
-    return `${Math.round(Number(score || 0) * 100)}%`;
-  }
+  function percent(score) { return `${Math.round(Number(score || 0) * 100)}%`; }
 
   function ensureShell() {
     let section = document.querySelector("#curador");
@@ -88,27 +75,18 @@
     section.innerHTML = `
       <div class="curator-shell">
         <div class="stage-heading compact">
-          <div>
-            <p class="eyebrow">Gabinete del Polímata · Curador adaptativo</p>
-            <h2>El museo empieza a leerte por tus preguntas.</h2>
-          </div>
+          <div><p class="eyebrow">Gabinete del Polímata · Curador adaptativo</p><h2>El museo empieza a leerte por tus preguntas.</h2></div>
           <p id="curator-summary">Calibrando señales del recorrido…</p>
         </div>
         <div class="curator-grid">
           <article class="curator-profile-card">
-            <div class="curator-progress-row">
-              <span>Perfil local</span>
-              <strong id="curator-room-count">0 / 5 salas</strong>
-            </div>
+            <div class="curator-progress-row"><span>Perfil local</span><strong id="curator-room-count">0 / 5 salas</strong></div>
             <div id="curator-bars" class="curator-bars"></div>
             <p class="curator-privacy">Solo se guarda en este navegador qué salas visitas y cómo interactúas con ellas. No se guarda identidad ni texto libre.</p>
             <button class="curator-reset" id="curator-reset" type="button">Borrar mi recorrido</button>
           </article>
           <article class="curator-corridors-card">
-            <div class="curator-progress-row">
-              <span>Corredores iluminados</span>
-              <strong id="curator-status">Calibrando</strong>
-            </div>
+            <div class="curator-progress-row"><span>Corredores iluminados</span><strong id="curator-status">Calibrando</strong></div>
             <div id="curator-recommendations" class="curator-recommendations"></div>
           </article>
         </div>
@@ -118,7 +96,6 @@
     else document.querySelector("main")?.appendChild(section);
     section.querySelector("#curator-reset")?.addEventListener("click", () => {
       localStorage.removeItem(STORAGE_KEY);
-      if (current) recordVisit(current);
       renderCurator();
     });
     return section;
@@ -130,9 +107,7 @@
     root.replaceChildren(...profile.ranked.map((item) => {
       const row = document.createElement("div");
       row.className = "curator-bar-row";
-      row.innerHTML = `
-        <div><span>${item.label}</span><strong>${percent(item.score)}</strong></div>
-        <div class="curator-bar-track"><i style="width:${percent(item.score)}"></i></div>`;
+      row.innerHTML = `<div><span>${item.label}</span><strong>${percent(item.score)}</strong></div><div class="curator-bar-track"><i style="width:${percent(item.score)}"></i></div>`;
       return row;
     }));
   }
@@ -143,11 +118,7 @@
     link.href = hrefFor ? hrefFor(item.row) : "#";
     link.style.borderTopColor = accents[item.row.area] || "var(--gold)";
     const score = Math.max(0, Math.min(1, item.score));
-    link.innerHTML = `
-      <small>${item.row.area} · ${item.row.year}</small>
-      <h3>${item.row.laureates.replaceAll(";", " ·")}</h3>
-      <p>${item.reason}</p>
-      <span>${Math.round(score * 100)} afinidad curatorial →</span>`;
+    link.innerHTML = `<small>${item.row.area} · ${item.row.year}</small><h3>${item.row.laureates.replaceAll(";", " ·")}</h3><p>${item.reason}</p><span>${Math.round(score * 100)} afinidad curatorial →</span>`;
     return link;
   }
 
@@ -182,9 +153,7 @@
     if (!root || root.dataset.curatorWired === "true") return;
     root.dataset.curatorWired = "true";
     root.addEventListener("change", trackMechanism);
-    root.addEventListener("click", (event) => {
-      if (event.target.closest("button")) trackMechanism();
-    });
+    root.addEventListener("click", (event) => { if (event.target.closest("button")) trackMechanism(); });
   }
 
   function onRoomLoaded({ rows, row, exhibitHref, areaAccents }) {
@@ -197,12 +166,5 @@
     wireMechanismSignals();
   }
 
-  globalThis.PolymathCurator = {
-    STORAGE_KEY,
-    onRoomLoaded,
-    trackLens,
-    trackMechanism,
-    readState,
-    renderCurator,
-  };
+  globalThis.PolymathCurator = { STORAGE_KEY, onRoomLoaded, trackLens, trackMechanism, readState, renderCurator };
 })();
