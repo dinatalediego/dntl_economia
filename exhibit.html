@@ -11,6 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/styles.css" />
   <link rel="stylesheet" href="assets/exhibit.css" />
+  <link rel="stylesheet" href="assets/curator.css" />
 </head>
 <body class="exhibit-page">
   <a class="skip-link" href="#exhibit-main">Ir a la exhibición</a>
@@ -20,15 +21,10 @@
   <header class="museum-header exhibit-header">
     <a class="brand" href="index.html" aria-label="Volver al Nobel Data Lab">
       <span class="brand-mark" aria-hidden="true">✦</span>
-      <span>
-        <strong>Nobel Data Lab</strong>
-        <small>Ala de exhibiciones vivas</small>
-      </span>
+      <span><strong>Nobel Data Lab</strong><small>Ala de exhibiciones vivas</small></span>
     </a>
     <nav class="main-nav" aria-label="Navegación de la exhibición">
-      <a href="#mecanismo">Mecanismo</a>
-      <a href="#lentes">Lentes</a>
-      <a href="#conexiones">Conexiones</a>
+      <a href="#mecanismo">Mecanismo</a><a href="#lentes">Lentes</a><a href="#conexiones">Conexiones</a><a href="#curador">Curador</a>
     </nav>
     <a class="ghost-button" href="index.html#galeria">← Volver a la galería</a>
   </header>
@@ -40,44 +36,26 @@
         <h1 id="exhibit-title">Preparando la pieza</h1>
         <p class="exhibit-laureates" id="exhibit-laureates"></p>
         <p class="exhibit-lens" id="exhibit-lens">El museo está leyendo el catálogo.</p>
-        <div class="exhibit-meta-row">
-          <span class="exhibit-relation" id="exhibit-relation"></span>
-          <span class="exhibit-score" id="exhibit-score"></span>
-        </div>
+        <div class="exhibit-meta-row"><span class="exhibit-relation" id="exhibit-relation"></span><span class="exhibit-score" id="exhibit-score"></span></div>
         <div class="exhibit-actions">
           <a class="primary-button" id="official-source" href="#" target="_blank" rel="noreferrer">Fuente Nobel ↗</a>
           <a class="text-link" id="deep-dive-link" href="#" target="_blank" rel="noreferrer" hidden>Leer deep dive ↗</a>
         </div>
       </div>
-
       <aside class="museum-plaque" aria-label="Placa curatorial">
-        <span class="plaque-number" id="plaque-number">—</span>
-        <p class="plaque-label">Pregunta de sala</p>
+        <span class="plaque-number" id="plaque-number">—</span><p class="plaque-label">Pregunta de sala</p>
         <blockquote id="exhibit-question">¿Qué cambia cuando puedes manipular el mecanismo y no solo leerlo?</blockquote>
         <p class="plaque-note" id="plaque-note">Cada control altera una representación del principio premiado. La simulación es pedagógica; no reproduce el trabajo científico completo.</p>
       </aside>
     </section>
 
     <section class="living-stage" id="mecanismo" aria-labelledby="mechanism-title">
-      <div class="stage-heading">
-        <div>
-          <p class="eyebrow">La pieza despierta</p>
-          <h2 id="mechanism-title">Manipula el mecanismo</h2>
-        </div>
-        <p id="mechanism-intro">Esta sala se adapta al Nobel seleccionado.</p>
-      </div>
+      <div class="stage-heading"><div><p class="eyebrow">La pieza despierta</p><h2 id="mechanism-title">Manipula el mecanismo</h2></div><p id="mechanism-intro">Esta sala se adapta al Nobel seleccionado.</p></div>
       <div id="interactive-root" class="interactive-root" aria-live="polite"></div>
     </section>
 
     <section class="lens-room" id="lentes" aria-labelledby="lens-title">
-      <div class="stage-heading compact">
-        <div>
-          <p class="eyebrow">Mesa del curador</p>
-          <h2 id="lens-title">Mira la misma pieza con cuatro lentes.</h2>
-        </div>
-        <p>El valor polímata aparece cuando cambias la pregunta sin cambiar el objeto.</p>
-      </div>
-
+      <div class="stage-heading compact"><div><p class="eyebrow">Mesa del curador</p><h2 id="lens-title">Mira la misma pieza con cuatro lentes.</h2></div><p>El valor polímata aparece cuando cambias la pregunta sin cambiar el objeto.</p></div>
       <div class="lens-layout">
         <div class="lens-tabs" role="tablist" aria-label="Lentes de exploración">
           <button class="lens-tab active" type="button" role="tab" aria-selected="true" data-lens="observar">Observar</button>
@@ -85,48 +63,30 @@
           <button class="lens-tab" type="button" role="tab" aria-selected="false" data-lens="inferir">Inferir</button>
           <button class="lens-tab" type="button" role="tab" aria-selected="false" data-lens="transferir">Transferir</button>
         </div>
-        <article class="lens-panel" id="lens-panel" role="tabpanel" tabindex="0">
-          <p class="lens-overline" id="lens-overline">Observar</p>
-          <h3 id="lens-heading">¿Qué entra como evidencia?</h3>
-          <p id="lens-body">Cargando lectura curatorial…</p>
-        </article>
+        <article class="lens-panel" id="lens-panel" role="tabpanel" tabindex="0"><p class="lens-overline" id="lens-overline">Observar</p><h3 id="lens-heading">¿Qué entra como evidencia?</h3><p id="lens-body">Cargando lectura curatorial…</p></article>
       </div>
     </section>
 
     <section class="constellation-room" id="conexiones" aria-labelledby="connections-title">
-      <div class="stage-heading compact">
-        <div>
-          <p class="eyebrow">Constelación</p>
-          <h2 id="connections-title">Cruza de sala sin pedir permiso.</h2>
-        </div>
-        <p>Estas conexiones se calculan desde palabras compartidas en la lente de modelamiento del catálogo.</p>
-      </div>
+      <div class="stage-heading compact"><div><p class="eyebrow">Constelación</p><h2 id="connections-title">Cruza de sala sin pedir permiso.</h2></div><p>Estas conexiones se calculan desde palabras compartidas en la lente de modelamiento del catálogo.</p></div>
       <div class="related-grid" id="related-grid" aria-live="polite"></div>
     </section>
 
     <section class="exhibit-exit">
-      <p class="eyebrow">Siguiente sala</p>
-      <h2>Una buena exhibición no termina cuando entiendes.<br />Termina cuando quieres probar otra cosa.</h2>
-      <div class="exit-actions">
-        <a class="primary-button" href="index.html#galeria">Elegir otra pieza</a>
-        <button class="text-button" id="next-random" type="button">Abrir una sala inesperada →</button>
-      </div>
+      <p class="eyebrow">Siguiente sala</p><h2>Una buena exhibición no termina cuando entiendes.<br />Termina cuando quieres probar otra cosa.</h2>
+      <div class="exit-actions"><a class="primary-button" href="index.html#galeria">Elegir otra pieza</a><button class="text-button" id="next-random" type="button">Abrir una sala inesperada →</button></div>
     </section>
   </main>
 
-  <footer>
-    <p><strong>Nobel Data Lab</strong> · Exhibiciones vivas</p>
-    <p>Los simuladores son modelos pedagógicos explícitamente simplificados. La fuente Nobel oficial permanece visible en cada sala.</p>
-  </footer>
-
-  <noscript>
-    <div class="noscript">Activa JavaScript para manipular esta exhibición.</div>
-  </noscript>
+  <footer><p><strong>Nobel Data Lab</strong> · Exhibiciones vivas</p><p>Los simuladores son modelos pedagógicos explícitamente simplificados. La fuente Nobel oficial permanece visible en cada sala.</p></footer>
+  <noscript><div class="noscript">Activa JavaScript para manipular esta exhibición.</div></noscript>
   <script src="assets/exhibit-core.js" defer></script>
   <script src="assets/exhibit.js" defer></script>
   <script src="assets/exhibit-hopfield.js" defer></script>
   <script src="assets/exhibit-causal-goldin.js" defer></script>
   <script src="assets/exhibit-growth-generic.js" defer></script>
+  <script src="assets/curator-core.js" defer></script>
+  <script src="assets/curator.js" defer></script>
   <script src="assets/exhibit-bootstrap.js" defer></script>
 </body>
 </html>
