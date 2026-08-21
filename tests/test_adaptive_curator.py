@@ -2,9 +2,9 @@ import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-INDEX = ROOT / "index.html"
 EXHIBIT = ROOT / "exhibit.html"
 BOOTSTRAP = ROOT / "assets" / "exhibit-bootstrap.js"
+ROUTER = ROOT / "assets" / "exhibit-router.js"
 CORE = ROOT / "assets" / "curator-core.js"
 CURATOR = ROOT / "assets" / "curator.js"
 HOME = ROOT / "assets" / "curator-home.js"
@@ -20,7 +20,7 @@ class AdaptiveCuratorContractTests(unittest.TestCase):
         core = CORE.read_text(encoding="utf-8")
         for dimension in ("memoria", "causalidad", "complejidad", "evidencia", "prediccion"):
             self.assertIn(f'"{dimension}"', core)
-        self.assertIn("uniqueRooms >= 5", core)
+        self.assertIn("length >= 5", core)
         self.assertIn("reason", core)
 
     def test_privacy_is_local_first_and_resettable(self):
@@ -39,18 +39,18 @@ class AdaptiveCuratorContractTests(unittest.TestCase):
     def test_home_illuminates_recommended_cards(self):
         home = HOME.read_text(encoding="utf-8")
         css = CSS.read_text(encoding="utf-8")
+        router = ROUTER.read_text(encoding="utf-8")
         self.assertIn("curator-lit", home)
         self.assertIn("curator-lit", css)
         self.assertIn("recommendations", home)
+        self.assertIn("curator-home.js", router)
+        self.assertIn("curator-core.js", router)
 
-    def test_pages_load_curator_assets(self):
-        index = INDEX.read_text(encoding="utf-8")
+    def test_exhibit_loads_curator_assets(self):
         exhibit = EXHIBIT.read_text(encoding="utf-8")
-        for asset in ("curator.css", "curator-core.js"):
-            self.assertIn(asset, index)
+        for asset in ("curator.css", "curator-core.js", "curator.js"):
             self.assertIn(asset, exhibit)
-        self.assertIn("curator-home.js", index)
-        self.assertIn("curator.js", exhibit)
+        self.assertIn('href="#curador"', exhibit)
 
 
 if __name__ == "__main__":
