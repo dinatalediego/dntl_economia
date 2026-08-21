@@ -36,9 +36,12 @@ jobs:
           node --check assets/exhibit-growth-generic.js
           node --check assets/exhibit-bootstrap.js
           node --check assets/exhibit-router.js
+          node --check assets/curator-core.js
+          node --check assets/curator.js
+          node --check assets/curator-home.js
 
       - name: Run Python tests
         run: python -m unittest discover -s tests -v
 
-      - name: Run exhibit core tests
-        run: node --test tests/exhibit-core.test.js
+      - name: Run Node tests
+        run: node --test tests/*.test.js
