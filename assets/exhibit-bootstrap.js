@@ -3,6 +3,7 @@ function wireLensTabs() {
     tab.addEventListener("click", () => {
       museumState.activeLens = tab.dataset.lens;
       renderLens();
+      globalThis.PolymathCurator?.trackLens(tab.dataset.lens);
       els.lensPanel.focus({ preventScroll: true });
     });
   });
@@ -28,6 +29,12 @@ async function loadExhibit() {
     renderRelated(museumState.row);
     wireLensTabs();
     wireRandom();
+    globalThis.PolymathCurator?.onRoomLoaded({
+      rows: museumState.rows,
+      row: museumState.row,
+      exhibitHref,
+      areaAccents,
+    });
   } catch (error) {
     console.error("No se pudo preparar la exhibición", error);
     els.title.textContent = "La sala no pudo abrirse";
