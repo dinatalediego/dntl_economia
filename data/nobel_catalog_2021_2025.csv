@@ -1,0 +1,31 @@
+area,year,laureates,model_lens,relation_class,model_score,official_source
+Física,2021,Syukuro Manabe; Klaus Hasselmann; Giorgio Parisi,"Modelos climáticos, sistemas complejos, señal vs. ruido",Directa,5,https://www.nobelprize.org/prizes/physics/2021/summary/
+Física,2022,Alain Aspect; John F. Clauser; Anton Zeilinger,"Inferencia experimental, Bell, información cuántica",Directa,4,https://www.nobelprize.org/prizes/physics/2022/summary/
+Física,2023,Pierre Agostini; Ferenc Krausz; Anne L'Huillier,Medición temporal extrema y reconstrucción de dinámica electrónica,Metodológica,3,https://www.nobelprize.org/prizes/physics/2023/summary/
+Física,2024,John J. Hopfield; Geoffrey Hinton,"Redes neuronales, memoria asociativa, machine learning",Directa,5,https://www.nobelprize.org/prizes/physics/2024/summary/
+Física,2025,John Clarke; Michel H. Devoret; John M. Martinis,Modelado y medición de estados cuánticos en circuitos,Directa,4,https://www.nobelprize.org/prizes/physics/2025/summary/
+Química,2021,Benjamin List; David W.C. MacMillan,Diseño experimental y reglas de transformación molecular,Metodológica,2,https://www.nobelprize.org/prizes/chemistry/2021/summary/
+Química,2022,Carolyn R. Bertozzi; Morten Meldal; K. Barry Sharpless,"Composición modular, reacción selectiva y bioortogonalidad",Metodológica,3,https://www.nobelprize.org/prizes/chemistry/2022/summary/
+Química,2023,Moungi G. Bawendi; Louis E. Brus; Alexei I. Ekimov,Relación tamaño-estructura-propiedad en quantum dots,Directa,3,https://www.nobelprize.org/prizes/chemistry/2023/summary/
+Química,2024,David Baker; Demis Hassabis; John Jumper,Diseño computacional y predicción de estructura de proteínas,Directa,5,https://www.nobelprize.org/prizes/chemistry/2024/summary/
+Química,2025,Susumu Kitagawa; Richard Robson; Omar M. Yaghi,Arquitecturas porosas y relaciones estructura-propiedad,Metodológica,3,https://www.nobelprize.org/prizes/chemistry/2025/summary/
+Medicina,2021,David Julius; Ardem Patapoutian,De estímulos observables a mecanismos/receptores,Directa,3,https://www.nobelprize.org/prizes/medicine/2021/summary/
+Medicina,2022,Svante Pääbo,"Genómica antigua, reconstrucción e inferencia poblacional",Directa,5,https://www.nobelprize.org/prizes/medicine/2022/summary/
+Medicina,2023,Katalin Karikó; Drew Weissman,"Mecanismo molecular, modificación de nucleósidos y evidencia experimental",Directa,4,https://www.nobelprize.org/prizes/medicine/2023/summary/
+Medicina,2024,Victor Ambros; Gary Ruvkun,microRNA y redes de regulación génica,Directa,4,https://www.nobelprize.org/prizes/medicine/2024/summary/
+Medicina,2025,Mary E. Brunkow; Fred Ramsdell; Shimon Sakaguchi,"Regulación inmune, genética y mecanismos de tolerancia",Directa,4,https://www.nobelprize.org/prizes/medicine/2025/summary/
+Ciencias Económicas,2021,David Card; Joshua D. Angrist; Guido W. Imbens,Experimentos naturales e inferencia causal,Directa,5,https://www.nobelprize.org/prizes/economic-sciences/2021/summary/
+Ciencias Económicas,2022,Ben Bernanke; Douglas W. Diamond; Philip H. Dybvig,"Modelos bancarios, corridas y crisis financieras",Directa,5,https://www.nobelprize.org/prizes/economic-sciences/2022/summary/
+Ciencias Económicas,2023,Claudia Goldin,Datos históricos longitudinales y mercado laboral femenino,Directa,5,https://www.nobelprize.org/prizes/economic-sciences/2023/summary/
+Ciencias Económicas,2024,Daron Acemoglu; Simon Johnson; James A. Robinson,"Instituciones, identificación histórica y prosperidad",Directa,5,https://www.nobelprize.org/prizes/economic-sciences/2024/summary/
+Ciencias Económicas,2025,Joel Mokyr; Philippe Aghion; Peter Howitt,"Modelos de crecimiento, innovación y destrucción creativa",Directa,5,https://www.nobelprize.org/prizes/economic-sciences/2025/summary/
+Paz,2021,Maria Ressa; Dmitry Muratov,"Información verificable, libertad de expresión y ecosistemas informativos",Metodológica,3,https://www.nobelprize.org/prizes/peace/2021/summary/
+Paz,2022,Ales Bialiatski; Memorial; Center for Civil Liberties,"Documentación, provenance y evidencia de abusos",Metodológica,4,https://www.nobelprize.org/prizes/peace/2022/summary/
+Paz,2023,Narges Mohammadi,"Documentación de represión, derechos y evidencia pública",Metodológica,3,https://www.nobelprize.org/prizes/peace/2023/summary/
+Paz,2024,Nihon Hidankyo,"Testimonio, memoria verificable y evidencia histórica",Metodológica,4,https://www.nobelprize.org/prizes/peace/2024/summary/
+Paz,2025,Maria Corina Machado,"Instituciones democráticas, observación electoral y evidencia pública",Metodológica,2,https://www.nobelprize.org/prizes/peace/2025/summary/
+Literatura,2021,Abdulrazak Gurnah,"Colonialismo, migración y experiencia como corpus narrativo",Analógica/documental,2,https://www.nobelprize.org/prizes/literature/2021/summary/
+Literatura,2022,Annie Ernaux,Memoria individual y restricciones colectivas como evidencia social,Analógica/documental,2,https://www.nobelprize.org/prizes/literature/2022/summary/
+Literatura,2023,Jon Fosse,Representación de lo implícito y límites de la codificación lingüística,Analógica/documental,1,https://www.nobelprize.org/prizes/literature/2023/summary/
+Literatura,2024,Han Kang,"Trauma histórico, memoria y experiencia humana como corpus",Analógica/documental,2,https://www.nobelprize.org/prizes/literature/2024/summary/
+Literatura,2025,László Krasznahorkai,Narrativa de sistemas sociales bajo tensión y representación de incertidumbre,Analógica/documental,1,https://www.nobelprize.org/prizes/literature/2025/summary/
