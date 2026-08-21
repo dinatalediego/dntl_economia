@@ -9,10 +9,11 @@ La primera colección del repositorio estudia los cinco años Nobel completos m�
 ### Qué contiene
 
 - **30 ediciones Nobel catalogadas**: 6 áreas × 5 años.
-- **Deep dives** seleccionados por valor de aprendizaje.
-- **2 experimentos ejecutables**: inferencia causal y memoria asociativa de Hopfield.
-- **Tests automáticos** sobre cobertura, metadata, comportamiento y contrato del frontend.
-- **Museo Vivo de Ideas**: frontend estático para explorar por disciplina o por conexiones conceptuales.
+- **30 exhibiciones individuales** enlazadas desde la Gran Galería.
+- **4 salas signature manipulables**: Hopfield, inferencia causal, Goldin/medición y destrucción creativa.
+- **26 salas curatoriales interactivas** con lentes, fuerza de afirmación y conexiones calculadas.
+- **2 experimentos Python ejecutables**: inferencia causal y memoria asociativa de Hopfield.
+- **Tests Python + Node** sobre cobertura, metadata, frontend y matemática de las exhibiciones.
 - Fuentes oficiales de **NobelPrize.org** por registro.
 
 ➡️ [Abrir Nobel Data Wiki](wiki/README.md)
@@ -22,6 +23,8 @@ La primera colección del repositorio estudia los cinco años Nobel completos m�
 ➡️ [Ver por qué se eligió esta arquitectura](wiki/decision-from-wiki-to-nobel-lab.md)
 
 ➡️ [Ver el diseño del Museo Vivo para un Polímata](wiki/frontend-museum-design.md)
+
+➡️ [Ver el contrato de las exhibiciones vivas](wiki/living-exhibits.md)
 
 ## Museo Vivo · frontend
 
@@ -33,7 +36,16 @@ La raíz del repositorio contiene un frontend build-free (`index.html` + `assets
 - evidencia & trazabilidad;
 - predicción & representación.
 
-El frontend consume directamente `data/nobel_catalog_2021_2025.csv`; no mantiene una copia paralela de los 30 premios.
+Cada tarjeta de la galería abre `exhibit.html?area=...&year=...`. El frontend consume directamente `data/nobel_catalog_2021_2025.csv`; no mantiene una copia paralela de los 30 premios.
+
+### Salas signature
+
+| Sala | Interacción | Verdad conocida / contrato |
+|---|---|---|
+| Física 2024 · Hopfield | corromper bits, energía, recall | recupera patrón y reduce energía |
+| Economía 2021 · DiD | mover tratado/control | efecto sintético = `7.0` |
+| Economía 2023 · Goldin | quiebre de medición | armonización elimina sesgo conocido |
+| Economía 2025 · crecimiento | innovación/competencia | semilla fija `2025`, dinámica reproducible |
 
 ### Ejecutar localmente
 
@@ -62,6 +74,10 @@ python examples/economics_2021_causal_inference.py
 python examples/physics_2024_hopfield.py
 python -m unittest discover -s tests -v
 node --check assets/app.js
+node --check assets/exhibit-core.js
+node --check assets/exhibit.js
+node --check assets/exhibit-router.js
+node --test tests/exhibit-core.test.js
 ```
 
 La colección distingue explícitamente entre conexiones **directas**, **metodológicas** y **analógicas/documentales** con data science para no confundir la motivación oficial del Nobel con interpretaciones posteriores.
