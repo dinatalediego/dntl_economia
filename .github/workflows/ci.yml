@@ -31,6 +31,10 @@ jobs:
           node --check assets/app.js
           node --check assets/exhibit-core.js
           node --check assets/exhibit.js
+          node --check assets/exhibit-hopfield.js
+          node --check assets/exhibit-causal-goldin.js
+          node --check assets/exhibit-growth-generic.js
+          node --check assets/exhibit-bootstrap.js
           node --check assets/exhibit-router.js
 
       - name: Run Python tests
