@@ -12,6 +12,7 @@ La primera colección del repositorio estudia los cinco años Nobel completos m�
 - **30 exhibiciones individuales** enlazadas desde la Gran Galería.
 - **4 salas signature manipulables**: Hopfield, inferencia causal, Goldin/medición y destrucción creativa.
 - **26 salas curatoriales interactivas** con lentes, fuerza de afirmación y conexiones calculadas.
+- **Laboratorio de conexiones** para comparar cualquier par de Nobel, revelar mecanismos compartidos y generar preguntas de transferencia.
 - **2 experimentos Python ejecutables**: inferencia causal y memoria asociativa de Hopfield.
 - **Tests Python + Node** sobre cobertura, metadata, frontend y matemática de las exhibiciones.
 - Fuentes oficiales de **NobelPrize.org** por registro.
