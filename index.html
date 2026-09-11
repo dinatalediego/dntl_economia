@@ -24,6 +24,7 @@
     </a>
     <nav class="main-nav" aria-label="Navegación principal">
       <a href="#rutas">Rutas</a>
+      <a href="#conexiones">Conectar</a>
       <a href="#galeria">Galería</a>
       <a href="#gabinete">Gabinete</a>
       <a href="#laboratorio">Salas vivas</a>
@@ -74,6 +75,32 @@
         <button class="route-card" type="button" data-route="prediccion"><span class="route-number">V</span><span class="route-icon" aria-hidden="true">△</span><strong>Predicción & representación</strong><small>AlphaFold · Hinton · microRNA · quantum</small></button>
       </div>
       <p class="route-status" id="route-status" aria-live="polite">Explora libremente o elige una ruta.</p>
+    </section>
+
+    <section class="section connection-lab" id="conexiones">
+      <div class="section-heading">
+        <div><p class="eyebrow">Laboratorio de conexiones</p><h2>Haz conversar<br />dos ideas.</h2></div>
+        <p>Elige dos Nobel. El museo compara sus lentes, encuentra mecanismos compartidos y propone una pregunta transferible sin confundir analogía con evidencia.</p>
+      </div>
+      <div class="compare-shell">
+        <div class="compare-controls">
+          <label>Primera pieza<select id="compare-a" aria-label="Primera pieza Nobel"></select></label>
+          <button id="swap-comparison" class="compare-swap" type="button" aria-label="Intercambiar piezas">⇄</button>
+          <label>Segunda pieza<select id="compare-b" aria-label="Segunda pieza Nobel"></select></label>
+        </div>
+        <div class="comparison-output" id="comparison-output" aria-live="polite">
+          <article><p class="comparison-kicker">Pieza A</p><h3 id="compare-a-title">—</h3><p id="compare-a-lens">—</p></article>
+          <div class="comparison-bridge">
+            <span class="bridge-glyph" aria-hidden="true">✦</span>
+            <p class="comparison-kicker">Puente conceptual</p>
+            <h3 id="bridge-title">Selecciona dos piezas</h3>
+            <p id="bridge-copy">El laboratorio hará visible la estructura que comparten.</p>
+            <div id="bridge-tags" class="bridge-tags"></div>
+          </div>
+          <article><p class="comparison-kicker">Pieza B</p><h3 id="compare-b-title">—</h3><p id="compare-b-lens">—</p></article>
+        </div>
+        <p class="transfer-question"><span>Pregunta de transferencia</span><strong id="transfer-question">¿Qué cambia cuando observas el mismo problema desde dos disciplinas?</strong></p>
+      </div>
     </section>
 
     <section class="section gallery" id="galeria">
