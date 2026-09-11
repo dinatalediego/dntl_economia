@@ -2,24 +2,27 @@
 
 Repositorio personal para estudiar economía, ciencia de datos y modelos aplicados mediante notas, datasets, experimentos reproducibles y una interfaz de exploración transversal.
 
-## Nobel Data Lab · 2021–2025
+## Nobel Data Lab · 1995–2025
 
-La primera colección del repositorio estudia los cinco años Nobel completos más recientes (2021–2025) desde la óptica de **datos, modelamiento, inferencia y representación del conocimiento**.
+La primera colección del repositorio recorre 31 años Nobel completos (1995–2025) desde la óptica de **datos, modelamiento, inferencia y representación del conocimiento**.
 
 ### Qué contiene
 
-- **30 ediciones Nobel catalogadas**: 6 áreas × 5 años.
-- **30 exhibiciones individuales** enlazadas desde la Gran Galería.
+- **186 ediciones Nobel catalogadas**: 6 áreas × 31 años.
+- **376 registros premio-laureado** correspondientes a 375 personas u organizaciones únicas.
+- **186 exhibiciones individuales** enlazadas desde la Gran Galería.
 - **4 salas signature manipulables**: Hopfield, inferencia causal, Goldin/medición y destrucción creativa.
-- **26 salas curatoriales interactivas** con lentes, fuerza de afirmación y conexiones calculadas.
+- **26 salas curatoriales interpretadas** y **156 fichas oficiales abiertas a curaduría**, sin scores inventados.
 - **Laboratorio de conexiones** para comparar cualquier par de Nobel, revelar mecanismos compartidos y generar preguntas de transferencia.
 - **2 experimentos Python ejecutables**: inferencia causal y memoria asociativa de Hopfield.
 - **Tests Python + Node** sobre cobertura, metadata, frontend y matemática de las exhibiciones.
-- Fuentes oficiales de **NobelPrize.org** por registro.
+- Fuentes oficiales de **NobelPrize.org** por registro, respuestas crudas preservadas y manifiesto con hashes.
 
 ➡️ [Abrir Nobel Data Wiki](wiki/README.md)
 
-➡️ [Ver catálogo 2021–2025](wiki/catalog-2021-2025.md)
+➡️ [Ver catálogo longitudinal 1995–2025](wiki/catalog-1995-2025.md)
+
+➡️ [Ver diccionario y procedencia de los datos](data/README.md)
 
 ➡️ [Ver por qué se eligió esta arquitectura](wiki/decision-from-wiki-to-nobel-lab.md)
 
@@ -37,7 +40,15 @@ La raíz del repositorio contiene un frontend build-free (`index.html` + `assets
 - evidencia & trazabilidad;
 - predicción & representación.
 
-Cada tarjeta de la galería abre `exhibit.html?area=...&year=...`. El frontend consume directamente `data/nobel_catalog_2021_2025.csv`; no mantiene una copia paralela de los 30 premios.
+Cada tarjeta de la galería abre `exhibit.html?area=...&year=...`. El frontend consume directamente `data/nobel_catalog_1995_2025.csv`; no mantiene una copia paralela de las 186 ediciones. Los filtros permiten navegar por área, período, año exacto, concepto o laureado.
+
+### Actualizar los datos oficiales
+
+```bash
+python scripts/sync_nobel_data.py --refresh
+```
+
+El script conserva la separación entre fuente y opinión: la motivación, biografía, afiliación y participación proceden de la API Nobel; las 30 lentes de 2021–2025 permanecen en `data/curation/` como overrides editoriales explícitos. La generación local posterior puede usar los JSON crudos sin red omitiendo `--refresh`.
 
 ### Salas signature
 

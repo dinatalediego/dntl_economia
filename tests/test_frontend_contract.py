@@ -7,7 +7,7 @@ ROOT = Path(__file__).resolve().parents[1]
 INDEX = ROOT / "index.html"
 STYLES = ROOT / "assets" / "styles.css"
 APP = ROOT / "assets" / "app.js"
-CATALOG = ROOT / "data" / "nobel_catalog_2021_2025.csv"
+CATALOG = ROOT / "data" / "nobel_catalog_1995_2025.csv"
 
 
 class MuseumFrontendContractTests(unittest.TestCase):
@@ -32,7 +32,7 @@ class MuseumFrontendContractTests(unittest.TestCase):
 
     def test_frontend_uses_single_catalog_source(self):
         js = APP.read_text(encoding="utf-8")
-        self.assertIn('data/nobel_catalog_2021_2025.csv', js)
+        self.assertIn('data/nobel_catalog_1995_2025.csv', js)
         self.assertIn("fetch(CATALOG_URL)", js)
         self.assertNotIn("const catalog = [", js.lower())
 

@@ -1,0 +1,29 @@
+{
+  "dataset": "Nobel Data Lab longitudinal collection",
+  "period": {
+    "start": 1995,
+    "end": 2025
+  },
+  "retrieved_at_utc": "2026-09-11T15:46:29+00:00",
+  "source": "Nobel Prize API 2.1",
+  "source_urls": [
+    "https://api.nobelprize.org/2.1/nobelPrizes?nobelPrizeYear=1995&yearTo=2025&limit=1000",
+    "https://api.nobelprize.org/2.1/laureates?nobelPrizeYear=1995&yearTo=2025&limit=1000"
+  ],
+  "counts": {
+    "prize_editions": 186,
+    "prize_laureate_rows": 376,
+    "unique_laureate_entities": 375,
+    "person_prize_rows": 361,
+    "organization_prize_rows": 15,
+    "unique_people": 360,
+    "unique_organizations": 15,
+    "curated_prize_editions": 30
+  },
+  "files": {
+    "data/nobel_catalog_1995_2025.csv": "ab2eadeb69205cab5f1c4e3835edc8e47cbff15ae583ddd7a66e89e035907de8",
+    "data/nobel_laureates_1995_2025.csv": "b7e4587dc87a7c985283600a18a486d5b7d7161f99982f147c428898e1a94b5a",
+    "data/raw/nobel_prizes_1995_2025.json.gz": "3d3741baac4e320bb613c99cc2ddbee9b2599145439149d358f63cf32a636a91",
+    "data/raw/laureates_1995_2025.json.gz": "f833ccd1b5cb13f1278ddbe8db5be7c7ac5aae65103e6349ce98fa2debe536c1"
+  }
+}

@@ -380,6 +380,8 @@ button { color: inherit; }
   transition: background .2s ease, border-color .2s ease, color .2s ease;
 }
 .filter-chip:hover, .filter-chip.active { border-color: var(--gold); color: var(--gold-light); background: rgba(209,173,101,.08); }
+.year-select { display: flex; align-items: center; gap: .45rem; color: var(--muted); font-size: .67rem; letter-spacing: .1em; text-transform: uppercase; }
+.year-select select { padding: .45rem 1.8rem .45rem .65rem; border: 1px solid var(--line); border-radius: 999px; background: #10171e; color: var(--paper); font-size: .72rem; }
 .filter-reset { margin-left: auto; border-style: dashed; }
 .filter-reset:hover { color: var(--ivory); border-color: #87929a; }
 .gallery-meta { display: flex; justify-content: space-between; align-items: center; color: var(--muted); font-size: .76rem; }
@@ -389,6 +391,7 @@ button { color: inherit; }
 .legend-dot.direct { background: var(--gold); }
 .legend-dot.method { background: #6f9b91; }
 .legend-dot.analogue { background: #8e758e; }
+.legend-dot.source { background: #7b8790; }
 
 .exhibit-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .9rem; }
 .exhibit-card {
@@ -421,9 +424,11 @@ button { color: inherit; }
 .relation::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--gold); }
 .relation.method::before { background: #6f9b91; }
 .relation.analogue::before { background: #8e758e; }
+.relation.source::before { background: #7b8790; }
 .score { display: flex; gap: 3px; }
 .score i { width: 14px; height: 3px; display: block; background: #2d353b; }
 .score i.on { background: var(--gold); }
+.score-source { color: #77838a; font-size: .56rem; letter-spacing: .09em; text-align: right; }
 .exhibit-link {
   position: absolute;
   inset: 0;

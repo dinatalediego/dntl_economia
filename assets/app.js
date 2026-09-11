@@ -1,6 +1,6 @@
 "use strict";
 
-const CATALOG_URL = "data/nobel_catalog_2021_2025.csv";
+const CATALOG_URL = "data/nobel_catalog_1995_2025.csv";
 const REPO = "https://github.com/dinatalediego/dntl_economia/blob/main";
 
 const deepDives = new Map([
@@ -27,23 +27,23 @@ const areaAccents = {
 const routeRules = {
   memoria: {
     label: "Memoria & reconstrucción",
-    terms: ["memoria", "reconstru", "genómica", "históric", "corpus", "testimonio", "secuencia"],
+    terms: ["memoria", "reconstru", "genómica", "históric", "corpus", "testimonio", "secuencia", "memory", "history", "genetic", "archive"],
   },
   causalidad: {
     label: "Causalidad & contrafactuales",
-    terms: ["causal", "institucion", "experimental", "inferencia", "mercado laboral", "crisis", "crecimiento"],
+    terms: ["causal", "institucion", "experimental", "inferencia", "mercado laboral", "crisis", "crecimiento", "cause", "effect", "experiment", "evidence"],
   },
   complejidad: {
     label: "Complejidad & dinámica",
-    terms: ["complej", "clim", "redes", "crecimiento", "innovación", "cuánt", "regulación", "sistemas"],
+    terms: ["complej", "clim", "redes", "crecimiento", "innovación", "cuánt", "regulación", "sistemas", "complex", "network", "interaction", "system"],
   },
   evidencia: {
     label: "Evidencia & trazabilidad",
-    terms: ["evidencia", "document", "inferencia", "medición", "genómica", "verific", "observación", "experimental"],
+    terms: ["evidencia", "document", "inferencia", "medición", "genómica", "verific", "observación", "experimental", "evidence", "observation", "measurement"],
   },
   prediccion: {
     label: "Predicción & representación",
-    terms: ["predic", "machine learning", "redes neuronales", "estructura", "regulación", "quantum", "cuánt"],
+    terms: ["predic", "machine learning", "redes neuronales", "estructura", "regulación", "quantum", "cuánt", "model", "information", "structure", "neural", "algorithm"],
   },
 };
 
@@ -53,6 +53,7 @@ const state = {
   year: null,
   query: "",
   route: null,
+  period: null,
 };
 
 const els = {
@@ -60,7 +61,8 @@ const els = {
   count: document.querySelector("#result-count"),
   empty: document.querySelector("#empty-state"),
   areaFilters: document.querySelector("#area-filters"),
-  yearFilters: document.querySelector("#year-filters"),
+  periodFilters: document.querySelector("#period-filters"),
+  yearSelect: document.querySelector("#year-select"),
   search: document.querySelector("#search"),
   reset: document.querySelector("#reset-filters"),
   routeStatus: document.querySelector("#route-status"),
@@ -80,7 +82,7 @@ const conceptFamilies = [
 ];
 
 function conceptsFor(row) {
-  const text = normalize(`${row.model_lens} ${row.laureates}`);
+  const text = normalize(`${row.topic_tags} ${row.model_lens} ${row.official_motivation_en} ${row.laureates}`);
   return conceptFamilies.filter((family) => family.terms.some((term) => text.includes(normalize(term)))).map((family) => family.label);
 }
 
@@ -120,8 +122,10 @@ function setupComparison() {
   });
   els.compareA.replaceChildren(...options.map((option) => option.cloneNode(true)));
   els.compareB.replaceChildren(...options.map((option) => option.cloneNode(true)));
-  els.compareA.value = "3";
-  els.compareB.value = "21";
+  const hopfieldIndex = state.rows.findIndex((row) => row.area === "Física" && row.year === "2024");
+  const paaboIndex = state.rows.findIndex((row) => row.area === "Medicina" && row.year === "2022");
+  els.compareA.value = String(Math.max(0, hopfieldIndex));
+  els.compareB.value = String(Math.max(1, paaboIndex));
   els.compareA.addEventListener("change", renderComparison);
   els.compareB.addEventListener("change", renderComparison);
   els.swapComparison.addEventListener("click", () => {
@@ -179,13 +183,13 @@ function normalize(value) {
 function routeMatches(row, routeKey) {
   if (!routeKey) return true;
   const rule = routeRules[routeKey];
-  const haystack = normalize(`${row.area} ${row.laureates} ${row.model_lens} ${row.relation_class}`);
+  const haystack = normalize(`${row.area} ${row.laureates} ${row.model_lens} ${row.relation_class} ${row.topic_tags} ${row.official_motivation_en}`);
   return rule.terms.some((term) => haystack.includes(normalize(term)));
 }
 
 function queryMatches(row, query) {
   if (!query) return true;
-  const haystack = normalize(`${row.area} ${row.year} ${row.laureates} ${row.model_lens} ${row.relation_class}`);
+  const haystack = normalize(`${row.area} ${row.year} ${row.laureates} ${row.model_lens} ${row.relation_class} ${row.topic_tags} ${row.official_motivation_en}`);
   return normalize(query).split(/\s+/).filter(Boolean).every((term) => haystack.includes(term));
 }
 
@@ -193,6 +197,10 @@ function filteredRows() {
   return state.rows.filter((row) => {
     if (state.area && row.area !== state.area) return false;
     if (state.year && row.year !== state.year) return false;
+    if (state.period) {
+      const year = Number(row.year);
+      if (year < state.period.start || year > state.period.end) return false;
+    }
     if (!queryMatches(row, state.query)) return false;
     if (!routeMatches(row, state.route)) return false;
     return true;
@@ -202,6 +210,7 @@ function filteredRows() {
 function relationClassName(value) {
   if (value === "Directa") return "direct";
   if (value === "Metodológica") return "method";
+  if (value === "Fuente oficial") return "source";
   return "analogue";
 }
 
@@ -218,6 +227,11 @@ function element(tag, className, text) {
 
 function createScore(score) {
   const wrapper = element("span", "score");
+  if (Number(score) < 1) {
+    wrapper.className = "score-source";
+    wrapper.textContent = "SIN SCORE EDITORIAL";
+    return wrapper;
+  }
   wrapper.setAttribute("aria-label", `Cercanía editorial a modelos: ${score} de 5`);
   for (let i = 1; i <= 5; i += 1) {
     wrapper.appendChild(element("i", i <= Number(score) ? "on" : ""));
@@ -263,10 +277,12 @@ function render() {
     chip.classList.toggle("active", chip.dataset.area === state.area);
     chip.setAttribute("aria-pressed", String(chip.dataset.area === state.area));
   });
-  document.querySelectorAll(".filter-chip[data-year]").forEach((chip) => {
-    chip.classList.toggle("active", chip.dataset.year === state.year);
-    chip.setAttribute("aria-pressed", String(chip.dataset.year === state.year));
+  document.querySelectorAll(".filter-chip[data-period]").forEach((chip) => {
+    const active = state.period?.label === chip.dataset.period;
+    chip.classList.toggle("active", active);
+    chip.setAttribute("aria-pressed", String(active));
   });
+  els.yearSelect.value = state.year || "";
   els.routeCards.forEach((card) => {
     const active = card.dataset.route === state.route;
     card.classList.toggle("active", active);
@@ -282,7 +298,13 @@ function render() {
 
 function createFilterButtons() {
   const areas = [...new Set(state.rows.map((row) => row.area))];
-  const years = [...new Set(state.rows.map((row) => row.year))].sort();
+  const years = [...new Set(state.rows.map((row) => row.year))].sort((a, b) => Number(b) - Number(a));
+  const periods = [
+    { label: "1995–99", start: 1995, end: 1999 },
+    { label: "2000–09", start: 2000, end: 2009 },
+    { label: "2010–19", start: 2010, end: 2019 },
+    { label: "2020–25", start: 2020, end: 2025 },
+  ];
 
   areas.forEach((area) => {
     const button = element("button", "filter-chip", area.replace("Ciencias ", ""));
@@ -296,16 +318,28 @@ function createFilterButtons() {
     els.areaFilters.appendChild(button);
   });
 
-  years.forEach((year) => {
-    const button = element("button", "filter-chip", year);
+  periods.forEach((period) => {
+    const button = element("button", "filter-chip", period.label);
     button.type = "button";
-    button.dataset.year = year;
+    button.dataset.period = period.label;
     button.setAttribute("aria-pressed", "false");
     button.addEventListener("click", () => {
-      state.year = state.year === year ? null : year;
+      state.period = state.period?.label === period.label ? null : period;
+      state.year = null;
       render();
     });
-    els.yearFilters.appendChild(button);
+    els.periodFilters.appendChild(button);
+  });
+
+  years.forEach((year) => {
+    const option = element("option", "", year);
+    option.value = year;
+    els.yearSelect.appendChild(option);
+  });
+  els.yearSelect.addEventListener("change", (event) => {
+    state.year = event.target.value || null;
+    state.period = null;
+    render();
   });
 }
 
@@ -314,6 +348,7 @@ function resetFilters() {
   state.year = null;
   state.query = "";
   state.route = null;
+  state.period = null;
   els.search.value = "";
   render();
 }

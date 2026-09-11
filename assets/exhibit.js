@@ -1,6 +1,7 @@
 "use strict";
 
-const CATALOG_URL = "data/nobel_catalog_2021_2025.csv";
+const CATALOG_URL = "data/nobel_catalog_1995_2025.csv";
+const LAUREATES_URL = "data/nobel_laureates_1995_2025.csv";
 const REPO = "https://github.com/dinatalediego/dntl_economia/blob/main";
 const core = globalThis.NobelExhibitCore;
 
@@ -60,11 +61,14 @@ const els = {
   lensHeading: document.querySelector("#lens-heading"),
   lensBody: document.querySelector("#lens-body"),
   related: document.querySelector("#related-grid"),
+  laureateGrid: document.querySelector("#laureate-grid"),
+  laureateCount: document.querySelector("#laureate-count"),
   random: document.querySelector("#next-random"),
 };
 
 const museumState = {
   rows: [],
+  laureates: [],
   row: null,
   activeLens: "observar",
 };
@@ -133,6 +137,7 @@ function requestedRow(rows) {
 
 function renderHeader(row) {
   const key = keyFor(row);
+  const curated = row.curation_status === "curated";
   const index = museumState.rows.findIndex((candidate) => candidate === row) + 1;
   const accent = areaAccents[row.area] || "#d1ad65";
   document.documentElement.style.setProperty("--room-accent", accent);
@@ -140,12 +145,17 @@ function renderHeader(row) {
   els.kicker.textContent = `${row.area} · ${row.year}`;
   els.title.textContent = row.laureates.replaceAll(";", " ·");
   els.laureates.textContent = row.model_lens;
-  els.lens.textContent = `Esta sala traduce la pieza a una experiencia manipulable. Relación con modelos: ${row.relation_class.toLowerCase()}.`;
+  els.lens.textContent = curated
+    ? `Esta sala traduce la pieza a una experiencia manipulable. Relación con modelos: ${row.relation_class.toLowerCase()}.`
+    : "Esta ficha preserva el motivo oficial del premio. La interpretación aplicada aún espera curaduría profunda.";
   els.relation.textContent = row.relation_class;
-  els.score.textContent = `Lente de modelos ${row.model_score}/5`;
+  els.score.textContent = curated ? `Lente de modelos ${row.model_score}/5` : "Sin score editorial";
   els.official.href = row.official_source;
   els.plaqueNumber.textContent = String(index).padStart(2, "0");
-  els.question.textContent = signatureQuestions.get(key) || `¿Qué cambia si observas “${row.model_lens}” como un mecanismo y no solo como una descripción?`;
+  els.question.textContent = signatureQuestions.get(key)
+    || (curated
+      ? `¿Qué cambia si observas “${row.model_lens}” como un mecanismo y no solo como una descripción?`
+      : "¿Qué evidencia adicional necesitarías para convertir este reconocimiento en una hipótesis transferible?");
 
   const deepDive = deepDives.get(key);
   if (deepDive) {
@@ -158,6 +168,31 @@ function renderHeader(row) {
 
 function lensCopy(row, lens) {
   const score = Number(row.model_score);
+  if (row.curation_status !== "curated") {
+    const sourceCopy = {
+      observar: {
+        overline: "Observar",
+        heading: "¿Qué afirma la fuente oficial?",
+        body: `El registro oficial identifica a ${row.laureates.replaceAll(";", " ·")} y conserva literalmente el motivo del premio: “${row.official_motivation_en}”.`,
+      },
+      modelar: {
+        overline: "Modelar",
+        heading: "Curaduría aún abierta",
+        body: "Esta edición todavía no tiene una lente de modelamiento ni un score editorial. El museo muestra el vacío en lugar de rellenarlo con una clasificación automática que parecería conocimiento experto.",
+      },
+      inferir: {
+        overline: "Inferir",
+        heading: "¿Qué está justificado afirmar?",
+        body: "La fuente permite afirmar quién recibió el premio, cuándo y por qué motivo oficial. No basta por sí sola para sostener una aplicación causal, estadística o empresarial del trabajo premiado.",
+      },
+      transferir: {
+        overline: "Transferir",
+        heading: "Una pregunta, todavía no una conclusión",
+        body: transferPrompts[row.area] || "¿Qué estructura del trabajo premiado podría transformarse en una hipótesis comprobable sin perder el contexto original?",
+      },
+    };
+    return sourceCopy[lens];
+  }
   const copy = {
     observar: {
       overline: "Observar",
@@ -202,7 +237,7 @@ function renderLens() {
 function tokenize(row) {
   const stop = new Set(["de", "y", "la", "el", "en", "del", "los", "las", "e", "un", "una", "por", "con", "como", "a"]);
   return new Set(
-    normalize(`${row.model_lens} ${row.relation_class}`)
+    normalize(`${row.model_lens} ${row.relation_class} ${row.topic_tags} ${row.official_motivation_en}`)
       .replace(/[^a-z0-9\s]/g, " ")
       .split(/\s+/)
       .filter((token) => token.length > 3 && !stop.has(token)),
@@ -244,6 +279,58 @@ function renderRelated(row) {
     link.append(meta, title, lens, shared);
     return link;
   }));
+}
+
+function appendFact(list, label, value) {
+  if (!value) return;
+  const item = document.createElement("div");
+  const term = document.createElement("dt");
+  const description = document.createElement("dd");
+  term.textContent = label;
+  description.textContent = value;
+  item.append(term, description);
+  list.appendChild(item);
+}
+
+function renderLaureates(row) {
+  const records = museumState.laureates.filter(
+    (record) => record.award_year === row.year && record.area === row.area,
+  );
+  els.laureateCount.textContent = `${records.length} ${records.length === 1 ? "ficha" : "fichas"} · datos oficiales y enlaces de contexto`;
+  const cards = records.map((record) => {
+    const card = document.createElement("article");
+    card.className = "laureate-card";
+    const kind = document.createElement("p");
+    kind.className = "laureate-kind";
+    kind.textContent = `${record.laureate_type === "organization" ? "Organización" : "Persona"} · participación ${record.portion || "no indicada"}`;
+    const name = document.createElement("h3");
+    name.textContent = record.display_name;
+    const facts = document.createElement("dl");
+    const origin = [record.origin_city, record.origin_country].filter(Boolean).join(", ");
+    appendFact(facts, record.laureate_type === "organization" ? "Fundación" : "Nacimiento", [record.birth_or_founded_date, origin].filter(Boolean).join(" · "));
+    appendFact(facts, "Afiliación al premiarse", record.affiliations);
+    const links = document.createElement("div");
+    links.className = "laureate-links";
+    if (record.official_laureate_url) {
+      const official = document.createElement("a");
+      official.href = record.official_laureate_url;
+      official.target = "_blank";
+      official.rel = "noreferrer";
+      official.textContent = "Ficha Nobel ↗";
+      links.appendChild(official);
+    }
+    if (record.wikipedia_url) {
+      const context = document.createElement("a");
+      context.href = record.wikipedia_url;
+      context.target = "_blank";
+      context.rel = "noreferrer";
+      context.textContent = "Contexto externo ↗";
+      links.appendChild(context);
+    }
+    card.append(kind, name, facts, links);
+    return card;
+  });
+  els.laureateGrid.replaceChildren(...cards);
 }
 
 function metric(label, value, id = "") {

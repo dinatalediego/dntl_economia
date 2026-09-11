@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Nobel Data Lab: un museo vivo para explorar Nobel, modelos, evidencia y mecanismos interactivos." />
+  <meta name="description" content="Nobel Data Lab: 31 años de premios Nobel, 186 exhibiciones y un museo vivo para explorar evidencia, modelos y conexiones." />
   <meta name="theme-color" content="#0c1117" />
   <title>Nobel Data Lab · Museo Vivo de Ideas</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -35,13 +35,14 @@
   <main id="main">
     <section class="hero" id="top">
       <div class="hero-copy">
-        <p class="eyebrow">Colección nocturna · 2021—2025</p>
+        <p class="eyebrow">Archivo longitudinal · 1995—2025</p>
         <h1>Cuando cae la noche,<br /><em>las ideas conversan.</em></h1>
-        <p class="hero-lede">Treinta Nobel dejan de ser vitrinas: ahora cada pieza abre una sala propia y las más fértiles permiten <strong>manipular el mecanismo</strong>.</p>
+        <p class="hero-lede">Ciento ochenta y seis ediciones Nobel dejan de ser vitrinas: cada pieza abre una sala propia y las más fértiles permiten <strong>manipular el mecanismo</strong>.</p>
         <div class="hero-actions">
           <a class="primary-button" href="#galeria">Entrar a la colección</a>
           <a class="text-link" href="exhibit.html?area=F%C3%ADsica&year=2024">Probar una exhibición viva →</a>
           <button class="text-button" id="random-exhibit" type="button">Sorpréndeme con una sala →</button>
+          <a class="text-link" href="data/nobel_laureates_1995_2025.csv" download>Descargar datos de laureados ↓</a>
         </div>
       </div>
       <div class="hero-installation" aria-label="Instalación visual de conceptos conectados">
@@ -49,16 +50,16 @@
           <div class="orbit orbit-a"><span class="orb">Memoria</span></div>
           <div class="orbit orbit-b"><span class="orb">Evidencia</span></div>
           <div class="orbit orbit-c"><span class="orb">Causalidad</span></div>
-          <div class="orrery-core"><span>30</span><small>Salas</small></div>
+          <div class="orrery-core"><span>186</span><small>Salas</small></div>
         </div>
-        <p class="installation-caption">Seis disciplinas · cinco años · cuatro mecanismos especializados · treinta puertas de entrada</p>
+        <p class="installation-caption">Seis disciplinas · treinta y un años · cuatro mecanismos especializados · un archivo factual trazable</p>
       </div>
     </section>
 
     <section class="stats-corridor" aria-label="Resumen de la colección">
-      <article><span>30</span><p>exhibiciones individuales</p></article>
-      <article><span>4</span><p>simuladores especializados</p></article>
-      <article><span>5</span><p>rutas conceptuales</p></article>
+      <article><span>186</span><p>ediciones área-año</p></article>
+      <article><span>376</span><p>registros premio-laureado</p></article>
+      <article><span>31</span><p>años completos</p></article>
       <article><span>1</span><p>catálogo como fuente</p></article>
     </section>
 
@@ -105,17 +106,18 @@
 
     <section class="section gallery" id="galeria">
       <div class="section-heading gallery-heading">
-        <div><p class="eyebrow">Gran Galería</p><h2>Treinta piezas. Treinta salas.</h2></div>
+        <div><p class="eyebrow">Gran Galería</p><h2>186 piezas.<br />31 años.</h2></div>
         <div class="gallery-search"><label for="search">Buscar en la colección</label><input id="search" type="search" placeholder="laureado, modelo, concepto…" autocomplete="off" /></div>
       </div>
       <div class="filters" aria-label="Filtros de la galería">
         <div class="filter-group" id="area-filters" aria-label="Filtrar por área"></div>
-        <div class="filter-group years" id="year-filters" aria-label="Filtrar por año"></div>
+        <div class="filter-group years" id="period-filters" aria-label="Filtrar por período"></div>
+        <label class="year-select" for="year-select">Año<select id="year-select"><option value="">Todos</option></select></label>
         <button class="filter-reset" id="reset-filters" type="button">Limpiar filtros</button>
       </div>
       <div class="gallery-meta">
-        <p><span id="result-count">30</span> piezas visibles</p>
-        <p class="legend"><span class="legend-dot direct"></span>Directa <span class="legend-dot method"></span>Metodológica <span class="legend-dot analogue"></span>Analógica</p>
+        <p><span id="result-count">186</span> piezas visibles</p>
+        <p class="legend"><span class="legend-dot direct"></span>Directa <span class="legend-dot method"></span>Metodológica <span class="legend-dot analogue"></span>Analógica <span class="legend-dot source"></span>Fuente oficial</p>
       </div>
       <div class="exhibit-grid" id="exhibit-grid" aria-live="polite"></div>
       <div class="empty-state" id="empty-state" hidden><span aria-hidden="true">◈</span><h3>Esta vitrina está vacía.</h3><p>Prueba otra combinación de sala, año o concepto.</p></div>
@@ -136,7 +138,7 @@
     <section class="section laboratory" id="laboratorio">
       <div class="section-heading">
         <div><p class="eyebrow">Salas que ya despertaron</p><h2>Lee menos.<br />Toca el mecanismo.</h2></div>
-        <p>Cuatro Nobel tienen simuladores especializados en navegador. Las otras 26 piezas abren una sala curatorial interactiva con lentes y conexiones calculadas.</p>
+        <p>Cuatro Nobel tienen simuladores especializados en navegador. Las otras 182 piezas abren una ficha viva; 156 esperan una curaduría profunda sin perder su registro factual oficial.</p>
       </div>
       <div class="lab-grid">
         <article class="lab-card"><div class="lab-badge">VIVA · 01</div><p class="lab-discipline">Física 2024</p><h3>Memoria de Hopfield</h3><p>Corrompe bits, observa la energía y deja que la red reconstruya el patrón.</p><a href="exhibit.html?area=F%C3%ADsica&year=2024">Entrar a Hopfield →</a></article>

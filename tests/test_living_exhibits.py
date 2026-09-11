@@ -53,6 +53,7 @@ class LivingExhibitsContractTests(unittest.TestCase):
         for lens in ("observar", "modelar", "inferir", "transferir"):
             self.assertIn(f'data-lens="{lens}"', html)
         self.assertIn('id="related-grid"', html)
+        self.assertIn('id="laureate-grid"', html)
         self.assertIn('id="interactive-root"', html)
         self.assertGreaterEqual(len(re.findall(r"aria-label=", html)), 3)
 
@@ -84,6 +85,16 @@ class LivingExhibitsContractTests(unittest.TestCase):
         self.assertEqual(html.count('class="lab-badge">VIVA'), 4)
         self.assertIn("exhibit-router.js", html)
         self.assertIn("exhibit.css", html)
+
+    def test_historical_rooms_load_granular_laureate_data(self):
+        app = APP.read_text(encoding="utf-8")
+        bootstrap = BOOTSTRAP.read_text(encoding="utf-8")
+        generic = GROWTH_GENERIC.read_text(encoding="utf-8")
+        self.assertIn('data/nobel_laureates_1995_2025.csv', app)
+        self.assertIn("function renderLaureates(row)", app)
+        self.assertIn("fetch(LAUREATES_URL)", bootstrap)
+        self.assertIn("function renderSourceRecord(row)", generic)
+        self.assertIn('row.curation_status !== "curated"', generic)
 
 
 if __name__ == "__main__":
