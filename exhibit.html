@@ -11,6 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/styles.css" />
   <link rel="stylesheet" href="assets/exhibit.css" />
+  <link rel="stylesheet" href="assets/read-aloud.css" />
 </head>
 <body class="exhibit-page">
   <a class="skip-link" href="#exhibit-main">Ir a la exhibición</a>
@@ -35,7 +36,7 @@
   </header>
 
   <main id="exhibit-main">
-    <section class="exhibit-hero" aria-labelledby="exhibit-title">
+    <section class="exhibit-hero" aria-labelledby="exhibit-title" data-read-label="Presentación del premio seleccionado">
       <div class="exhibit-hero-copy">
         <p class="eyebrow" id="exhibit-kicker">Sala cargando…</p>
         <h1 id="exhibit-title">Preparando la pieza</h1>
@@ -59,7 +60,7 @@
       </aside>
     </section>
 
-    <section class="living-stage" id="mecanismo" aria-labelledby="mechanism-title">
+    <section class="living-stage" id="mecanismo" aria-labelledby="mechanism-title" data-read-label="Mecanismo interactivo">
       <div class="stage-heading">
         <div>
           <p class="eyebrow">La pieza despierta</p>
@@ -70,18 +71,18 @@
       <div id="interactive-root" class="interactive-root" aria-live="polite"></div>
     </section>
 
-    <section class="laureate-room" id="laureados" aria-labelledby="laureates-title">
+    <section class="laureate-room" id="laureados" aria-labelledby="laureates-title" data-read-label="Laureados y datos oficiales">
       <div class="stage-heading compact">
         <div>
           <p class="eyebrow">Archivo de protagonistas</p>
           <h2 id="laureates-title">Quiénes recibieron esta edición.</h2>
         </div>
-        <p id="laureate-count">Cargando fichas oficiales…</p>
+        <p id="laureate-count" role="status" aria-live="polite">Cargando fichas oficiales…</p>
       </div>
-      <div class="laureate-grid" id="laureate-grid" aria-live="polite"></div>
+      <div class="laureate-grid" id="laureate-grid"></div>
     </section>
 
-    <section class="lens-room" id="lentes" aria-labelledby="lens-title">
+    <section class="lens-room" id="lentes" aria-labelledby="lens-title" data-read-label="Lentes de exploración">
       <div class="stage-heading compact">
         <div>
           <p class="eyebrow">Mesa del curador</p>
@@ -105,7 +106,7 @@
       </div>
     </section>
 
-    <section class="constellation-room" id="conexiones" aria-labelledby="connections-title">
+    <section class="constellation-room" id="conexiones" aria-labelledby="connections-title" data-read-label="Salas relacionadas">
       <div class="stage-heading compact">
         <div>
           <p class="eyebrow">Constelación</p>
@@ -113,10 +114,10 @@
         </div>
         <p>Estas conexiones se calculan desde palabras compartidas en la lente de modelamiento del catálogo.</p>
       </div>
-      <div class="related-grid" id="related-grid" aria-live="polite"></div>
+      <div class="related-grid" id="related-grid"></div>
     </section>
 
-    <section class="exhibit-exit">
+    <section class="exhibit-exit" data-read-label="Siguiente sala">
       <p class="eyebrow">Siguiente sala</p>
       <h2>Una buena exhibición no termina cuando entiendes.<br />Termina cuando quieres probar otra cosa.</h2>
       <div class="exit-actions">
@@ -140,5 +141,6 @@
   <script src="assets/exhibit-causal-goldin.js" defer></script>
   <script src="assets/exhibit-growth-generic.js" defer></script>
   <script src="assets/exhibit-bootstrap.js" defer></script>
+  <script src="assets/read-aloud.js" defer></script>
 </body>
 </html>

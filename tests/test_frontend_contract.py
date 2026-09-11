@@ -5,14 +5,18 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 INDEX = ROOT / "index.html"
+EXHIBIT = ROOT / "exhibit.html"
 STYLES = ROOT / "assets" / "styles.css"
 APP = ROOT / "assets" / "app.js"
+READ_ALOUD = ROOT / "assets" / "read-aloud.js"
+READ_ALOUD_STYLES = ROOT / "assets" / "read-aloud.css"
 CATALOG = ROOT / "data" / "nobel_catalog_1995_2025.csv"
+ROADMAP = ROOT / "data" / "nobel_room_candidates_1995_2020.csv"
 
 
 class MuseumFrontendContractTests(unittest.TestCase):
     def test_frontend_entrypoints_exist(self):
-        for path in (INDEX, STYLES, APP, CATALOG):
+        for path in (INDEX, EXHIBIT, STYLES, APP, READ_ALOUD, READ_ALOUD_STYLES, CATALOG, ROADMAP):
             self.assertTrue(path.exists(), f"Missing frontend dependency: {path}")
 
     def test_index_exposes_polymath_navigation(self):
@@ -36,6 +40,17 @@ class MuseumFrontendContractTests(unittest.TestCase):
         self.assertIn("fetch(CATALOG_URL)", js)
         self.assertNotIn("const catalog = [", js.lower())
 
+    def test_frontend_exposes_auditable_curatorial_queue(self):
+        html = INDEX.read_text(encoding="utf-8")
+        js = APP.read_text(encoding="utf-8")
+        for element_id in ("prioridades", "roadmap-grid", "roadmap-status", "roadmap-candidate-count"):
+            self.assertIn(f'id="{element_id}"', html)
+        for mode in ("portfolio", "priority", "effort"):
+            self.assertIn(f'data-roadmap-mode="{mode}"', html)
+        self.assertIn("fetch(ROADMAP_URL)", js)
+        self.assertIn("function renderRoadmap()", js)
+        self.assertIn("no una jerarquía del valor de los Nobel", html)
+
     def test_accessibility_contract(self):
         html = INDEX.read_text(encoding="utf-8")
         css = STYLES.read_text(encoding="utf-8")
@@ -43,6 +58,23 @@ class MuseumFrontendContractTests(unittest.TestCase):
         self.assertIn('aria-live="polite"', html)
         self.assertIn("prefers-reduced-motion", css)
         self.assertGreaterEqual(len(re.findall(r"aria-label=", html)), 3)
+
+    def test_read_aloud_is_available_without_external_service(self):
+        js = READ_ALOUD.read_text(encoding="utf-8")
+        css = READ_ALOUD_STYLES.read_text(encoding="utf-8")
+
+        for page in (INDEX, EXHIBIT):
+            html = page.read_text(encoding="utf-8")
+            self.assertIn('href="assets/read-aloud.css"', html)
+            self.assertIn('src="assets/read-aloud.js"', html)
+            self.assertIn('class="skip-link"', html)
+            self.assertGreaterEqual(html.count("data-read-label="), 5)
+
+        self.assertIn("SpeechSynthesisUtterance", js)
+        self.assertIn("speechSynthesis", js)
+        self.assertIn('role="status"', js)
+        self.assertIn("NVDA, JAWS o VoiceOver", js)
+        self.assertIn("forced-colors: active", css)
 
     def test_deep_dive_links_are_explicit(self):
         js = APP.read_text(encoding="utf-8")
