@@ -72,6 +72,10 @@ function renderGrowth() {
 }
 
 function renderGeneric(row) {
+  if (row.curation_status !== "curated") {
+    renderSourceRecord(row);
+    return;
+  }
   els.mechanismIntro.textContent = "Esta pieza usa un laboratorio curatorial común: cambia el nivel de exigencia de evidencia y observa cómo debe cambiar la afirmación.";
   els.root.innerHTML = `
     <div class="generic-lab">
@@ -102,7 +106,56 @@ function renderGeneric(row) {
   update();
 }
 
+function renderSourceRecord(row) {
+  els.mechanismIntro.textContent = "Explora tres niveles de lectura. Solo el primero pertenece a la fuente oficial; contexto y transferencia requieren investigación y curaduría adicional.";
+  const readings = {
+    literal: {
+      title: "Hecho documentado",
+      copy: `En ${row.year}, ${row.laureates.replaceAll(";", " ·")} recibió el Nobel de ${row.area}. Motivo oficial: “${row.official_motivation_en}”.`,
+    },
+    contexto: {
+      title: "Contexto por investigar",
+      copy: "La ficha biográfica y la motivación no explican por sí solas el debate científico, histórico o cultural. Este nivel exige fuentes adicionales antes de redactar una interpretación.",
+    },
+    transferencia: {
+      title: "Hipótesis de transferencia",
+      copy: transferPrompts[row.area] || "Formula una analogía comprobable y registra qué parte procede de la fuente y qué parte es interpretación propia.",
+    },
+  };
+  els.root.innerHTML = `
+    <div class="generic-lab source-record">
+      <p class="sim-kicker">Archivo oficial · ${row.area} ${row.year}</p>
+      <h3>De la fuente a la interpretación, sin saltos invisibles.</h3>
+      <p class="sim-copy">Esta sala está completa como registro factual y abierta como pieza curatorial.</p>
+      <div class="sim-button-row source-modes" role="group" aria-label="Nivel de lectura">
+        <button class="sim-button primary" type="button" data-reading="literal">Hecho oficial</button>
+        <button class="sim-button" type="button" data-reading="contexto">Contexto</button>
+        <button class="sim-button" type="button" data-reading="transferencia">Transferencia</button>
+      </div>
+      <article class="source-reading" aria-live="polite">
+        <small id="source-reading-label">Nivel factual</small>
+        <h4 id="source-reading-title"></h4>
+        <p id="source-reading-copy"></p>
+      </article>
+    </div>`;
+
+  function showReading(key) {
+    const reading = readings[key];
+    document.querySelector("#source-reading-label").textContent = key === "literal" ? "Nivel factual" : "Nivel editorial";
+    document.querySelector("#source-reading-title").textContent = reading.title;
+    document.querySelector("#source-reading-copy").textContent = reading.copy;
+    document.querySelectorAll("[data-reading]").forEach((button) => {
+      button.classList.toggle("primary", button.dataset.reading === key);
+    });
+  }
+  document.querySelectorAll("[data-reading]").forEach((button) => {
+    button.addEventListener("click", () => showReading(button.dataset.reading));
+  });
+  showReading("literal");
+}
+
 function genericRisk(row) {
+  if (row.relation_class === "Fuente oficial") return "Confundir el motivo oficial del premio con una interpretación aplicada que todavía no ha sido curada.";
   if (row.relation_class === "Analógica/documental") return "Confundir una analogía fértil con evidencia cuantitativa o causal.";
   if (row.relation_class === "Metodológica") return "Convertir una práctica de evidencia en un algoritmo que el Nobel nunca afirmó.";
   return "Tomar una conexión técnica real y extrapolarla fuera de su dominio sin validar supuestos.";

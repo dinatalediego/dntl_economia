@@ -1,15 +1,16 @@
-# Nobel Data Wiki · 2021–2025
+# Nobel Data Wiki · 1995–2025
 
 Una guía de premios Nobel recientes leídos desde la óptica de **datos, modelamiento, inferencia y representación del conocimiento**.
 
-La colección evolucionó de seis notas seleccionadas a un **Nobel Data Lab** con cobertura completa de las **30 ediciones 2021–2025** (6 áreas × 5 años), deep dives y experimentos reproducibles.
+La colección evolucionó de seis notas seleccionadas a un **Nobel Data Lab** con cobertura factual de **186 ediciones 1995–2025** (6 áreas × 31 años), 376 registros premio-laureado, deep dives y experimentos reproducibles.
 
 ## Arquitectura
 
-1. **Catálogo** — [`data/nobel_catalog_2021_2025.csv`](../data/nobel_catalog_2021_2025.csv) contiene una fila por área y año.
-2. **Deep dives** — páginas que explican problema → evidencia → modelo/inferencia → transferencia.
-3. **Experimentos** — [`examples/`](../examples/) convierte ideas Nobel en código mínimo ejecutable.
-4. **Tests** — [`tests/test_nobel_lab.py`](../tests/test_nobel_lab.py) comprueba cobertura y resultados esperados.
+1. **Fuente cruda** — respuestas de la Nobel Prize API preservadas en [`data/raw/`](../data/raw/).
+2. **Tablas públicas** — [`data/nobel_catalog_1995_2025.csv`](../data/nobel_catalog_1995_2025.csv) contiene una fila por área y año; [`data/nobel_laureates_1995_2025.csv`](../data/nobel_laureates_1995_2025.csv), una por premio y laureado.
+3. **Curaduría** — las interpretaciones Data Science viven separadas en [`data/curation/`](../data/curation/).
+4. **Deep dives y experimentos** — páginas y código recorren problema → evidencia → modelo/inferencia → transferencia.
+5. **Tests** — [`tests/test_nobel_lab.py`](../tests/test_nobel_lab.py) comprueba cobertura, grano, provenance y resultados esperados.
 
 ➡️ [Ver la decisión arquitectónica y su demostración](decision-from-wiki-to-nobel-lab.md)
 
@@ -23,17 +24,16 @@ La relación con datos se clasifica así:
 
 El `model_score` 1–5 del catálogo es una valoración editorial de este repositorio; no procede del Comité Nobel.
 
-## Cobertura 2021–2025
+## Cobertura longitudinal
 
-| Año | Ediciones catalogadas | Deep dives destacados |
-|---:|---:|---|
-| 2021 | 6/6 | Física: clima y sistemas complejos · Economía: inferencia causal |
-| 2022 | 6/6 | Medicina: genómica antigua · Paz: documentación · Literatura: memoria social |
-| 2023 | 6/6 | Economía: Claudia Goldin y construcción de datos históricos |
-| 2024 | 6/6 | Física: Hopfield/Hinton · Química: AlphaFold/proteínas |
-| 2025 | 6/6 | Economía: innovación, crecimiento y destrucción creativa |
+| Período | Ediciones factuales | Estado editorial |
+|---|---:|---|
+| 1995–2020 | 156/156 | Fuente oficial; curaduría abierta |
+| 2021–2025 | 30/30 | Lentes Data Science curadas |
 
-➡️ [Explorar catálogo cross-year](catalog-2021-2025.md)
+➡️ [Explorar el archivo 1995–2025](catalog-1995-2025.md)
+
+➡️ [Consultar el núcleo curado 2021–2025](catalog-2021-2025.md)
 
 ## Deep dives
 
@@ -79,4 +79,4 @@ En la colección aparecen respuestas distintas: representación, predicción, re
 
 ## Fuentes
 
-Se priorizan páginas oficiales de **NobelPrize.org**. El catálogo enlaza la fuente oficial de cada una de las 30 ediciones y las páginas separan la motivación Nobel de nuestra interpretación aplicada a data science.
+Se priorizan páginas oficiales de **NobelPrize.org**. Las 186 ediciones enlazan su fuente; el pipeline preserva respuestas de API y separa la motivación Nobel de nuestra interpretación aplicada a data science.

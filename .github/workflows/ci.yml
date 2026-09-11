@@ -37,6 +37,9 @@ jobs:
           node --check assets/exhibit-bootstrap.js
           node --check assets/exhibit-router.js
 
+      - name: Check data pipeline syntax
+        run: python -m py_compile scripts/sync_nobel_data.py
+
       - name: Run Python tests
         run: python -m unittest discover -s tests -v
 
