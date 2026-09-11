@@ -17,10 +17,18 @@ class MuseumFrontendContractTests(unittest.TestCase):
 
     def test_index_exposes_polymath_navigation(self):
         html = INDEX.read_text(encoding="utf-8")
-        for section_id in ("rutas", "galeria", "gabinete", "laboratorio"):
+        for section_id in ("rutas", "conexiones", "galeria", "gabinete", "laboratorio"):
             self.assertIn(f'id="{section_id}"', html)
         for route in ("memoria", "causalidad", "complejidad", "evidencia", "prediccion"):
             self.assertIn(f'data-route="{route}"', html)
+
+    def test_connection_lab_uses_catalog_rows(self):
+        html = INDEX.read_text(encoding="utf-8")
+        js = APP.read_text(encoding="utf-8")
+        for element_id in ("compare-a", "compare-b", "comparison-output", "transfer-question"):
+            self.assertIn(f'id="{element_id}"', html)
+        self.assertIn("function setupComparison()", js)
+        self.assertIn("function conceptsFor(row)", js)
 
     def test_frontend_uses_single_catalog_source(self):
         js = APP.read_text(encoding="utf-8")
