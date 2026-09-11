@@ -23,6 +23,13 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Iterable
 
+try:
+    from priority_engine import OUTPUT as PRIORITY_OUTPUT
+    from priority_engine import RUBRIC_VERSION, build_priority_rows, write_priority_csv
+except ModuleNotFoundError:  # Supports imports from the repository root in tests/tools.
+    from scripts.priority_engine import OUTPUT as PRIORITY_OUTPUT
+    from scripts.priority_engine import RUBRIC_VERSION, build_priority_rows, write_priority_csv
+
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
@@ -286,6 +293,8 @@ def main() -> None:
     validate(prizes, catalog, laureates, args.start, args.end)
     write_csv(CATALOG, catalog)
     write_csv(LAUREATES, laureates)
+    priority_rows = build_priority_rows(catalog)
+    write_priority_csv(PRIORITY_OUTPUT, priority_rows)
 
     unique_profiles = {row["laureate_id"]: row["laureate_type"] for row in laureates}
     previous_manifest = json.loads(MANIFEST.read_text(encoding="utf-8")) if MANIFEST.exists() else {}
@@ -309,12 +318,20 @@ def main() -> None:
             "unique_people": sum(kind == "person" for kind in unique_profiles.values()),
             "unique_organizations": sum(kind == "organization" for kind in unique_profiles.values()),
             "curated_prize_editions": sum(row["curation_status"] == "curated" for row in catalog),
+            "historical_room_candidates": len(priority_rows),
+            "balanced_portfolio_candidates": sum(row["portfolio_rank"] != "" for row in priority_rows),
         },
         "files": {
             str(CATALOG.relative_to(ROOT)): sha256(CATALOG),
             str(LAUREATES.relative_to(ROOT)): sha256(LAUREATES),
             str(prize_raw.relative_to(ROOT)): sha256(prize_raw),
             str(laureate_raw.relative_to(ROOT)): sha256(laureate_raw),
+            str(PRIORITY_OUTPUT.relative_to(ROOT)): sha256(PRIORITY_OUTPUT),
+        },
+        "priority_rubric": {
+            "version": RUBRIC_VERSION,
+            "scope": "source_only editions; interactive-room feasibility, not Nobel importance",
+            "runtime_paid_services": 0,
         },
     }
     MANIFEST.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

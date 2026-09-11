@@ -1,6 +1,7 @@
 "use strict";
 
 const CATALOG_URL = "data/nobel_catalog_1995_2025.csv";
+const ROADMAP_URL = "data/nobel_room_candidates_1995_2020.csv";
 const REPO = "https://github.com/dinatalediego/dntl_economia/blob/main";
 
 const deepDives = new Map([
@@ -54,6 +55,8 @@ const state = {
   query: "",
   route: null,
   period: null,
+  roadmapRows: [],
+  roadmapMode: "portfolio",
 };
 
 const els = {
@@ -71,6 +74,12 @@ const els = {
   compareB: document.querySelector("#compare-b"),
   swapComparison: document.querySelector("#swap-comparison"),
   routeCards: Array.from(document.querySelectorAll(".route-card")),
+  roadmapGrid: document.querySelector("#roadmap-grid"),
+  roadmapStatus: document.querySelector("#roadmap-status"),
+  roadmapError: document.querySelector("#roadmap-error"),
+  roadmapCandidateCount: document.querySelector("#roadmap-candidate-count"),
+  roadmapPortfolioCount: document.querySelector("#roadmap-portfolio-count"),
+  roadmapTabs: Array.from(document.querySelectorAll(".roadmap-tab")),
 };
 
 const conceptFamilies = [
@@ -223,6 +232,104 @@ function element(tag, className, text) {
   if (className) node.className = className;
   if (text !== undefined) node.textContent = text;
   return node;
+}
+
+function candidateRowsForMode() {
+  const rows = [...state.roadmapRows];
+  if (state.roadmapMode === "portfolio") {
+    return rows
+      .filter((row) => row.portfolio_rank)
+      .sort((a, b) => Number(a.portfolio_rank) - Number(b.portfolio_rank));
+  }
+  if (state.roadmapMode === "effort") {
+    return rows
+      .sort((a, b) => Number(a.effort_points) - Number(b.effort_points)
+        || Number(b.priority_score) - Number(a.priority_score)
+        || Number(a.global_rank) - Number(b.global_rank))
+      .slice(0, 12);
+  }
+  return rows.sort((a, b) => Number(a.global_rank) - Number(b.global_rank)).slice(0, 12);
+}
+
+function candidateMetric(label, value) {
+  const group = element("div", "candidate-metric");
+  group.append(element("dt", "", label), element("dd", "", value));
+  return group;
+}
+
+function candidateExhibitURL(row) {
+  const params = new URLSearchParams({ area: row.area, year: row.year });
+  return `exhibit.html?${params.toString()}`;
+}
+
+function createCandidate(row) {
+  const card = element("article", "candidate-card");
+  card.style.borderTopColor = areaAccents[row.area] || "#d1ad65";
+
+  const top = element("div", "candidate-top");
+  const position = state.roadmapMode === "portfolio"
+    ? `CARTERA ${String(row.portfolio_rank).padStart(2, "0")}`
+    : `GLOBAL ${String(row.global_rank).padStart(3, "0")}`;
+  const effort = element("span", `effort-badge effort-${row.effort_size.toLowerCase()}`, `ESFUERZO ${row.effort_size}`);
+  top.append(element("span", "candidate-rank", position), effort);
+
+  const discipline = element("p", "candidate-discipline", `${row.area} · ${row.year}`);
+  const title = element("h3", "", row.laureates.replaceAll(";", " ·"));
+
+  const score = element("div", "candidate-score");
+  const scoreCopy = element("div", "candidate-score-copy");
+  scoreCopy.append(element("strong", "", row.priority_score), element("span", "", "índice sostenible / 100"));
+  const meter = element("progress", "candidate-meter");
+  meter.max = 100;
+  meter.value = Number(row.priority_score);
+  meter.setAttribute("aria-label", `Índice sostenible: ${row.priority_score} de 100`);
+  score.append(scoreCopy, meter);
+
+  const archetype = element("p", "candidate-archetype", row.archetype);
+  const question = element("p", "candidate-question", row.room_question);
+  const reason = element("p", "candidate-reason", row.priority_reason);
+
+  const metrics = element("dl", "candidate-metrics");
+  metrics.append(
+    candidateMetric("Potencial", `${row.potential_score}/100`),
+    candidateMetric("Confianza", row.confidence),
+    candidateMetric("Alcance", `${row.cross_area_reach} áreas`),
+  );
+
+  const link = element("a", "candidate-link", "Abrir ficha factual →");
+  link.href = candidateExhibitURL(row);
+  link.setAttribute("aria-label", `Abrir ficha de ${row.area} ${row.year}: ${row.laureates}`);
+
+  card.append(top, discipline, title, score, archetype, question, reason, metrics, link);
+  return card;
+}
+
+function renderRoadmap() {
+  if (!els.roadmapGrid) return;
+  const rows = candidateRowsForMode();
+  els.roadmapGrid.replaceChildren(...rows.map(createCandidate));
+  els.roadmapGrid.setAttribute("aria-busy", "false");
+
+  const messages = {
+    portfolio: "12 candidatas: dos por cada área y una segunda plaza de otra franja temporal cuando es posible.",
+    priority: "Las 12 candidatas con mayor índice después de descontar el esfuerzo estimado.",
+    effort: "Las 12 candidatas de menor talla primero; los empates se resuelven por índice sostenible.",
+  };
+  els.roadmapStatus.textContent = messages[state.roadmapMode];
+  els.roadmapTabs.forEach((tab) => {
+    const active = tab.dataset.roadmapMode === state.roadmapMode;
+    tab.classList.toggle("active", active);
+    tab.setAttribute("aria-pressed", String(active));
+  });
+}
+
+function wireRoadmap() {
+  els.roadmapTabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      state.roadmapMode = tab.dataset.roadmapMode;
+      renderRoadmap();
+    });
+  });
 }
 
 function createScore(score) {
@@ -407,4 +514,25 @@ async function loadCatalog() {
   }
 }
 
+async function loadRoadmap() {
+  if (!els.roadmapGrid) return;
+  try {
+    const response = await fetch(ROADMAP_URL);
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    state.roadmapRows = parseCSV(await response.text());
+    if (!state.roadmapRows.length) throw new Error("empty priority queue");
+    els.roadmapCandidateCount.textContent = String(state.roadmapRows.length);
+    els.roadmapPortfolioCount.textContent = String(state.roadmapRows.filter((row) => row.portfolio_rank).length);
+    wireRoadmap();
+    renderRoadmap();
+  } catch (error) {
+    console.error("No se pudo cargar la cola curatorial", error);
+    els.roadmapGrid.hidden = true;
+    els.roadmapGrid.setAttribute("aria-busy", "false");
+    els.roadmapError.hidden = false;
+    els.roadmapStatus.textContent = "La priorización no está disponible en este momento.";
+  }
+}
+
 loadCatalog();
+loadRoadmap();

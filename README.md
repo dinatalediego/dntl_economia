@@ -13,6 +13,7 @@ La primera colección del repositorio recorre 31 años Nobel completos (1995–2
 - **186 exhibiciones individuales** enlazadas desde la Gran Galería.
 - **4 salas signature manipulables**: Hopfield, inferencia causal, Goldin/medición y destrucción creativa.
 - **26 salas curatoriales interpretadas** y **156 fichas oficiales abiertas a curaduría**, sin scores inventados.
+- **Motor de prioridad curatorial** para las 156 fichas históricas: ranking explicable, esfuerzo S/M/L y cartera equilibrada de 12 candidatas.
 - **Laboratorio de conexiones** para comparar cualquier par de Nobel, revelar mecanismos compartidos y generar preguntas de transferencia.
 - **2 experimentos Python ejecutables**: inferencia causal y memoria asociativa de Hopfield.
 - **Tests Python + Node** sobre cobertura, metadata, frontend y matemática de las exhibiciones.
@@ -30,6 +31,8 @@ La primera colección del repositorio recorre 31 años Nobel completos (1995–2
 
 ➡️ [Ver el contrato de las exhibiciones vivas](wiki/living-exhibits.md)
 
+➡️ [Auditar el motor de prioridad curatorial](wiki/curatorial-priority-engine.md)
+
 ## Museo Vivo · frontend
 
 La raíz del repositorio contiene un frontend build-free (`index.html` + `assets/`) con una estética de **museo nocturno vivo** y navegación transversal por:
@@ -42,13 +45,15 @@ La raíz del repositorio contiene un frontend build-free (`index.html` + `assets
 
 Cada tarjeta de la galería abre `exhibit.html?area=...&year=...`. El frontend consume directamente `data/nobel_catalog_1995_2025.csv`; no mantiene una copia paralela de las 186 ediciones. Los filtros permiten navegar por área, período, año exacto, concepto o laureado.
 
+La **Mesa de curaduría** consume `data/nobel_room_candidates_1995_2020.csv` y permite comparar el portafolio equilibrado, el mayor índice sostenible y las candidatas de menor esfuerzo. El ranking se precalcula con Python estándar: no hay LLM, backend, base de datos ni API pagada por visita. El índice mide viabilidad de prototipo, no importancia del Nobel.
+
 ### Actualizar los datos oficiales
 
 ```bash
 python scripts/sync_nobel_data.py --refresh
 ```
 
-El script conserva la separación entre fuente y opinión: la motivación, biografía, afiliación y participación proceden de la API Nobel; las 30 lentes de 2021–2025 permanecen en `data/curation/` como overrides editoriales explícitos. La generación local posterior puede usar los JSON crudos sin red omitiendo `--refresh`.
+El script conserva la separación entre fuente y opinión: la motivación, biografía, afiliación y participación proceden de la API Nobel; las 30 lentes de 2021–2025 permanecen en `data/curation/` como overrides editoriales explícitos. La generación local posterior puede usar los JSON crudos sin red omitiendo `--refresh`. En la misma ejecución recalcula la cola curatorial y registra su hash en el manifiesto.
 
 ### Salas signature
 

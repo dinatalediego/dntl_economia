@@ -33,6 +33,8 @@ El `model_score` 1–5 del catálogo es una valoración editorial de este reposi
 
 ➡️ [Explorar el archivo 1995–2025](catalog-1995-2025.md)
 
+➡️ [Auditar el motor de prioridad curatorial](curatorial-priority-engine.md)
+
 ➡️ [Consultar el núcleo curado 2021–2025](catalog-2021-2025.md)
 
 ## Deep dives

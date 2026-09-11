@@ -8,11 +8,12 @@ INDEX = ROOT / "index.html"
 STYLES = ROOT / "assets" / "styles.css"
 APP = ROOT / "assets" / "app.js"
 CATALOG = ROOT / "data" / "nobel_catalog_1995_2025.csv"
+ROADMAP = ROOT / "data" / "nobel_room_candidates_1995_2020.csv"
 
 
 class MuseumFrontendContractTests(unittest.TestCase):
     def test_frontend_entrypoints_exist(self):
-        for path in (INDEX, STYLES, APP, CATALOG):
+        for path in (INDEX, STYLES, APP, CATALOG, ROADMAP):
             self.assertTrue(path.exists(), f"Missing frontend dependency: {path}")
 
     def test_index_exposes_polymath_navigation(self):
@@ -35,6 +36,17 @@ class MuseumFrontendContractTests(unittest.TestCase):
         self.assertIn('data/nobel_catalog_1995_2025.csv', js)
         self.assertIn("fetch(CATALOG_URL)", js)
         self.assertNotIn("const catalog = [", js.lower())
+
+    def test_frontend_exposes_auditable_curatorial_queue(self):
+        html = INDEX.read_text(encoding="utf-8")
+        js = APP.read_text(encoding="utf-8")
+        for element_id in ("prioridades", "roadmap-grid", "roadmap-status", "roadmap-candidate-count"):
+            self.assertIn(f'id="{element_id}"', html)
+        for mode in ("portfolio", "priority", "effort"):
+            self.assertIn(f'data-roadmap-mode="{mode}"', html)
+        self.assertIn("fetch(ROADMAP_URL)", js)
+        self.assertIn("function renderRoadmap()", js)
+        self.assertIn("no una jerarquía del valor de los Nobel", html)
 
     def test_accessibility_contract(self):
         html = INDEX.read_text(encoding="utf-8")
