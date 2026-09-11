@@ -65,8 +65,71 @@ const els = {
   reset: document.querySelector("#reset-filters"),
   routeStatus: document.querySelector("#route-status"),
   random: document.querySelector("#random-exhibit"),
+  compareA: document.querySelector("#compare-a"),
+  compareB: document.querySelector("#compare-b"),
+  swapComparison: document.querySelector("#swap-comparison"),
   routeCards: Array.from(document.querySelectorAll(".route-card")),
 };
+
+const conceptFamilies = [
+  { label: "memoria", terms: ["memoria", "históric", "reconstru", "secuencia", "archivo"] },
+  { label: "inferencia", terms: ["inferencia", "causal", "experimental", "evidencia", "medición"] },
+  { label: "sistemas", terms: ["sistema", "complej", "red", "interacción", "dinámica"] },
+  { label: "representación", terms: ["modelo", "estructura", "representación", "información", "lenguaje"] },
+  { label: "cambio", terms: ["crecimiento", "innovación", "evolución", "transformación", "regulación"] },
+];
+
+function conceptsFor(row) {
+  const text = normalize(`${row.model_lens} ${row.laureates}`);
+  return conceptFamilies.filter((family) => family.terms.some((term) => text.includes(normalize(term)))).map((family) => family.label);
+}
+
+function comparisonQuestion(shared, a, b) {
+  const concept = shared[0];
+  if (concept === "memoria") return "¿Qué información mínima permite reconstruir un sistema cuando la evidencia está incompleta?";
+  if (concept === "inferencia") return "¿Qué observación distinguiría una explicación causal de una coincidencia convincente?";
+  if (concept === "sistemas") return "¿Qué patrón agregado emerge y qué comportamiento individual queda oculto?";
+  if (concept === "representación") return "¿Qué se conserva y qué se pierde al convertir el fenómeno en un modelo?";
+  if (concept === "cambio") return "¿Qué mecanismo acelera el cambio y qué costo distribuye entre los participantes?";
+  return `¿Qué supuesto de ${a.area} pondrías a prueba con el método de ${b.area}?`;
+}
+
+function renderComparison() {
+  if (!state.rows.length || !els.compareA || !els.compareB) return;
+  const a = state.rows[Number(els.compareA.value) || 0];
+  const b = state.rows[Number(els.compareB.value) || 1];
+  const shared = conceptsFor(a).filter((concept) => conceptsFor(b).includes(concept));
+  const bridge = shared.length ? shared : ["contraste disciplinario"];
+  document.querySelector("#compare-a-title").textContent = `${a.area} ${a.year} · ${a.laureates.replaceAll(";", " ·")}`;
+  document.querySelector("#compare-a-lens").textContent = a.model_lens;
+  document.querySelector("#compare-b-title").textContent = `${b.area} ${b.year} · ${b.laureates.replaceAll(";", " ·")}`;
+  document.querySelector("#compare-b-lens").textContent = b.model_lens;
+  document.querySelector("#bridge-title").textContent = shared.length ? shared.join(" + ") : "Una diferencia fértil";
+  document.querySelector("#bridge-copy").textContent = shared.length
+    ? `Ambas piezas trabajan sobre ${shared.join(", ")}, aunque su evidencia y escala no sean equivalentes.`
+    : "No comparten una etiqueta directa: el valor está en examinar qué supuesto de una disciplina desafía la otra.";
+  document.querySelector("#bridge-tags").replaceChildren(...bridge.map((tag) => element("span", "", tag)));
+  document.querySelector("#transfer-question").textContent = comparisonQuestion(shared, a, b);
+}
+
+function setupComparison() {
+  const options = state.rows.map((row, index) => {
+    const option = element("option", "", `${row.area} ${row.year} · ${row.laureates.split(";")[0]}`);
+    option.value = String(index);
+    return option;
+  });
+  els.compareA.replaceChildren(...options.map((option) => option.cloneNode(true)));
+  els.compareB.replaceChildren(...options.map((option) => option.cloneNode(true)));
+  els.compareA.value = "3";
+  els.compareB.value = "21";
+  els.compareA.addEventListener("change", renderComparison);
+  els.compareB.addEventListener("change", renderComparison);
+  els.swapComparison.addEventListener("click", () => {
+    [els.compareA.value, els.compareB.value] = [els.compareB.value, els.compareA.value];
+    renderComparison();
+  });
+  renderComparison();
+}
 
 function parseCSV(text) {
   const rows = [];
@@ -295,6 +358,7 @@ async function loadCatalog() {
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const csv = await response.text();
     state.rows = parseCSV(csv);
+    setupComparison();
     createFilterButtons();
     wireInteractions();
     render();
