@@ -261,8 +261,17 @@ function openItem(id){
     const application={id:window.EconomicsMemory?.uuid?.()||crypto.randomUUID(),itemId:id,projectId:document.querySelector("#apply-project").value,
       conceptIds:Object.keys(contentById(id).concepts||{}),action,expectedOutcome:document.querySelector("#apply-expected").value.trim(),
       metric:document.querySelector("#apply-metric").value.trim(),reviewDate:document.querySelector("#apply-review-date").value,status:"pending",createdAt:now,updatedAt:now};
-    state.actions.push(application);recordEvent("apply",id,{projectId:application.projectId,actionId:application.id});
-    patchItem(id,{evidence:action},"apply",{projectId:application.projectId,actionId:application.id});
+    state.actions.push(application);
+    recordEvent("apply",id,{projectId:application.projectId,actionId:application.id});
+    patchItem(id,{
+      evidence:action,
+      started:true,
+      completed:true,
+      applied:true,
+      startedAt:s.startedAt||now,
+      completedAt:s.completedAt||now,
+      appliedAt:s.appliedAt||now
+    },null,{projectId:application.projectId,actionId:application.id});
     if(window.EconomicsMemory?.isSignedIn?.())window.EconomicsMemory.createApplication(application);
     saveState();modal.close();renderAll();
   };
