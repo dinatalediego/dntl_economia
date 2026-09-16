@@ -1,0 +1,119 @@
+{
+  "version": "2.0.0",
+  "defaultFocus": "pricing-real-estate",
+  "projects": [
+    {
+      "id": "pricing-real-estate",
+      "title": "Pricing inmobiliario",
+      "symbol": "P",
+      "defaultActive": true,
+      "description": "Precio, absorción, tipologías, repricing y decisiones comerciales con evidencia.",
+      "conceptWeights": {
+        "pricing": 5,
+        "elasticity": 5,
+        "price-discrimination": 4,
+        "causality": 5,
+        "counterfactuals": 4,
+        "did": 5,
+        "absorption": 5,
+        "stock-flow": 3,
+        "decision": 3,
+        "information": 2
+      },
+      "prompts": [
+        "Evaluar un repricing real",
+        "Medir elasticidad por segmento",
+        "Construir un contrafactual de absorción"
+      ]
+    },
+    {
+      "id": "lead-prioritization",
+      "title": "Priorización de leads",
+      "symbol": "L",
+      "defaultActive": true,
+      "description": "Predicción → acción → experimento → conversión observada.",
+      "conceptWeights": {
+        "intervention": 5,
+        "causality": 5,
+        "productivity": 5,
+        "bottleneck": 4,
+        "principal-agent": 3,
+        "decision": 4,
+        "information": 4,
+        "mechanism-design": 3
+      },
+      "prompts": [
+        "Separar score de intervención",
+        "Diseñar next-best-action",
+        "Medir conversión incremental"
+      ]
+    },
+    {
+      "id": "portfolio-investing",
+      "title": "Portfolio & inversión",
+      "symbol": "Σ",
+      "defaultActive": true,
+      "description": "Asignación de capital, compounding, benchmark, riesgo y disciplina conductual.",
+      "conceptWeights": {
+        "portfolio": 5,
+        "diversification": 5,
+        "compounding": 5,
+        "benchmark": 4,
+        "expected-utility": 4,
+        "behavioral": 4,
+        "precommitment": 5,
+        "outcome-bias": 4,
+        "opportunity-cost": 3
+      },
+      "prompts": [
+        "Revisar sizing",
+        "Definir benchmark",
+        "Registrar una regla ex ante"
+      ]
+    },
+    {
+      "id": "venture-building",
+      "title": "Venture building",
+      "symbol": "V",
+      "defaultActive": true,
+      "description": "Priorizar iniciativas, matar deuda de oportunidad y diseñar reglas de decisión.",
+      "conceptWeights": {
+        "opportunity-cost": 5,
+        "sunk-cost": 5,
+        "decision": 5,
+        "bounded-rationality": 4,
+        "transaction-costs": 4,
+        "incentives": 4,
+        "information": 4,
+        "productivity": 3,
+        "signaling": 3
+      },
+      "prompts": [
+        "Aplicar un kill criterion",
+        "Comparar build vs buy",
+        "Definir un gate falsable"
+      ]
+    },
+    {
+      "id": "economics-learning",
+      "title": "Economics Streaming",
+      "symbol": "E+",
+      "defaultActive": true,
+      "description": "Convertir aprendizaje en evidencia aplicada y mejorar el propio motor de recomendación.",
+      "conceptWeights": {
+        "information": 4,
+        "search-costs": 4,
+        "decision": 4,
+        "bounded-rationality": 4,
+        "behavioral": 3,
+        "productivity": 3,
+        "causality": 3
+      },
+      "prompts": [
+        "Medir qué contenido cambia decisiones",
+        "Reducir consumo sin aplicación",
+        "Cerrar outcomes pendientes"
+      ]
+    }
+  ]
+}

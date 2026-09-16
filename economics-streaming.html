@@ -3,26 +3,28 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Economics Streaming OS: economía aplicada en formato streaming con conceptos, autores, videos, práctica y progreso." />
+  <meta name="description" content="Economics Streaming OS v2: un Learning Recommendation Engine personal que conecta conceptos económicos, proyectos, uso, acciones y resultados." />
   <meta name="theme-color" content="#080b10" />
-  <title>Economics Streaming OS · dntl_economia</title>
+  <title>Economics Streaming OS · Learning Engine</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/economics-streaming.css" />
+  <link rel="stylesheet" href="assets/economics-recommendation.css" />
 </head>
 <body>
   <a class="skip-link" href="#main">Ir al contenido</a>
   <header class="stream-header">
     <a class="stream-brand" href="economics-streaming.html" aria-label="Economics Streaming OS, inicio">
       <span class="brand-glyph">E+</span>
-      <span><strong>Economics Streaming</strong><small>dntl_economia</small></span>
+      <span><strong>Economics Streaming</strong><small>Learning Recommendation Engine · v2</small></span>
     </a>
     <nav class="stream-nav" aria-label="Navegación de streaming">
-      <a href="#inicio">Inicio</a>
-      <a href="#tu-ruta">Tu ruta</a>
+      <a href="#tu-ruta">Discover</a>
+      <a href="#proyectos">Proyectos</a>
+      <a href="#acciones">Acciones</a>
+      <a href="#conocimiento">Knowledge</a>
       <a href="#canales">Canales</a>
-      <a href="#progreso">Progreso</a>
     </nav>
     <div class="header-actions">
       <button id="search-toggle" class="icon-button" type="button" aria-label="Buscar">⌕</button>
@@ -31,36 +33,69 @@
   </header>
 
   <main id="main">
-    <section class="stream-hero" id="inicio">
+    <section class="stream-hero engine-hero" id="inicio">
       <div class="hero-shade"></div>
       <div class="hero-content">
-        <p class="eyebrow">ECONOMÍA QUE YA USAS · EN FORMATO STREAMING</p>
-        <h1>Deja de coleccionar conceptos.<br /><em>Úsalos para decidir.</em></h1>
-        <p class="hero-copy">Una biblioteca viva construida alrededor de tus preguntas recurrentes: pricing, causalidad, asignación de capital, información, incentivos y decisiones bajo incertidumbre.</p>
+        <p class="eyebrow">CONTENT GRAPH + KNOWLEDGE GRAPH + USAGE + PROJECTS</p>
+        <h1>Ideas económicas,<br /><em>justo cuando puedes usarlas.</em></h1>
+        <p class="hero-copy">El motor aprende de lo que consumes, lo que aplicas y los proyectos que mantienes activos. Cada recomendación debe terminar en una acción y, cuando sea posible, en un resultado observado.</p>
         <div class="hero-actions">
-          <button class="primary-cta" id="continue-learning" type="button">▶ Continuar aprendiendo</button>
-          <button class="secondary-cta" id="show-map" type="button">ⓘ Ver mapa conceptual</button>
+          <button class="primary-cta" id="continue-learning" type="button">▶ Tu siguiente pieza</button>
+          <button class="secondary-cta" id="show-map" type="button">◎ Ver Knowledge Graph</button>
         </div>
         <div class="hero-meta">
-          <span>10 canales</span><span>30 piezas iniciales</span><span>videos + lectura + práctica</span><span>progreso persistente</span>
+          <span>35 conceptos</span><span>30 piezas conectadas</span><span>5 contextos de proyecto</span><span>acción → outcome</span>
         </div>
       </div>
     </section>
 
     <section class="control-deck" aria-label="Controles de exploración">
-      <div class="search-shell" id="search-shell">
+      <div class="search-shell">
         <label for="catalog-search">Buscar concepto, autor o aplicación</label>
         <input id="catalog-search" type="search" placeholder="Ej. elasticidad, Markowitz, pricing inmobiliario…" autocomplete="off" />
       </div>
       <div class="format-chips" id="format-chips" aria-label="Filtrar por formato"></div>
     </section>
 
+    <section class="stream-section project-section" id="proyectos">
+      <div class="section-title">
+        <div><p class="eyebrow">YOUR PROJECTS</p><h2>¿Dónde quieres usar economía ahora?</h2></div>
+        <p>Activa los contextos que importan y elige uno como foco. El motor pondera el contenido por cercanía con esa decisión real.</p>
+      </div>
+      <div class="project-grid" id="project-grid"></div>
+    </section>
+
     <section class="stream-section" id="tu-ruta">
       <div class="section-title">
-        <div><p class="eyebrow">PARA TI</p><h2>Tu siguiente mejor pieza</h2></div>
-        <p>Prioriza conceptos que aparecen más en tus decisiones y baja el peso de lo que ya completaste.</p>
+        <div><p class="eyebrow">NEXT BEST CONTENT</p><h2>Tu siguiente mejor pieza</h2></div>
+        <p>No es un ranking editorial: el score combina proyecto, gap de conocimiento, relaciones del grafo, uso reciente y progreso.</p>
       </div>
       <div class="featured-next" id="featured-next"></div>
+      <div class="score-legend" id="score-legend"></div>
+    </section>
+
+    <section class="stream-section weekly-section" id="weekly">
+      <div class="section-title">
+        <div><p class="eyebrow">DISCOVER WEEKLY</p><h2>Tu mix de esta semana</h2></div>
+        <p>Diversifica formatos y conceptos sin perder el contexto del proyecto enfocado.</p>
+      </div>
+      <div class="weekly-grid" id="weekly-grid"></div>
+    </section>
+
+    <section class="stream-section action-section" id="acciones">
+      <div class="section-title">
+        <div><p class="eyebrow">CLOSED LOOP</p><h2>Acciones esperando resultado</h2></div>
+        <p>Una aplicación no termina al escribir una nota. Aquí vuelve cuando ya puedes observar qué ocurrió.</p>
+      </div>
+      <div class="action-ledger" id="action-ledger"></div>
+    </section>
+
+    <section class="stream-section knowledge-section" id="conocimiento">
+      <div class="section-title">
+        <div><p class="eyebrow">KNOWLEDGE STATE</p><h2>Qué sabes, qué aplicaste y qué falta</h2></div>
+        <p>Dominio estimado por evidencia de uso: iniciar pesa menos que completar, y aplicar pesa más.</p>
+      </div>
+      <div class="knowledge-grid" id="knowledge-grid"></div>
     </section>
 
     <section class="stream-section" id="continue-section">
@@ -71,26 +106,23 @@
     <section class="stream-section" id="canales">
       <div class="section-title">
         <div><p class="eyebrow">CATÁLOGO</p><h2>Canales económicos</h2></div>
-        <p>Cada canal combina teoría, autores, una aplicación concreta y una acción verificable.</p>
+        <p>Cada canal mantiene su identidad; el motor decide qué pieza sacar de cada estante.</p>
       </div>
       <div id="channel-rails"></div>
     </section>
 
     <section class="stream-section progress-section" id="progreso">
       <div class="section-title">
-        <div><p class="eyebrow">CICLO CERRADO</p><h2>De mirar a aplicar</h2></div>
-        <p>El sistema diferencia una pieza abierta, completada y aplicada con evidencia.</p>
+        <div><p class="eyebrow">LEARNING ECONOMICS</p><h2>Del consumo al aprendizaje observado</h2></div>
+        <p>El North Star ya no es “horas vistas”: es cuántas aplicaciones llegan a un outcome revisado.</p>
       </div>
-      <div class="progress-grid">
-        <article><span id="progress-started">0</span><strong>iniciadas</strong><small>abriste la pieza</small></article>
-        <article><span id="progress-completed">0</span><strong>completadas</strong><small>cerraste el contenido</small></article>
-        <article><span id="progress-applied">0</span><strong>aplicadas</strong><small>guardaste evidencia</small></article>
-        <article><span id="progress-rate">0%</span><strong>conversión</strong><small>de consumo a aplicación</small></article>
+      <div class="progress-grid progress-grid-v2">
+        <article><span id="progress-started">0</span><strong>iniciadas</strong><small>contenido abierto</small></article>
+        <article><span id="progress-applied">0</span><strong>aplicadas</strong><small>acción registrada</small></article>
+        <article><span id="progress-reviewed">0</span><strong>outcomes</strong><small>resultado observado</small></article>
+        <article><span id="progress-rate">0%</span><strong>loop closure</strong><small>outcomes / aplicaciones</small></article>
       </div>
-      <div class="progress-note">
-        <strong>North Star de aprendizaje:</strong>
-        <span>conceptos aplicados / conceptos iniciados</span>
-      </div>
+      <div class="progress-note"><strong>North Star:</strong><span>acciones con outcome revisado / acciones registradas</span></div>
     </section>
   </main>
 
@@ -99,25 +131,27 @@
     <div id="modal-content"></div>
   </dialog>
 
+  <dialog class="content-modal outcome-modal" id="outcome-modal">
+    <button class="modal-close" id="outcome-close" type="button" aria-label="Cerrar">×</button>
+    <div id="outcome-content"></div>
+  </dialog>
+
   <dialog class="concept-map-modal" id="concept-map-modal">
     <button class="modal-close" id="map-close" type="button" aria-label="Cerrar">×</button>
     <div class="map-shell">
-      <p class="eyebrow">TU HUELLA ECONÓMICA</p>
-      <h2>Pricing + Causalidad + Capital Allocation</h2>
-      <div class="concept-map">
-        <span class="node node-core">Decision<br />Intelligence</span>
-        <span class="node">Pricing</span><span class="node">Causalidad</span><span class="node">Portfolio</span>
-        <span class="node">Información</span><span class="node">Incentivos</span><span class="node">Conductual</span>
-      </div>
-      <p>La interfaz convierte esa huella en una secuencia de aprendizaje: concepto → autor → aplicación → evidencia → siguiente recomendación.</p>
+      <p class="eyebrow">PERSONAL KNOWLEDGE GRAPH</p>
+      <h2>Conceptos conectados por mecanismos, no por capítulos.</h2>
+      <div class="dynamic-map" id="dynamic-map"></div>
+      <p class="map-caption">El tamaño visual es cualitativo: el porcentaje muestra tu dominio estimado a partir de uso y aplicación, no una evaluación académica.</p>
     </div>
   </dialog>
 
   <footer class="stream-footer">
-    <p><strong>Economics Streaming OS</strong> · una capa aplicada de dntl_economia</p>
-    <p>Las fuentes externas se abren en su sitio original; el progreso personal permanece en tu navegador.</p>
+    <p><strong>Economics Streaming OS v2</strong> · Learning Recommendation Engine personal</p>
+    <p>La evidencia personal y los outcomes permanecen en tu navegador; el repositorio sólo contiene el modelo y perfiles genéricos.</p>
   </footer>
-  <noscript><div class="noscript">Activa JavaScript para navegar el catálogo y guardar progreso.</div></noscript>
+  <noscript><div class="noscript">Activa JavaScript para cargar recomendaciones y guardar progreso.</div></noscript>
+  <script src="assets/learning-recommendation-engine.js" defer></script>
   <script src="assets/economics-streaming.js" defer></script>
 </body>
 </html>
