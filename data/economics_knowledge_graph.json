@@ -1,0 +1,758 @@
+{
+  "version": "2.0.0",
+  "concepts": [
+    {
+      "id": "pricing",
+      "title": "Pricing",
+      "channelId": "pricing",
+      "description": "Decidir precios considerando demanda, margen y velocidad de absorción."
+    },
+    {
+      "id": "elasticity",
+      "title": "Elasticidad",
+      "channelId": "pricing",
+      "description": "Sensibilidad de cantidad o velocidad ante cambios de precio."
+    },
+    {
+      "id": "price-discrimination",
+      "title": "Discriminación de precios",
+      "channelId": "pricing",
+      "description": "Capturar diferencias de disposición a pagar entre segmentos."
+    },
+    {
+      "id": "opportunity-cost",
+      "title": "Costo de oportunidad",
+      "channelId": "opportunity-cost",
+      "description": "Valor de la mejor alternativa sacrificada."
+    },
+    {
+      "id": "sunk-cost",
+      "title": "Costo hundido",
+      "channelId": "opportunity-cost",
+      "description": "Separar costos irreversibles de decisiones marginales futuras."
+    },
+    {
+      "id": "portfolio",
+      "title": "Portfolio",
+      "channelId": "portfolio",
+      "description": "Analizar decisiones de capital a nivel de cartera."
+    },
+    {
+      "id": "diversification",
+      "title": "Diversificación",
+      "channelId": "portfolio",
+      "description": "Combinar exposiciones para gestionar riesgo conjunto."
+    },
+    {
+      "id": "compounding",
+      "title": "Compounding",
+      "channelId": "portfolio",
+      "description": "Priorizar crecimiento geométrico y supervivencia."
+    },
+    {
+      "id": "benchmark",
+      "title": "Benchmark & attribution",
+      "channelId": "portfolio",
+      "description": "Separar resultado absoluto de valor relativo y fuentes del retorno."
+    },
+    {
+      "id": "causality",
+      "title": "Causalidad",
+      "channelId": "causality",
+      "description": "Estimar qué cambia debido a una intervención."
+    },
+    {
+      "id": "counterfactuals",
+      "title": "Contrafactuales",
+      "channelId": "causality",
+      "description": "Razonar sobre el resultado no observado bajo otra acción."
+    },
+    {
+      "id": "did",
+      "title": "Difference-in-Differences",
+      "channelId": "causality",
+      "description": "Construir contrafactuales con cambios relativos entre grupos."
+    },
+    {
+      "id": "intervention",
+      "title": "Intervención",
+      "channelId": "causality",
+      "description": "Distinguir predicción de acciones que modifican resultados."
+    },
+    {
+      "id": "information",
+      "title": "Economía de la información",
+      "channelId": "information",
+      "description": "Valorar información, asimetrías y señales."
+    },
+    {
+      "id": "search-costs",
+      "title": "Costos de búsqueda",
+      "channelId": "information",
+      "description": "Decidir cuánto investigar antes de detener la búsqueda."
+    },
+    {
+      "id": "asymmetry",
+      "title": "Información asimétrica",
+      "channelId": "information",
+      "description": "Analizar mercados donde agentes conocen cosas distintas."
+    },
+    {
+      "id": "signaling",
+      "title": "Señalización",
+      "channelId": "information",
+      "description": "Diseñar señales creíbles sobre calidad difícil de observar."
+    },
+    {
+      "id": "decision",
+      "title": "Teoría de decisión",
+      "channelId": "decision",
+      "description": "Elegir acciones bajo incertidumbre y preferencias."
+    },
+    {
+      "id": "expected-utility",
+      "title": "Utilidad esperada",
+      "channelId": "decision",
+      "description": "Comparar distribuciones de resultados, no sólo escenarios puntuales."
+    },
+    {
+      "id": "bayesian",
+      "title": "Creencias y actualización",
+      "channelId": "decision",
+      "description": "Explicitar probabilidades y actualizarlas con nueva evidencia."
+    },
+    {
+      "id": "bounded-rationality",
+      "title": "Racionalidad limitada",
+      "channelId": "decision",
+      "description": "Decidir bajo límites reales de tiempo, información y cómputo."
+    },
+    {
+      "id": "stock-flow",
+      "title": "Stock & flow",
+      "channelId": "stock-flow",
+      "description": "Separar niveles acumulados de tasas de entrada y salida."
+    },
+    {
+      "id": "little-law",
+      "title": "Ley de Little",
+      "channelId": "stock-flow",
+      "description": "Relacionar inventario, throughput y tiempo de ciclo."
+    },
+    {
+      "id": "absorption",
+      "title": "Absorción",
+      "channelId": "stock-flow",
+      "description": "Medir velocidad de salida de inventario."
+    },
+    {
+      "id": "incentives",
+      "title": "Incentivos",
+      "channelId": "incentives",
+      "description": "Diseñar reglas anticipando respuestas estratégicas."
+    },
+    {
+      "id": "transaction-costs",
+      "title": "Costos de transacción",
+      "channelId": "incentives",
+      "description": "Comparar coordinación por mercado, empresa o automatización."
+    },
+    {
+      "id": "principal-agent",
+      "title": "Principal–agent",
+      "channelId": "incentives",
+      "description": "Alinear objetivos cuando ejecución e información están separadas."
+    },
+    {
+      "id": "mechanism-design",
+      "title": "Diseño de mecanismos",
+      "channelId": "incentives",
+      "description": "Cambiar reglas para inducir comportamientos y resultados."
+    },
+    {
+      "id": "productivity",
+      "title": "Productividad",
+      "channelId": "productivity",
+      "description": "Relacionar inputs con outputs y producto marginal."
+    },
+    {
+      "id": "bottleneck",
+      "title": "Cuello de botella",
+      "channelId": "productivity",
+      "description": "Encontrar la restricción que limita throughput total."
+    },
+    {
+      "id": "personnel-economics",
+      "title": "Personnel economics",
+      "channelId": "productivity",
+      "description": "Analizar productividad e incentivos dentro de organizaciones."
+    },
+    {
+      "id": "behavioral",
+      "title": "Economía conductual",
+      "channelId": "behavioral",
+      "description": "Incorporar sesgos y límites cognitivos en decisiones."
+    },
+    {
+      "id": "prospect-theory",
+      "title": "Prospect Theory",
+      "channelId": "behavioral",
+      "description": "Modelar decisiones respecto a referencias, ganancias y pérdidas."
+    },
+    {
+      "id": "precommitment",
+      "title": "Precommitment",
+      "channelId": "behavioral",
+      "description": "Definir reglas ex ante para proteger decisiones futuras."
+    },
+    {
+      "id": "outcome-bias",
+      "title": "Outcome bias",
+      "channelId": "behavioral",
+      "description": "Separar calidad de decisión de calidad del resultado."
+    }
+  ],
+  "edges": [
+    {
+      "source": "pricing",
+      "target": "elasticity",
+      "type": "contains"
+    },
+    {
+      "source": "pricing",
+      "target": "price-discrimination",
+      "type": "contains"
+    },
+    {
+      "source": "elasticity",
+      "target": "causality",
+      "type": "complements"
+    },
+    {
+      "source": "pricing",
+      "target": "absorption",
+      "type": "applied_with"
+    },
+    {
+      "source": "opportunity-cost",
+      "target": "sunk-cost",
+      "type": "complements"
+    },
+    {
+      "source": "opportunity-cost",
+      "target": "decision",
+      "type": "complements"
+    },
+    {
+      "source": "portfolio",
+      "target": "diversification",
+      "type": "contains"
+    },
+    {
+      "source": "portfolio",
+      "target": "compounding",
+      "type": "contains"
+    },
+    {
+      "source": "portfolio",
+      "target": "benchmark",
+      "type": "contains"
+    },
+    {
+      "source": "portfolio",
+      "target": "expected-utility",
+      "type": "complements"
+    },
+    {
+      "source": "portfolio",
+      "target": "behavioral",
+      "type": "complements"
+    },
+    {
+      "source": "causality",
+      "target": "counterfactuals",
+      "type": "requires"
+    },
+    {
+      "source": "counterfactuals",
+      "target": "did",
+      "type": "enables"
+    },
+    {
+      "source": "causality",
+      "target": "intervention",
+      "type": "contains"
+    },
+    {
+      "source": "information",
+      "target": "search-costs",
+      "type": "contains"
+    },
+    {
+      "source": "information",
+      "target": "asymmetry",
+      "type": "contains"
+    },
+    {
+      "source": "asymmetry",
+      "target": "signaling",
+      "type": "response"
+    },
+    {
+      "source": "decision",
+      "target": "expected-utility",
+      "type": "contains"
+    },
+    {
+      "source": "decision",
+      "target": "bayesian",
+      "type": "contains"
+    },
+    {
+      "source": "decision",
+      "target": "bounded-rationality",
+      "type": "contains"
+    },
+    {
+      "source": "stock-flow",
+      "target": "little-law",
+      "type": "contains"
+    },
+    {
+      "source": "stock-flow",
+      "target": "absorption",
+      "type": "contains"
+    },
+    {
+      "source": "absorption",
+      "target": "pricing",
+      "type": "feeds"
+    },
+    {
+      "source": "incentives",
+      "target": "transaction-costs",
+      "type": "contains"
+    },
+    {
+      "source": "incentives",
+      "target": "principal-agent",
+      "type": "contains"
+    },
+    {
+      "source": "incentives",
+      "target": "mechanism-design",
+      "type": "contains"
+    },
+    {
+      "source": "productivity",
+      "target": "bottleneck",
+      "type": "contains"
+    },
+    {
+      "source": "productivity",
+      "target": "personnel-economics",
+      "type": "contains"
+    },
+    {
+      "source": "principal-agent",
+      "target": "personnel-economics",
+      "type": "complements"
+    },
+    {
+      "source": "behavioral",
+      "target": "prospect-theory",
+      "type": "contains"
+    },
+    {
+      "source": "behavioral",
+      "target": "precommitment",
+      "type": "contains"
+    },
+    {
+      "source": "behavioral",
+      "target": "outcome-bias",
+      "type": "contains"
+    },
+    {
+      "source": "outcome-bias",
+      "target": "decision",
+      "type": "complements"
+    },
+    {
+      "source": "precommitment",
+      "target": "portfolio",
+      "type": "applied_with"
+    },
+    {
+      "source": "did",
+      "target": "pricing",
+      "type": "applied_with"
+    },
+    {
+      "source": "intervention",
+      "target": "productivity",
+      "type": "applied_with"
+    },
+    {
+      "source": "search-costs",
+      "target": "bounded-rationality",
+      "type": "complements"
+    }
+  ],
+  "content": [
+    {
+      "id": "pricing-elasticity-video",
+      "concepts": {
+        "pricing": 1,
+        "elasticity": 1
+      },
+      "related": [
+        "pricing-revenue-case",
+        "causal-did"
+      ]
+    },
+    {
+      "id": "pricing-discrimination",
+      "concepts": {
+        "pricing": 1,
+        "price-discrimination": 1,
+        "elasticity": 0.4
+      },
+      "related": [
+        "pricing-elasticity-video",
+        "pricing-revenue-case"
+      ]
+    },
+    {
+      "id": "pricing-revenue-case",
+      "concepts": {
+        "pricing": 1,
+        "elasticity": 0.8,
+        "absorption": 0.8,
+        "decision": 0.5
+      },
+      "related": [
+        "pricing-elasticity-video",
+        "causal-did",
+        "absorption-case"
+      ]
+    },
+    {
+      "id": "opp-cost-video",
+      "concepts": {
+        "opportunity-cost": 1,
+        "decision": 0.4
+      },
+      "related": [
+        "opp-robbins",
+        "opp-sunk-cost"
+      ]
+    },
+    {
+      "id": "opp-robbins",
+      "concepts": {
+        "opportunity-cost": 1,
+        "bounded-rationality": 0.3
+      },
+      "related": [
+        "opp-cost-video",
+        "decision-bounded"
+      ]
+    },
+    {
+      "id": "opp-sunk-cost",
+      "concepts": {
+        "opportunity-cost": 0.7,
+        "sunk-cost": 1,
+        "behavioral": 0.4
+      },
+      "related": [
+        "behavioral-outcome-bias",
+        "decision-bounded"
+      ]
+    },
+    {
+      "id": "portfolio-markowitz",
+      "concepts": {
+        "portfolio": 1,
+        "diversification": 1
+      },
+      "related": [
+        "portfolio-kelly",
+        "portfolio-attribution"
+      ]
+    },
+    {
+      "id": "portfolio-kelly",
+      "concepts": {
+        "portfolio": 0.8,
+        "compounding": 1,
+        "decision": 0.4
+      },
+      "related": [
+        "behavioral-precommitment",
+        "portfolio-markowitz"
+      ]
+    },
+    {
+      "id": "portfolio-attribution",
+      "concepts": {
+        "portfolio": 0.8,
+        "benchmark": 1,
+        "outcome-bias": 0.5
+      },
+      "related": [
+        "behavioral-outcome-bias",
+        "portfolio-markowitz"
+      ]
+    },
+    {
+      "id": "causal-potential-outcomes",
+      "concepts": {
+        "causality": 1,
+        "counterfactuals": 1
+      },
+      "related": [
+        "causal-did",
+        "causal-prediction-action"
+      ]
+    },
+    {
+      "id": "causal-did",
+      "concepts": {
+        "causality": 1,
+        "counterfactuals": 0.8,
+        "did": 1,
+        "pricing": 0.5
+      },
+      "related": [
+        "pricing-revenue-case",
+        "causal-potential-outcomes",
+        "absorption-case"
+      ]
+    },
+    {
+      "id": "causal-prediction-action",
+      "concepts": {
+        "causality": 0.9,
+        "intervention": 1,
+        "productivity": 0.5
+      },
+      "related": [
+        "productivity-bottleneck",
+        "causal-potential-outcomes"
+      ]
+    },
+    {
+      "id": "info-stigler",
+      "concepts": {
+        "information": 1,
+        "search-costs": 1,
+        "bounded-rationality": 0.4
+      },
+      "related": [
+        "decision-bounded",
+        "info-asymmetry"
+      ]
+    },
+    {
+      "id": "info-asymmetry",
+      "concepts": {
+        "information": 0.8,
+        "asymmetry": 1
+      },
+      "related": [
+        "info-signaling",
+        "info-stigler"
+      ]
+    },
+    {
+      "id": "info-signaling",
+      "concepts": {
+        "information": 0.7,
+        "signaling": 1,
+        "asymmetry": 0.5
+      },
+      "related": [
+        "info-asymmetry",
+        "incentives-tirole"
+      ]
+    },
+    {
+      "id": "decision-expected-utility",
+      "concepts": {
+        "decision": 1,
+        "expected-utility": 1
+      },
+      "related": [
+        "decision-savage",
+        "portfolio-kelly"
+      ]
+    },
+    {
+      "id": "decision-savage",
+      "concepts": {
+        "decision": 0.8,
+        "bayesian": 1,
+        "expected-utility": 0.5
+      },
+      "related": [
+        "decision-expected-utility",
+        "decision-bounded"
+      ]
+    },
+    {
+      "id": "decision-bounded",
+      "concepts": {
+        "decision": 0.8,
+        "bounded-rationality": 1,
+        "search-costs": 0.4
+      },
+      "related": [
+        "info-stigler",
+        "opp-sunk-cost"
+      ]
+    },
+    {
+      "id": "stock-flow-identity",
+      "concepts": {
+        "stock-flow": 1,
+        "absorption": 0.4
+      },
+      "related": [
+        "little-law",
+        "absorption-case"
+      ]
+    },
+    {
+      "id": "little-law",
+      "concepts": {
+        "stock-flow": 0.8,
+        "little-law": 1,
+        "bottleneck": 0.4
+      },
+      "related": [
+        "productivity-bottleneck",
+        "absorption-case"
+      ]
+    },
+    {
+      "id": "absorption-case",
+      "concepts": {
+        "stock-flow": 0.7,
+        "absorption": 1,
+        "pricing": 0.6
+      },
+      "related": [
+        "pricing-revenue-case",
+        "causal-did"
+      ]
+    },
+    {
+      "id": "incentives-coase",
+      "concepts": {
+        "incentives": 0.7,
+        "transaction-costs": 1
+      },
+      "related": [
+        "incentives-principal-agent",
+        "opp-cost-video"
+      ]
+    },
+    {
+      "id": "incentives-principal-agent",
+      "concepts": {
+        "incentives": 1,
+        "principal-agent": 1,
+        "personnel-economics": 0.4
+      },
+      "related": [
+        "productivity-lazear",
+        "incentives-tirole"
+      ]
+    },
+    {
+      "id": "incentives-tirole",
+      "concepts": {
+        "incentives": 1,
+        "mechanism-design": 1,
+        "signaling": 0.3
+      },
+      "related": [
+        "incentives-principal-agent",
+        "causal-prediction-action"
+      ]
+    },
+    {
+      "id": "productivity-production",
+      "concepts": {
+        "productivity": 1,
+        "bottleneck": 0.3
+      },
+      "related": [
+        "productivity-bottleneck",
+        "little-law"
+      ]
+    },
+    {
+      "id": "productivity-bottleneck",
+      "concepts": {
+        "productivity": 0.8,
+        "bottleneck": 1,
+        "little-law": 0.5
+      },
+      "related": [
+        "little-law",
+        "causal-prediction-action"
+      ]
+    },
+    {
+      "id": "productivity-lazear",
+      "concepts": {
+        "productivity": 0.7,
+        "personnel-economics": 1,
+        "principal-agent": 0.5
+      },
+      "related": [
+        "incentives-principal-agent",
+        "productivity-production"
+      ]
+    },
+    {
+      "id": "behavioral-prospect",
+      "concepts": {
+        "behavioral": 1,
+        "prospect-theory": 1
+      },
+      "related": [
+        "behavioral-precommitment",
+        "opp-sunk-cost"
+      ]
+    },
+    {
+      "id": "behavioral-precommitment",
+      "concepts": {
+        "behavioral": 0.8,
+        "precommitment": 1,
+        "portfolio": 0.5
+      },
+      "related": [
+        "portfolio-kelly",
+        "behavioral-outcome-bias"
+      ]
+    },
+    {
+      "id": "behavioral-outcome-bias",
+      "concepts": {
+        "behavioral": 0.8,
+        "outcome-bias": 1,
+        "decision": 0.5,
+        "benchmark": 0.3
+      },
+      "related": [
+        "portfolio-attribution",
+        "decision-expected-utility"
+      ]
+    }
+  ]
+}
