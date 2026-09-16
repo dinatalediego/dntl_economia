@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Economics Streaming OS v2: un Learning Recommendation Engine personal que conecta conceptos económicos, proyectos, uso, acciones y resultados." />
+  <meta name="description" content="Economics Streaming OS v3: Learning Digital Twin con identidad, memoria privada longitudinal, proyectos, acciones, experimentos y outcomes sincronizados." />
   <meta name="theme-color" content="#080b10" />
   <title>Economics Streaming OS · Learning Engine</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -17,7 +17,7 @@
   <header class="stream-header">
     <a class="stream-brand" href="economics-streaming.html" aria-label="Economics Streaming OS, inicio">
       <span class="brand-glyph">E+</span>
-      <span><strong>Economics Streaming</strong><small>Learning Recommendation Engine · v2</small></span>
+      <span><strong>Economics Streaming</strong><small>Learning Digital Twin · v3</small></span>
     </a>
     <nav class="stream-nav" aria-label="Navegación de streaming">
       <a href="#tu-ruta">Discover</a>
@@ -28,23 +28,28 @@
     </nav>
     <div class="header-actions">
       <button id="search-toggle" class="icon-button" type="button" aria-label="Buscar">⌕</button>
+      <button id="auth-button" class="auth-button" type="button">Entrar</button>
       <a class="museum-link" href="index.html">Museo Nobel ↗</a>
     </div>
   </header>
+  <div class="sync-bar" id="sync-bar" aria-live="polite">
+    <span class="sync-dot"></span><span id="sync-label">Memoria local</span>
+    <span id="identity-label">Sin iniciar sesión</span>
+  </div>
 
   <main id="main">
     <section class="stream-hero engine-hero" id="inicio">
       <div class="hero-shade"></div>
       <div class="hero-content">
-        <p class="eyebrow">CONTENT GRAPH + KNOWLEDGE GRAPH + USAGE + PROJECTS</p>
+        <p class="eyebrow">IDENTITY + PRIVATE LEARNING MEMORY + CONTENT GRAPH + KNOWLEDGE GRAPH</p>
         <h1>Ideas económicas,<br /><em>justo cuando puedes usarlas.</em></h1>
-        <p class="hero-copy">El motor aprende de lo que consumes, lo que aplicas y los proyectos que mantienes activos. Cada recomendación debe terminar en una acción y, cuando sea posible, en un resultado observado.</p>
+        <p class="hero-copy">Tu Learning Digital Twin conserva qué estudiaste, qué aplicaste, qué experimentaste y qué ocurrió después. Al iniciar sesión, esa memoria privada viaja contigo entre dispositivos.</p>
         <div class="hero-actions">
           <button class="primary-cta" id="continue-learning" type="button">▶ Tu siguiente pieza</button>
           <button class="secondary-cta" id="show-map" type="button">◎ Ver Knowledge Graph</button>
         </div>
         <div class="hero-meta">
-          <span>35 conceptos</span><span>30 piezas conectadas</span><span>5 contextos de proyecto</span><span>acción → outcome</span>
+          <span>35 conceptos</span><span>30 piezas conectadas</span><span>memoria privada</span><span>experimento → outcome → aprendizaje</span>
         </div>
       </div>
     </section>
@@ -88,6 +93,15 @@
         <p>Una aplicación no termina al escribir una nota. Aquí vuelve cuando ya puedes observar qué ocurrió.</p>
       </div>
       <div class="action-ledger" id="action-ledger"></div>
+    </section>
+
+    <section class="stream-section experiment-section" id="experimentos">
+      <div class="section-title">
+        <div><p class="eyebrow">EXPERIMENT MEMORY</p><h2>Hipótesis que estás poniendo a prueba</h2></div>
+        <p>Diseña experimentos ligados a proyectos y, opcionalmente, a una aplicación concreta. La memoria queda privada por usuario.</p>
+      </div>
+      <div class="experiment-toolbar"><button class="play-button" id="new-experiment" type="button">＋ Diseñar experimento</button></div>
+      <div class="experiment-grid" id="experiment-grid"></div>
     </section>
 
     <section class="stream-section knowledge-section" id="conocimiento">
@@ -136,6 +150,33 @@
     <div id="outcome-content"></div>
   </dialog>
 
+  <dialog class="content-modal auth-modal" id="auth-modal">
+    <button class="modal-close" id="auth-close" type="button" aria-label="Cerrar">×</button>
+    <div class="modal-inner auth-shell">
+      <p class="eyebrow">PRIVATE LEARNING MEMORY</p>
+      <h2>Tu economía, sincronizada.</h2>
+      <p class="lede">Inicia sesión para conservar progreso, aplicaciones, experimentos y outcomes entre dispositivos. El catálogo y Knowledge Graph siguen siendo públicos.</p>
+      <button class="google-auth-button" id="google-signin" type="button">G&nbsp;&nbsp; Continuar con Google</button>
+      <div class="auth-divider"><span>o con email</span></div>
+      <label class="auth-field">Email<input id="auth-email" type="email" autocomplete="email" placeholder="tu@email.com"></label>
+      <label class="auth-field">Contraseña<input id="auth-password" type="password" autocomplete="current-password" minlength="6" placeholder="••••••••"></label>
+      <div class="modal-actions">
+        <button class="play-button" id="email-signin" type="button">Entrar</button>
+        <button class="save-button" id="email-signup" type="button">Crear cuenta</button>
+      </div>
+      <p class="auth-message" id="auth-message"></p>
+      <div class="signed-in-panel" id="signed-in-panel" hidden>
+        <p id="signed-in-copy"></p>
+        <button class="save-button" id="signout-button" type="button">Cerrar sesión</button>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog class="content-modal experiment-modal" id="experiment-modal">
+    <button class="modal-close" id="experiment-close" type="button" aria-label="Cerrar">×</button>
+    <div id="experiment-content"></div>
+  </dialog>
+
   <dialog class="concept-map-modal" id="concept-map-modal">
     <button class="modal-close" id="map-close" type="button" aria-label="Cerrar">×</button>
     <div class="map-shell">
@@ -147,10 +188,13 @@
   </dialog>
 
   <footer class="stream-footer">
-    <p><strong>Economics Streaming OS v2</strong> · Learning Recommendation Engine personal</p>
-    <p>La evidencia personal y los outcomes permanecen en tu navegador; el repositorio sólo contiene el modelo y perfiles genéricos.</p>
+    <p><strong>Economics Streaming OS v3</strong> · Learning Digital Twin</p>
+    <p>El catálogo es público; tu memoria personal se protege con Supabase Auth + RLS y mantiene un cache local por usuario.</p>
   </footer>
   <noscript><div class="noscript">Activa JavaScript para cargar recomendaciones y guardar progreso.</div></noscript>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.116.0/dist/umd/supabase.min.js" defer></script>
+  <script src="assets/economics-supabase-config.js" defer></script>
+  <script src="assets/economics-memory.js" defer></script>
   <script src="assets/learning-recommendation-engine.js" defer></script>
   <script src="assets/economics-streaming.js" defer></script>
 </body>

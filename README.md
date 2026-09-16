@@ -161,3 +161,80 @@ node --test tests/recommendation-engine.test.js
 ```
 
 El objetivo del producto deja de ser maximizar contenido consumido. La North Star v2 es **outcomes revisados / aplicaciones registradas**.
+
+
+## Economics Streaming OS · v3 Learning Digital Twin
+
+La v3 añade identidad y memoria privada longitudinal sin privatizar el catálogo público.
+
+```text
+Public:
+Content Graph + Knowledge Graph + editorial catalog
+
+Private per user:
+Identity + Learning State + Usage Events + Projects
++ Applications + Experiments + Outcomes
+
+                         ↓
+
+                 Learning Digital Twin
+```
+
+### Supabase
+
+El backend privado vive en el proyecto Supabase compartido del usuario, aislado mediante tablas con prefijo `eco_`:
+
+- `eco_profiles`
+- `eco_project_settings`
+- `eco_learning_state`
+- `eco_learning_events`
+- `eco_applications`
+- `eco_outcomes`
+- `eco_experiments`
+
+Todas las tablas tienen RLS y políticas owner-scoped mediante `auth.uid() = user_id`. El rol `anon` no recibe permisos sobre la memoria privada. El frontend sólo contiene una **publishable key**; nunca usa `service_role` ni secret keys.
+
+El SQL reproducible está documentado en:
+
+`db/economics_learning_memory_v3.sql`
+
+### Identity
+
+- Google OAuth mediante Supabase Auth.
+- Email + password como fallback.
+- Sesión persistente usando `supabase-js@2.116.0` fijado explícitamente.
+- Cache local separado por `user_id`.
+- Al primer login, el estado v2 local se importa sólo cuando la cuenta aún no tiene memoria remota.
+- En siguientes sesiones, la memoria remota se reconcilia con cambios locales del mismo usuario.
+
+### Closed-loop memory
+
+La memoria longitudinal conserva:
+
+```text
+content opened
+→ completed
+→ applied to project
+→ application
+→ optional experiment
+→ observed outcome
+→ learning
+→ updated recommendation
+```
+
+Los outcomes `confirmed`, `inconclusive` y `contradicted` siguen alimentando el Recommendation Engine de v2.
+
+### Privacy boundary
+
+El repositorio público conserva únicamente modelos, catálogo y perfiles genéricos. La evidencia de uso, acciones, hipótesis, experimentos y resultados quedan en Supabase bajo RLS y en un cache local específico de la cuenta.
+
+### Validación v3
+
+```bash
+node --check assets/economics-supabase-config.js
+node --check assets/economics-memory.js
+node --check assets/economics-streaming.js
+node --test tests/economics-memory.test.js
+```
+
+La North Star sigue siendo **outcomes revisados / aplicaciones registradas**, pero ahora puede medirse longitudinalmente entre dispositivos.

@@ -37,6 +37,8 @@ jobs:
           node --check assets/exhibit-bootstrap.js
           node --check assets/exhibit-router.js
           node --check assets/learning-recommendation-engine.js
+          node --check assets/economics-supabase-config.js
+          node --check assets/economics-memory.js
           node --check assets/economics-streaming.js
 
       - name: Check data pipeline syntax
@@ -50,3 +52,4 @@ jobs:
           node --test tests/exhibit-core.test.js
           node --test tests/economics-streaming.test.js
           node --test tests/recommendation-engine.test.js
+          node --test tests/economics-memory.test.js
