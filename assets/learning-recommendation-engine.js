@@ -81,7 +81,7 @@
       if(action.outcomeSignal==="inconclusive"||action.outcomeSignal==="contradicted"){
         outcomeFollowup+=related?7:shared?2.5:0;
       }else if(action.outcomeSignal==="confirmed"){
-        outcomeFollowup+=related?2:shared?.5:0;
+        outcomeFollowup+=related?2:(shared?0.5:0);
       }
     }
     const base=(Number(item.relevance)||0)*2.5;
