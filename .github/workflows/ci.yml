@@ -35,7 +35,9 @@ jobs:
           node --check assets/exhibit-causal-goldin.js
           node --check assets/exhibit-growth-generic.js
           node --check assets/exhibit-bootstrap.js
-          node --check assets/exhibit-router.js\n          node --check assets/economics-streaming.js
+          node --check assets/exhibit-router.js
+          node --check assets/learning-recommendation-engine.js
+          node --check assets/economics-streaming.js
 
       - name: Check data pipeline syntax
         run: python -m py_compile scripts/sync_nobel_data.py
@@ -43,5 +45,8 @@ jobs:
       - name: Run Python tests
         run: python -m unittest discover -s tests -v
 
-      - name: Run exhibit core tests
-        run: |\n          node --test tests/exhibit-core.test.js\n          node --test tests/economics-streaming.test.js
+      - name: Run Node tests
+        run: |
+          node --test tests/exhibit-core.test.js
+          node --test tests/economics-streaming.test.js
+          node --test tests/recommendation-engine.test.js
