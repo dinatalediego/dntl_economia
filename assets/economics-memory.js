@@ -201,7 +201,10 @@
     const cached=loadUserCache();
     let merged=remote;
     if(hasMeaningfulState(remote)){
-      if(lastUser===user.id&&cached)merged=mergeSameUser(cached,remote);
+      if(lastUser===user.id&&cached){
+        merged=mergeSameUser(cached,remote);
+        await importState(merged);
+      }
     }else if(lastUser===user.id&&cached&&hasMeaningfulState(cached)){
       merged=mergeSameUser(cached,remote);
       await importState(merged);
