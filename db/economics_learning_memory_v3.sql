@@ -106,7 +106,8 @@ create table public.eco_experiments (
   updated_at timestamptz not null default now(),
   unique (id, user_id),
   foreign key (linked_application_id, user_id)
-    references public.eco_applications(id, user_id) on delete set null,
+    references public.eco_applications(id, user_id)
+    on delete set null (linked_application_id),
   constraint eco_experiments_title_nonempty check (length(btrim(title)) > 0),
   constraint eco_experiments_hypothesis_nonempty check (length(btrim(hypothesis)) > 0),
   constraint eco_experiments_status check (status in ('designed','running','completed','cancelled'))
