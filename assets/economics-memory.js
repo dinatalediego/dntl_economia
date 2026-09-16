@@ -217,14 +217,20 @@
   async function syncProfile(state){
     return queue("profile",()=>ensureProfile(state));
   }
-  async function syncProject(projectId,setting,state){
+  async function syncProject(projectId,setting,state,eventType="project_toggle"){
     return queue("project",async()=>{
+      const now=new Date().toISOString();
       const {error}=await client.from("eco_project_settings").upsert({
         user_id:user.id,project_id:projectId,active:setting.active!==false,
-        weight_override:setting.weightOverride||{},updated_at:new Date().toISOString()
+        weight_override:setting.weightOverride||{},updated_at:now
       },{onConflict:"user_id,project_id"});
       if(error)throw error;
       await ensureProfile(state);
+      const {error:eventError}=await client.from("eco_learning_events").insert({
+        user_id:user.id,event_type:eventType,project_id:projectId,
+        payload:{active:setting.active!==false,focusProject:state.focusProject||null},event_at:now
+      });
+      if(eventError)throw eventError;
     });
   }
   async function syncItem(itemId,item,eventType,extra={}){
