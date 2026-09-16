@@ -110,3 +110,54 @@ Nueva capa de aprendizaje aplicado en `economics-streaming.html`, diseñada como
 - Integración con las salas Nobel ya existentes, incluida la simulación DiD de Economía 2021.
 
 La v1 no requiere backend ni dependencias adicionales y funciona con el mismo despliegue estático de GitHub Pages.
+
+
+## Economics Streaming OS · v2 Learning Recommendation Engine
+
+La v2 convierte el catálogo en un motor personal basado en cuatro señales explícitas:
+
+```text
+Content Graph + Knowledge Graph + Usage + Projects
+                         ↓
+                Next Best Content
+                         ↓
+Concept → Project → Action → Observed Outcome → Learning
+```
+
+### Arquitectura v2
+
+- `data/economics_knowledge_graph.json`: 35 conceptos, relaciones conceptuales y mapeo de las 30 piezas a conceptos/vecinos.
+- `data/economics_project_profiles.json`: cinco contextos de proyecto genéricos y seguros para un repositorio público.
+- `assets/learning-recommendation-engine.js`: motor determinista y testeable de scoring/recomendación.
+- `assets/economics-streaming.js`: capa de interacción, migración de estado v1→v2, acciones y outcomes.
+- `localStorage`: conserva uso, evidencia, proyectos activos, acciones y resultados observados; estos datos personales no se publican en GitHub.
+
+### Señales del ranking
+
+El score combina:
+
+1. encaje con el proyecto enfocado y proyectos activos;
+2. gap de conocimiento estimado;
+3. cercanía en Content/Knowledge Graph;
+4. diversidad de formato;
+5. progreso previo — completar/aplicar reduce replay innecesario;
+6. outcomes recientes — resultados inconclusos o contradictorios elevan piezas vecinas útiles para rediseñar la siguiente acción.
+
+### Closed learning loop
+
+Una pieza puede pasar por:
+
+`started → completed → applied → action pending → outcome reviewed`.
+
+Cada aplicación registra proyecto, acción concreta, resultado esperado, métrica y fecha de revisión. Al observar el outcome se clasifica como `confirmed`, `inconclusive` o `contradicted`; esa señal vuelve al ranking.
+
+### Validación
+
+```bash
+node --check assets/learning-recommendation-engine.js
+node --check assets/economics-streaming.js
+node --test tests/economics-streaming.test.js
+node --test tests/recommendation-engine.test.js
+```
+
+El objetivo del producto deja de ser maximizar contenido consumido. La North Star v2 es **outcomes revisados / aplicaciones registradas**.
