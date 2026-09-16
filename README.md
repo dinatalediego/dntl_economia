@@ -93,3 +93,20 @@ node --test tests/exhibit-core.test.js
 ```
 
 La colección distingue explícitamente entre conexiones **directas**, **metodológicas** y **analógicas/documentales** con data science para no confundir la motivación oficial del Nobel con interpretaciones posteriores.
+
+
+## Economics Streaming OS
+
+Nueva capa de aprendizaje aplicado en `economics-streaming.html`, diseñada como una interfaz de streaming para convertir conceptos económicos recurrentes en una secuencia **descubrir → consumir → practicar → aplicar → guardar evidencia → recomendar siguiente pieza**.
+
+### MVP v1
+
+- 10 canales: pricing, costo de oportunidad, portfolio, causalidad, información, teoría de decisión, stock-flow, incentivos, productividad/funnel y economía conductual.
+- 30 piezas iniciales entre lectura, video, simulación y casos aplicados.
+- Filtros por formato y búsqueda por concepto, autor o aplicación.
+- Recomendación local basada en relevancia conceptual y progreso.
+- Estado `iniciado / completado / aplicado` y evidencia persistida en `localStorage`.
+- Videos externos embebidos con `youtube-nocookie.com` cuando existe una fuente curada; el resto abre la fuente original.
+- Integración con las salas Nobel ya existentes, incluida la simulación DiD de Economía 2021.
+
+La v1 no requiere backend ni dependencias adicionales y funciona con el mismo despliegue estático de GitHub Pages.

@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Economics Streaming OS: economía aplicada en formato streaming con conceptos, autores, videos, práctica y progreso." />
+  <meta name="theme-color" content="#080b10" />
+  <title>Economics Streaming OS · dntl_economia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/economics-streaming.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Ir al contenido</a>
+  <header class="stream-header">
+    <a class="stream-brand" href="economics-streaming.html" aria-label="Economics Streaming OS, inicio">
+      <span class="brand-glyph">E+</span>
+      <span><strong>Economics Streaming</strong><small>dntl_economia</small></span>
+    </a>
+    <nav class="stream-nav" aria-label="Navegación de streaming">
+      <a href="#inicio">Inicio</a>
+      <a href="#tu-ruta">Tu ruta</a>
+      <a href="#canales">Canales</a>
+      <a href="#progreso">Progreso</a>
+    </nav>
+    <div class="header-actions">
+      <button id="search-toggle" class="icon-button" type="button" aria-label="Buscar">⌕</button>
+      <a class="museum-link" href="index.html">Museo Nobel ↗</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="stream-hero" id="inicio">
+      <div class="hero-shade"></div>
+      <div class="hero-content">
+        <p class="eyebrow">ECONOMÍA QUE YA USAS · EN FORMATO STREAMING</p>
+        <h1>Deja de coleccionar conceptos.<br /><em>Úsalos para decidir.</em></h1>
+        <p class="hero-copy">Una biblioteca viva construida alrededor de tus preguntas recurrentes: pricing, causalidad, asignación de capital, información, incentivos y decisiones bajo incertidumbre.</p>
+        <div class="hero-actions">
+          <button class="primary-cta" id="continue-learning" type="button">▶ Continuar aprendiendo</button>
+          <button class="secondary-cta" id="show-map" type="button">ⓘ Ver mapa conceptual</button>
+        </div>
+        <div class="hero-meta">
+          <span>10 canales</span><span>30 piezas iniciales</span><span>videos + lectura + práctica</span><span>progreso persistente</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="control-deck" aria-label="Controles de exploración">
+      <div class="search-shell" id="search-shell">
+        <label for="catalog-search">Buscar concepto, autor o aplicación</label>
+        <input id="catalog-search" type="search" placeholder="Ej. elasticidad, Markowitz, pricing inmobiliario…" autocomplete="off" />
+      </div>
+      <div class="format-chips" id="format-chips" aria-label="Filtrar por formato"></div>
+    </section>
+
+    <section class="stream-section" id="tu-ruta">
+      <div class="section-title">
+        <div><p class="eyebrow">PARA TI</p><h2>Tu siguiente mejor pieza</h2></div>
+        <p>Prioriza conceptos que aparecen más en tus decisiones y baja el peso de lo que ya completaste.</p>
+      </div>
+      <div class="featured-next" id="featured-next"></div>
+    </section>
+
+    <section class="stream-section" id="continue-section">
+      <div class="section-title compact"><div><p class="eyebrow">RETOMAR</p><h2>Continuar viendo</h2></div></div>
+      <div class="rail" id="continue-rail"></div>
+    </section>
+
+    <section class="stream-section" id="canales">
+      <div class="section-title">
+        <div><p class="eyebrow">CATÁLOGO</p><h2>Canales económicos</h2></div>
+        <p>Cada canal combina teoría, autores, una aplicación concreta y una acción verificable.</p>
+      </div>
+      <div id="channel-rails"></div>
+    </section>
+
+    <section class="stream-section progress-section" id="progreso">
+      <div class="section-title">
+        <div><p class="eyebrow">CICLO CERRADO</p><h2>De mirar a aplicar</h2></div>
+        <p>El sistema diferencia una pieza abierta, completada y aplicada con evidencia.</p>
+      </div>
+      <div class="progress-grid">
+        <article><span id="progress-started">0</span><strong>iniciadas</strong><small>abriste la pieza</small></article>
+        <article><span id="progress-completed">0</span><strong>completadas</strong><small>cerraste el contenido</small></article>
+        <article><span id="progress-applied">0</span><strong>aplicadas</strong><small>guardaste evidencia</small></article>
+        <article><span id="progress-rate">0%</span><strong>conversión</strong><small>de consumo a aplicación</small></article>
+      </div>
+      <div class="progress-note">
+        <strong>North Star de aprendizaje:</strong>
+        <span>conceptos aplicados / conceptos iniciados</span>
+      </div>
+    </section>
+  </main>
+
+  <dialog class="content-modal" id="content-modal">
+    <button class="modal-close" id="modal-close" type="button" aria-label="Cerrar">×</button>
+    <div id="modal-content"></div>
+  </dialog>
+
+  <dialog class="concept-map-modal" id="concept-map-modal">
+    <button class="modal-close" id="map-close" type="button" aria-label="Cerrar">×</button>
+    <div class="map-shell">
+      <p class="eyebrow">TU HUELLA ECONÓMICA</p>
+      <h2>Pricing + Causalidad + Capital Allocation</h2>
+      <div class="concept-map">
+        <span class="node node-core">Decision<br />Intelligence</span>
+        <span class="node">Pricing</span><span class="node">Causalidad</span><span class="node">Portfolio</span>
+        <span class="node">Información</span><span class="node">Incentivos</span><span class="node">Conductual</span>
+      </div>
+      <p>La interfaz convierte esa huella en una secuencia de aprendizaje: concepto → autor → aplicación → evidencia → siguiente recomendación.</p>
+    </div>
+  </dialog>
+
+  <footer class="stream-footer">
+    <p><strong>Economics Streaming OS</strong> · una capa aplicada de dntl_economia</p>
+    <p>Las fuentes externas se abren en su sitio original; el progreso personal permanece en tu navegador.</p>
+  </footer>
+  <noscript><div class="noscript">Activa JavaScript para navegar el catálogo y guardar progreso.</div></noscript>
+  <script src="assets/economics-streaming.js" defer></script>
+</body>
+</html>
