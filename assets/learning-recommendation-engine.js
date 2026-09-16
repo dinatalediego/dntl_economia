@@ -72,18 +72,31 @@
     const recentKinds=lastKinds(state,catalog,3);
     const diversity=recentKinds.length&&!recentKinds.includes(item.kind)?2.2:0;
     const progressPenalty=progress.applied?80:progress.completed?24:progress.started?5:0;
+    let outcomeFollowup=0;
+    const candidateConcepts=new Set(Object.keys(content.concepts||{}));
+    for(const action of (state.actions||[]).filter(a=>a.status==="reviewed").slice(-12)){
+      const source=cidx[action.itemId]||{concepts:{},related:[]};
+      const shared=Object.keys(source.concepts||{}).some(cid=>candidateConcepts.has(cid));
+      const related=(source.related||[]).includes(item.id);
+      if(action.outcomeSignal==="inconclusive"||action.outcomeSignal==="contradicted"){
+        outcomeFollowup+=related?7:shared?2.5:0;
+      }else if(action.outcomeSignal==="confirmed"){
+        outcomeFollowup+=related?2:shared?.5:0;
+      }
+    }
     const base=(Number(item.relevance)||0)*2.5;
     const projectComponent=pf.fit*1.35;
     const gapComponent=gap*16;
-    const score=base+projectComponent+gapComponent+prereqBonus+proximity+diversity-prereqPenalty-progressPenalty;
+    const score=base+projectComponent+gapComponent+prereqBonus+proximity+diversity+outcomeFollowup-prereqPenalty-progressPenalty;
     const bestConcept=conceptEntries.sort((a,b)=>(1-(mastery[b[0]]||0))*b[1]-(1-(mastery[a[0]]||0))*a[1])[0]?.[0];
     const focus=focusProject(projects,state);
     const reasonParts=[];
     if(pf.best.project)reasonParts.push("encaja con "+pf.best.project.title);
     if(bestConcept&&concepts[bestConcept])reasonParts.push("tienes recorrido en "+concepts[bestConcept].title+" ("+Math.round((mastery[bestConcept]||0)*100)+"%)");
     if(proximity)reasonParts.push("conecta con lo último que abriste");
+    if(outcomeFollowup>0)reasonParts.push("responde a un outcome reciente");
     if(prereqPenalty>0)reasonParts.push("antes conviene reforzar un prerrequisito");
-    return {item,score,components:{base,projectFit:projectComponent,knowledgeGap:gapComponent,prereq:prereqBonus-prereqPenalty,proximity,diversity,progressPenalty},reason:reasonParts.join(" · "),focusProject:focus.id,bestConcept};
+    return {item,score,components:{base,projectFit:projectComponent,knowledgeGap:gapComponent,prereq:prereqBonus-prereqPenalty,proximity,diversity,outcomeFollowup,progressPenalty},reason:reasonParts.join(" · "),focusProject:focus.id,bestConcept};
   }
   function rank(catalog,graph,projects,state){
     const mastery=conceptMastery(catalog,graph,state);
