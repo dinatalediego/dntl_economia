@@ -1,0 +1,769 @@
+{
+  "version": "1.0.0",
+  "generated": "2026-09-16",
+  "channels": [
+    {
+      "id": "pricing",
+      "title": "Pricing, demanda y elasticidad",
+      "symbol": "ε",
+      "relevance": 5,
+      "description": "Cómo los cambios de precio alteran demanda, absorción, ingreso y margen.",
+      "items": [
+        {
+          "id": "pricing-elasticity-video",
+          "title": "Elasticidad: cuánto cambia la demanda cuando cambia el precio",
+          "kind": "video",
+          "duration": "13 min",
+          "level": "Fundamental",
+          "author": "Alfred Marshall · MRU",
+          "summary": "Construye la intuición que necesitas para pensar repricing sin tratar a todas las unidades como si reaccionaran igual.",
+          "application": "Pricing inmobiliario y absorción por tipología.",
+          "applicationShort": "repricing inmobiliario",
+          "youtubeId": "J82_xd5XxXg",
+          "sourceUrl": "https://www.youtube.com/watch?v=J82_xd5XxXg",
+          "tags": [
+            "elasticidad",
+            "demanda",
+            "precio",
+            "absorción"
+          ],
+          "body": [
+            "Elasticidad mide sensibilidad, no simplemente dirección: una demanda puede caer ante un alza y aun así ser relativamente inelástica.",
+            "En tu caso, la unidad natural no es sólo el proyecto: puede ser tipología × piso × estado comercial × horizonte.",
+            "La pregunta aplicada es: ¿qué segmento soporta precio adicional sin destruir demasiado la velocidad de absorción?"
+          ],
+          "challenge": "Elige una tipología y escribe qué variable usarías como Q y qué cambio de P observarías."
+        },
+        {
+          "id": "pricing-discrimination",
+          "title": "Discriminación de precios y willingness-to-pay",
+          "kind": "lesson",
+          "duration": "8 min",
+          "level": "Intermedio",
+          "author": "Joan Robinson · A.C. Pigou",
+          "summary": "Por qué cobrar lo mismo a segmentos distintos puede destruir valor incluso cuando el producto parece similar.",
+          "application": "Primas verticales, tipologías y descuentos selectivos.",
+          "applicationShort": "segmentación de precios",
+          "sourceUrl": "https://www.britannica.com/money/price-discrimination",
+          "tags": [
+            "discriminación",
+            "willingness to pay",
+            "segmentación"
+          ],
+          "body": [
+            "La discriminación de precios aparece cuando el vendedor captura diferencias de disposición a pagar entre compradores o segmentos.",
+            "En inmuebles, una misma área puede tener distinta utilidad por piso, vista, orientación, balcón, disponibilidad o urgencia.",
+            "El objetivo analítico no es justificar cualquier diferencia, sino medir si la prima es absorbida por el mercado y si mejora margen ajustado por tiempo."
+          ],
+          "challenge": "Define una prima que hoy aplicas de forma uniforme y plantea cómo testarías si debería variar por segmento."
+        },
+        {
+          "id": "pricing-revenue-case",
+          "title": "Precio, absorción y revenue: un caso de decisión",
+          "kind": "case",
+          "duration": "10 min",
+          "level": "Aplicado",
+          "author": "Hal Varian",
+          "summary": "Une elasticidad, revenue y restricciones comerciales en una decisión concreta de subida de precios.",
+          "application": "Regla de repricing por proyecto.",
+          "applicationShort": "regla de repricing",
+          "tags": [
+            "revenue",
+            "margen",
+            "absorción"
+          ],
+          "body": [
+            "Subir precio tiene dos efectos opuestos: mejora ingreso por unidad vendida y puede reducir cantidad o velocidad de venta.",
+            "La decisión correcta depende del objetivo: revenue, margen, cash conversion, agotamiento de stock o posicionamiento.",
+            "Una regla útil debe declarar horizonte, segmento, métrica de éxito y condición de reversión."
+          ],
+          "challenge": "Escribe una regla de repricing con gatillo, magnitud, horizonte de evaluación y condición de rollback."
+        }
+      ]
+    },
+    {
+      "id": "opportunity-cost",
+      "title": "Costo de oportunidad y asignación de recursos",
+      "symbol": "↔",
+      "relevance": 5,
+      "description": "Elegir implica sacrificar la mejor alternativa disponible, incluso cuando no hay dinero de por medio.",
+      "items": [
+        {
+          "id": "opp-cost-video",
+          "title": "Opportunity Cost and Tradeoffs",
+          "kind": "video",
+          "duration": "5 min",
+          "level": "Fundamental",
+          "author": "Friedrich von Wieser · Tyler Cowen",
+          "summary": "Una explicación compacta del costo de oportunidad como valor de la mejor alternativa sacrificada.",
+          "application": "Elegir proyecto, feature, canal o uso del tiempo.",
+          "applicationShort": "priorización de proyectos",
+          "youtubeId": "uorrlWJ23Mg",
+          "sourceUrl": "https://www.youtube.com/watch?v=uorrlWJ23Mg",
+          "tags": [
+            "costo de oportunidad",
+            "tradeoffs",
+            "escasez"
+          ],
+          "body": [
+            "El costo relevante de una acción no es todo lo que podrías haber hecho, sino la mejor alternativa que abandonas.",
+            "Esto aplica exactamente igual a capital, horas de desarrollo, atención de management y espacio de roadmap.",
+            "Una cartera de proyectos necesita medir valor esperado y costo de retrasar los demás."
+          ],
+          "challenge": "Nombra una tarea que planeas hacer esta semana y la mejor alternativa que desplaza."
+        },
+        {
+          "id": "opp-robbins",
+          "title": "Escasez, fines alternativos y economía como elección",
+          "kind": "lesson",
+          "duration": "7 min",
+          "level": "Fundamental",
+          "author": "Lionel Robbins",
+          "summary": "Una lente para mirar todos tus proyectos como competencia por medios escasos.",
+          "application": "Portfolio de repositorios y roadmap.",
+          "applicationShort": "portfolio de proyectos",
+          "tags": [
+            "escasez",
+            "elección",
+            "roadmap"
+          ],
+          "body": [
+            "Robbins definió la economía alrededor de fines múltiples y medios escasos con usos alternativos.",
+            "El resultado práctico es incómodo pero poderoso: una nueva iniciativa sólo agrega valor si supera lo que retrasa o desplaza.",
+            "La pregunta de producto deja de ser '¿es buena idea?' y pasa a ser '¿es la mejor utilización marginal de recursos ahora?'."
+          ],
+          "challenge": "Escribe una iniciativa que debería entrar a tu lista stop-doing para liberar capacidad."
+        },
+        {
+          "id": "opp-sunk-cost",
+          "title": "Costo hundido: cuándo dejar de invertir en lo ya invertido",
+          "kind": "case",
+          "duration": "9 min",
+          "level": "Aplicado",
+          "author": "Richard Thaler · tradición microeconómica",
+          "summary": "Una defensa contra continuar proyectos sólo porque ya consumieron tiempo o dinero.",
+          "application": "Kill criteria para proyectos y features.",
+          "applicationShort": "kill criteria",
+          "tags": [
+            "sunk cost",
+            "stop doing",
+            "kill criteria"
+          ],
+          "body": [
+            "Los costos hundidos no cambian al elegir entre alternativas futuras: ya ocurrieron.",
+            "El sesgo aparece cuando justificamos seguir invirtiendo para 'no perder' el gasto previo.",
+            "Un buen kill criterion se define antes del resultado y usa evidencia externa o de uso, no apego al esfuerzo."
+          ],
+          "challenge": "Selecciona un proyecto y define qué evidencia en los próximos 30 días justificaría pausarlo."
+        }
+      ]
+    },
+    {
+      "id": "portfolio",
+      "title": "Riesgo, retorno y portfolio",
+      "symbol": "Σ",
+      "relevance": 4.5,
+      "description": "De analizar activos individuales a diseñar un sistema de capital que sobreviva y componga.",
+      "items": [
+        {
+          "id": "portfolio-markowitz",
+          "title": "Markowitz: el riesgo vive en la cartera, no en el activo aislado",
+          "kind": "lesson",
+          "duration": "10 min",
+          "level": "Intermedio",
+          "author": "Harry Markowitz",
+          "summary": "Diversificación, covarianza y frontera eficiente como cambio de unidad de análisis.",
+          "application": "Portfolio Health y asignación de activos.",
+          "applicationShort": "portfolio health",
+          "sourceUrl": "https://doi.org/10.1111/j.1540-6261.1991.tb02669.x",
+          "tags": [
+            "Markowitz",
+            "diversificación",
+            "covarianza"
+          ],
+          "body": [
+            "La contribución central de Markowitz fue tratar riesgo y retorno a nivel de cartera.",
+            "Dos activos riesgosos pueden reducir riesgo conjunto si sus retornos no se mueven igual.",
+            "La pregunta útil no es '¿este activo es bueno?', sino '¿qué le hace este activo al portfolio completo?'."
+          ],
+          "challenge": "Escribe qué variable usarías para evaluar si una nueva posición mejora o empeora tu cartera total."
+        },
+        {
+          "id": "portfolio-kelly",
+          "title": "Kelly y el crecimiento compuesto: sizing antes que emoción",
+          "kind": "lesson",
+          "duration": "8 min",
+          "level": "Avanzado",
+          "author": "John L. Kelly Jr.",
+          "summary": "Por qué maximizar crecimiento geométrico exige controlar cuánto arriesgas, no sólo buscar apuestas con expectativa positiva.",
+          "application": "Position sizing y supervivencia.",
+          "applicationShort": "position sizing",
+          "tags": [
+            "Kelly",
+            "compounding",
+            "sizing"
+          ],
+          "body": [
+            "El criterio de Kelly maximiza crecimiento logarítmico de riqueza bajo supuestos específicos.",
+            "Su lección práctica es más amplia que la fórmula: una ventaja positiva puede destruirte si el tamaño de la posición es excesivo.",
+            "Compounding requiere supervivencia; la volatilidad extrema tiene un costo geométrico."
+          ],
+          "challenge": "Define una regla de tamaño máximo de posición que proteja tu capacidad de seguir invirtiendo."
+        },
+        {
+          "id": "portfolio-attribution",
+          "title": "Benchmark & attribution: ¿ganaste por habilidad o por exposición?",
+          "kind": "case",
+          "duration": "11 min",
+          "level": "Aplicado",
+          "author": "Sharpe · Brinson",
+          "summary": "Convierte el P&L en aprendizaje separando selección, asignación y movimiento general del mercado.",
+          "application": "Investment Constitution y Portfolio Health.",
+          "applicationShort": "benchmark y attribution",
+          "tags": [
+            "benchmark",
+            "attribution",
+            "Sharpe"
+          ],
+          "body": [
+            "Un resultado positivo no prueba una buena decisión si el benchmark subió aún más.",
+            "Attribution separa qué parte del resultado vino de asignación, selección y factores comunes.",
+            "Sin benchmark, una cartera puede sentirse exitosa mientras destruye valor relativo."
+          ],
+          "challenge": "Define el benchmark que usarías para una cartera de largo plazo y qué parte del retorno quieres explicar."
+        }
+      ]
+    },
+    {
+      "id": "causality",
+      "title": "Causalidad y experimentación",
+      "symbol": "Δ",
+      "relevance": 4.5,
+      "description": "Pasar de 'se mueven juntos' a 'esta intervención cambia el resultado'.",
+      "items": [
+        {
+          "id": "causal-potential-outcomes",
+          "title": "Contrafactuales: el resultado que nunca observas",
+          "kind": "lesson",
+          "duration": "9 min",
+          "level": "Intermedio",
+          "author": "Donald Rubin",
+          "summary": "La causalidad como comparación entre dos mundos posibles para la misma unidad.",
+          "application": "Precio → absorción; acción comercial → conversión.",
+          "applicationShort": "efecto de intervención",
+          "tags": [
+            "Rubin",
+            "contrafactual",
+            "causalidad"
+          ],
+          "body": [
+            "Para una misma unidad no puedes observar simultáneamente el resultado con y sin tratamiento.",
+            "Por eso la inferencia causal necesita construir un contrafactual defendible usando aleatorización, controles o supuestos identificadores.",
+            "El dato histórico por sí solo no resuelve selección."
+          ],
+          "challenge": "Formula una pregunta causal de uno de tus proyectos usando tratamiento, outcome y contrafactual."
+        },
+        {
+          "id": "causal-did",
+          "title": "Difference-in-Differences: antes/después no basta",
+          "kind": "simulation",
+          "duration": "12 min",
+          "level": "Aplicado",
+          "author": "Card · Angrist · Imbens",
+          "summary": "Usa cambios relativos entre tratamiento y control para separar intervención de tendencia común.",
+          "application": "Repricing, campañas y cambios operativos.",
+          "applicationShort": "DiD para pricing",
+          "sourceUrl": "exhibit.html?area=Ciencias+Econ%C3%B3micas&year=2021",
+          "tags": [
+            "DiD",
+            "Angrist",
+            "Imbens",
+            "tratamiento"
+          ],
+          "body": [
+            "Comparar sólo antes y después confunde intervención con cualquier shock temporal.",
+            "Difference-in-Differences resta el cambio del grupo de comparación al cambio del tratado.",
+            "El supuesto crítico es la plausibilidad de tendencias paralelas en ausencia del tratamiento."
+          ],
+          "challenge": "Propón un grupo tratado y uno de comparación para evaluar un repricing."
+        },
+        {
+          "id": "causal-prediction-action",
+          "title": "Prediction ≠ Intervention",
+          "kind": "case",
+          "duration": "8 min",
+          "level": "Aplicado",
+          "author": "Haavelmo · econometría causal moderna",
+          "summary": "Un lead score puede predecir compra y aun así no decir qué acción mejora la probabilidad de compra.",
+          "application": "Lead scoring y next best action.",
+          "applicationShort": "score → acción",
+          "tags": [
+            "prediction",
+            "intervention",
+            "lead scoring"
+          ],
+          "body": [
+            "La predicción estima qué probablemente ocurrirá bajo el proceso observado.",
+            "La intervención pregunta qué ocurriría si cambias una acción.",
+            "Cerrar el ciclo exige registrar tratamiento, propensión, resultado y, cuando sea posible, asignación experimental."
+          ],
+          "challenge": "Elige una predicción de tu sistema y escribe qué acción causal quieres evaluar sobre ella."
+        }
+      ]
+    },
+    {
+      "id": "information",
+      "title": "Economía de la información",
+      "symbol": "i",
+      "relevance": 4,
+      "description": "La información tiene valor, costo, asimetrías y puede cambiar mercados completos.",
+      "items": [
+        {
+          "id": "info-stigler",
+          "title": "La búsqueda de información también tiene un costo",
+          "kind": "lesson",
+          "duration": "7 min",
+          "level": "Intermedio",
+          "author": "George Stigler",
+          "summary": "No investigamos hasta saberlo todo; investigamos hasta que el valor marginal de otra búsqueda deja de compensar.",
+          "application": "Source Finder, research pipelines y agentes.",
+          "applicationShort": "research ROI",
+          "tags": [
+            "Stigler",
+            "search costs",
+            "información"
+          ],
+          "body": [
+            "Stigler trató la búsqueda como una actividad económica con beneficios y costos.",
+            "Eso permite diseñar agentes que no sólo busquen más, sino que sepan cuándo detenerse.",
+            "Un buen sistema registra qué fuente cambió una decisión y cuánto costó obtenerla."
+          ],
+          "challenge": "Define una regla de stopping para una investigación que hoy podría crecer sin límite."
+        },
+        {
+          "id": "info-asymmetry",
+          "title": "Akerlof: cuando la mala información expulsa calidad",
+          "kind": "lesson",
+          "duration": "9 min",
+          "level": "Intermedio",
+          "author": "George Akerlof",
+          "summary": "Información asimétrica, selección adversa y por qué la confianza puede ser una variable económica.",
+          "application": "Marketplace, proveedores, productos y datos.",
+          "applicationShort": "asimetría informativa",
+          "sourceUrl": "https://www.nobelprize.org/prizes/lists/video-prize-lectures-from-laureates-in-economic-sciences",
+          "tags": [
+            "Akerlof",
+            "lemons",
+            "selección adversa"
+          ],
+          "body": [
+            "Si compradores no pueden distinguir calidad, pagan un precio basado en calidad promedio.",
+            "Eso puede hacer que los buenos oferentes salgan del mercado y la calidad promedio empeore.",
+            "Provenance, reputación y señales verificables son mecanismos económicos, no sólo UX."
+          ],
+          "challenge": "Identifica una asimetría de información en uno de tus productos y qué señal verificable podría reducirla."
+        },
+        {
+          "id": "info-signaling",
+          "title": "Spence: señales que cuestan y por eso informan",
+          "kind": "case",
+          "duration": "8 min",
+          "level": "Intermedio",
+          "author": "Michael Spence",
+          "summary": "Una señal es útil cuando correlaciona con una característica difícil de observar y no es igualmente barata para todos.",
+          "application": "Credenciales, reviews, indicadores de calidad.",
+          "applicationShort": "señales de calidad",
+          "sourceUrl": "https://www.nobelprize.org/prizes/lists/video-prize-lectures-from-laureates-in-economic-sciences",
+          "tags": [
+            "Spence",
+            "signaling",
+            "reputación"
+          ],
+          "body": [
+            "En mercados con información incompleta, los agentes usan señales para inferir cualidades ocultas.",
+            "Una señal puramente decorativa puede no informar nada; su credibilidad depende del mecanismo.",
+            "En producto, evidencia reproducible, historial y outcomes pueden ser señales más fuertes que claims."
+          ],
+          "challenge": "Convierte un claim de uno de tus proyectos en una señal verificable por un usuario externo."
+        }
+      ]
+    },
+    {
+      "id": "decision",
+      "title": "Valor esperado y teoría de decisión",
+      "symbol": "EU",
+      "relevance": 4,
+      "description": "Elegir acciones bajo incertidumbre separando estados del mundo, probabilidades y utilidad.",
+      "items": [
+        {
+          "id": "decision-expected-utility",
+          "title": "Expected utility: una decisión es una distribución de resultados",
+          "kind": "lesson",
+          "duration": "9 min",
+          "level": "Intermedio",
+          "author": "Bernoulli · von Neumann · Morgenstern",
+          "summary": "Deja de comparar escenarios puntuales y evalúa acciones por resultados posibles y sus probabilidades.",
+          "application": "Gates, escenarios y decisiones reversibles.",
+          "applicationShort": "decision journal",
+          "tags": [
+            "expected utility",
+            "Bernoulli",
+            "Morgenstern"
+          ],
+          "body": [
+            "Una acción no produce un único futuro: produce una distribución condicional de resultados.",
+            "Expected utility obliga a declarar estados del mundo, probabilidades y preferencias.",
+            "Eso mejora mucho un decision journal porque hace auditables las expectativas previas."
+          ],
+          "challenge": "Toma una decisión actual y escribe tres resultados posibles con probabilidades aproximadas."
+        },
+        {
+          "id": "decision-savage",
+          "title": "Savage: probabilidades subjetivas, pero explícitas",
+          "kind": "lesson",
+          "duration": "8 min",
+          "level": "Avanzado",
+          "author": "Leonard Savage",
+          "summary": "Cuando no hay frecuencias confiables, todavía puedes razonar si haces explícitas tus creencias y las actualizas.",
+          "application": "Nuevos productos y mercados con poca historia.",
+          "applicationShort": "incertidumbre subjetiva",
+          "tags": [
+            "Savage",
+            "Bayes",
+            "probabilidad subjetiva"
+          ],
+          "body": [
+            "En problemas nuevos, la ausencia de datos históricos no elimina la necesidad de decidir.",
+            "Las probabilidades subjetivas sirven si son coherentes, registradas y actualizadas con evidencia.",
+            "El aprendizaje ocurre cuando comparas prior, evidencia y posterior."
+          ],
+          "challenge": "Escribe una probabilidad que hoy asignas a que un proyecto alcance su gate y qué evidencia la haría cambiar."
+        },
+        {
+          "id": "decision-bounded",
+          "title": "Simon: optimizar es caro; satisficing puede ser racional",
+          "kind": "case",
+          "duration": "9 min",
+          "level": "Aplicado",
+          "author": "Herbert A. Simon",
+          "summary": "Racionalidad limitada como arquitectura para decidir con tiempo, información y capacidad cognitiva finitos.",
+          "application": "Automatización de decisiones y stop rules.",
+          "applicationShort": "bounded rationality",
+          "sourceUrl": "https://herbertsimonsociety.org/video/",
+          "tags": [
+            "Simon",
+            "bounded rationality",
+            "satisficing"
+          ],
+          "body": [
+            "Simon criticó al agente que conoce todas las alternativas y calcula el óptimo sin costo.",
+            "En sistemas reales, buscar, comparar y calcular consume recursos.",
+            "Satisficing define un umbral suficiente y detiene la búsqueda cuando una opción lo cumple."
+          ],
+          "challenge": "Define un umbral 'suficientemente bueno' para una decisión que hoy sobre-analizas."
+        }
+      ]
+    },
+    {
+      "id": "stock-flow",
+      "title": "Stocks, flujos, inventario y absorción",
+      "symbol": "λ",
+      "relevance": 3.5,
+      "description": "Sistemas que acumulan inventario y lo transforman mediante entradas, salidas y tiempo de ciclo.",
+      "items": [
+        {
+          "id": "stock-flow-identity",
+          "title": "Stock–flow: lo que tienes hoy depende de entradas y salidas",
+          "kind": "lesson",
+          "duration": "6 min",
+          "level": "Fundamental",
+          "author": "Irving Fisher · tradición stock-flow",
+          "summary": "Una identidad simple que organiza inventario inmobiliario, caja, pipeline y cualquier sistema acumulativo.",
+          "application": "Stock disponible y unidades colocadas.",
+          "applicationShort": "stock inmobiliario",
+          "tags": [
+            "stock",
+            "flow",
+            "inventory"
+          ],
+          "body": [
+            "Stock es una cantidad medida en un instante; flujo es una cantidad por unidad de tiempo.",
+            "Stock futuro = stock actual + entradas − salidas.",
+            "Separar ambas magnitudes evita mezclar nivel de inventario con velocidad de absorción."
+          ],
+          "challenge": "Escribe la ecuación stock–flow de uno de tus sistemas usando variables reales."
+        },
+        {
+          "id": "little-law",
+          "title": "Ley de Little: inventario = throughput × tiempo",
+          "kind": "lesson",
+          "duration": "8 min",
+          "level": "Intermedio",
+          "author": "John D. C. Little",
+          "summary": "Una relación sorprendentemente general entre trabajo en proceso, velocidad y tiempo dentro del sistema.",
+          "application": "Leads, departamentos y pipelines.",
+          "applicationShort": "WIP y ciclo",
+          "tags": [
+            "Little's Law",
+            "throughput",
+            "cycle time"
+          ],
+          "body": [
+            "Bajo condiciones estables, L = λW relaciona número promedio en el sistema, tasa de salida y tiempo promedio.",
+            "Reducir tiempo de ciclo puede bajar WIP aun sin cambiar demanda.",
+            "La ley ayuda a detectar cuándo el problema no es generar más leads o stock, sino mover más rápido lo ya existente."
+          ],
+          "challenge": "¿Dónde tienes demasiado WIP? Define L, λ y W para ese flujo."
+        },
+        {
+          "id": "absorption-case",
+          "title": "Meses de inventario: una métrica de presión comercial",
+          "kind": "case",
+          "duration": "8 min",
+          "level": "Aplicado",
+          "author": "Operations Research aplicada",
+          "summary": "Convierte stock y velocidad de salida en una lectura de cuántos meses tardarías en agotar el inventario al ritmo actual.",
+          "application": "Pricing y ritmo de ventas por proyecto.",
+          "applicationShort": "meses de inventario",
+          "tags": [
+            "absorción",
+            "months of inventory",
+            "ventas"
+          ],
+          "body": [
+            "Meses de inventario aproxima stock disponible dividido entre ventas mensuales normalizadas.",
+            "Es útil para comparar presión de stock entre proyectos de distinto tamaño.",
+            "Debe acompañarse de cohortes, estacionalidad y cambios de precio para no confundir una foto con una ley estructural."
+          ],
+          "challenge": "Define una regla de alerta para meses de inventario y qué acción activaría."
+        }
+      ]
+    },
+    {
+      "id": "incentives",
+      "title": "Incentivos y comportamiento estratégico",
+      "symbol": "π",
+      "relevance": 3.5,
+      "description": "Diseñar reglas sabiendo que las personas responden a métricas, recompensas y restricciones.",
+      "items": [
+        {
+          "id": "incentives-coase",
+          "title": "Coase: si coordinar fuera gratis, la empresa sería innecesaria",
+          "kind": "lesson",
+          "duration": "8 min",
+          "level": "Intermedio",
+          "author": "Ronald Coase",
+          "summary": "Transaction costs como lente para decidir construir, comprar, contratar, automatizar o coordinar internamente.",
+          "application": "Build vs buy y diseño organizacional.",
+          "applicationShort": "build vs buy",
+          "tags": [
+            "Coase",
+            "transaction costs",
+            "firm"
+          ],
+          "body": [
+            "Los mercados coordinan mediante precios; las empresas coordinan mediante autoridad y procesos.",
+            "La elección depende de costos de buscar, negociar, monitorear y adaptar contratos.",
+            "Automatizar tiene sentido cuando reduce costos de coordinación más de lo que introduce complejidad técnica."
+          ],
+          "challenge": "Elige un proceso manual y compara su costo de coordinación contra automatizarlo."
+        },
+        {
+          "id": "incentives-principal-agent",
+          "title": "Principal–agent: cuando medir cambia el comportamiento",
+          "kind": "lesson",
+          "duration": "9 min",
+          "level": "Intermedio",
+          "author": "Jensen · Meckling · Holmström",
+          "summary": "La persona que ejecuta puede tener más información y objetivos distintos de quien diseña la meta.",
+          "application": "Asesores, asignación de leads y métricas.",
+          "applicationShort": "incentivos comerciales",
+          "tags": [
+            "principal-agent",
+            "agency",
+            "Holmström"
+          ],
+          "body": [
+            "Un contrato o KPI intenta alinear acciones del agente con objetivos del principal.",
+            "Si la métrica es incompleta, el agente puede optimizar el indicador en lugar del resultado económico.",
+            "Los mejores esquemas combinan outcome, calidad, controles de gaming y horizonte apropiado."
+          ],
+          "challenge": "Toma un KPI comercial y escribe una forma en que podría ser 'gameado'."
+        },
+        {
+          "id": "incentives-tirole",
+          "title": "Diseño de mecanismos pequeños: reglas que inducen conductas",
+          "kind": "case",
+          "duration": "9 min",
+          "level": "Aplicado",
+          "author": "Jean Tirole",
+          "summary": "Pensar el producto como un conjunto de reglas que modifica incentivos, no sólo como una interfaz.",
+          "application": "Asignación, acceso, reputación y adopción.",
+          "applicationShort": "mechanism design",
+          "tags": [
+            "Tirole",
+            "mechanism design",
+            "rules"
+          ],
+          "body": [
+            "Cambiar una regla de asignación puede cambiar conducta incluso si nada visual cambia.",
+            "El diseño de mecanismos pregunta qué resultados emergen cuando agentes responden estratégicamente a las reglas.",
+            "Un experimento útil registra no sólo outcome, sino también cambios de comportamiento intermedio."
+          ],
+          "challenge": "Identifica una regla de tu sistema que podría cambiar para inducir una conducta deseada sin añadir features."
+        }
+      ]
+    },
+    {
+      "id": "productivity",
+      "title": "Productividad, funnels y conversión",
+      "symbol": "f(x)",
+      "relevance": 3,
+      "description": "Tratar el funnel como un sistema productivo: inputs, transformación, cuellos de botella y outputs.",
+      "items": [
+        {
+          "id": "productivity-production",
+          "title": "Función de producción: de inputs a outputs",
+          "kind": "lesson",
+          "duration": "7 min",
+          "level": "Fundamental",
+          "author": "Marshall · Solow",
+          "summary": "Una manera económica de pensar campañas, vendedores, tiempo y datos como inputs que producen resultados comerciales.",
+          "application": "Leads → proformas → separaciones → minutas.",
+          "applicationShort": "funnel comercial",
+          "tags": [
+            "production function",
+            "productividad",
+            "funnel"
+          ],
+          "body": [
+            "Una función de producción representa cómo inputs se convierten en output.",
+            "En un funnel, más leads no garantizan más ventas si asesoría, calidad o capacidad son el cuello de botella.",
+            "El análisis marginal pregunta qué input adicional produce más output incremental."
+          ],
+          "challenge": "Nombra el input que crees que hoy tiene mayor producto marginal en tu funnel."
+        },
+        {
+          "id": "productivity-bottleneck",
+          "title": "Cuello de botella: mejorar donde limita el sistema",
+          "kind": "case",
+          "duration": "8 min",
+          "level": "Aplicado",
+          "author": "Operations economics",
+          "summary": "Optimizar etapas que no restringen throughput puede mejorar dashboards sin mejorar resultados.",
+          "application": "Operaciones CRM y tiempos de conversión.",
+          "applicationShort": "bottleneck funnel",
+          "tags": [
+            "bottleneck",
+            "throughput",
+            "conversion"
+          ],
+          "body": [
+            "El throughput del sistema queda limitado por su restricción dominante.",
+            "Si el cuello está en seguimiento comercial, traer más leads puede aumentar WIP y empeorar tiempos.",
+            "La intervención debe mostrar cambio en throughput total, no sólo eficiencia local."
+          ],
+          "challenge": "¿Cuál es tu cuello de botella actual y qué métrica demostraría que realmente se movió?"
+        },
+        {
+          "id": "productivity-lazear",
+          "title": "Personnel economics: productividad e incentivos dentro de la empresa",
+          "kind": "lesson",
+          "duration": "8 min",
+          "level": "Intermedio",
+          "author": "Edward Lazear",
+          "summary": "Una lente económica para performance, compensación, selección y organización del trabajo.",
+          "application": "Ranking de asesores y diseño de metas.",
+          "applicationShort": "performance de asesores",
+          "tags": [
+            "Lazear",
+            "personnel economics",
+            "performance"
+          ],
+          "body": [
+            "Personnel economics usa herramientas económicas para analizar decisiones laborales dentro de la empresa.",
+            "Comparar asesores exige controlar oportunidad: volumen y calidad de leads, proyectos, antigüedad y asignación.",
+            "Una métrica justa debe separar desempeño de exposición."
+          ],
+          "challenge": "Añade un control de oportunidad que hoy falta en un ranking de asesores."
+        }
+      ]
+    },
+    {
+      "id": "behavioral",
+      "title": "Economía conductual y sesgos",
+      "symbol": "ψ",
+      "relevance": 3,
+      "description": "Diseñar decisiones reconociendo que atención, framing, pérdidas y hábitos alteran conducta.",
+      "items": [
+        {
+          "id": "behavioral-prospect",
+          "title": "Prospect Theory: perder duele más que ganar lo mismo",
+          "kind": "lesson",
+          "duration": "10 min",
+          "level": "Intermedio",
+          "author": "Kahneman · Tversky",
+          "summary": "Una explicación de por qué las decisiones cambian cuando pensamos en ganancias y pérdidas relativas a un punto de referencia.",
+          "application": "Inversión, pricing y comunicación.",
+          "applicationShort": "aversión a pérdida",
+          "sourceUrl": "https://www.nobelprize.org/prizes/lists/video-prize-lectures-from-laureates-in-economic-sciences",
+          "tags": [
+            "Kahneman",
+            "Tversky",
+            "prospect theory"
+          ],
+          "body": [
+            "Prospect Theory modela valor alrededor de cambios respecto a un punto de referencia, no riqueza final absoluta.",
+            "Las pérdidas suelen pesar más que ganancias equivalentes.",
+            "Esto puede afectar ventas, decisiones de inversión y la resistencia a abandonar proyectos."
+          ],
+          "challenge": "Identifica una decisión reciente donde el punto de referencia pudo importar más que el resultado absoluto."
+        },
+        {
+          "id": "behavioral-precommitment",
+          "title": "Precommitment: decidir reglas antes de sentir presión",
+          "kind": "case",
+          "duration": "7 min",
+          "level": "Aplicado",
+          "author": "Thomas Schelling · Richard Thaler",
+          "summary": "Las reglas ex ante reducen decisiones impulsivas cuando cambia tu estado emocional o llega ruido nuevo.",
+          "application": "Investment Constitution y límites de riesgo.",
+          "applicationShort": "reglas ex ante",
+          "tags": [
+            "precommitment",
+            "Thaler",
+            "rules"
+          ],
+          "body": [
+            "Un precommitment cambia el conjunto de decisiones futuras disponibles.",
+            "Investment constitutions, rebalancing bands y límites de posición son ejemplos prácticos.",
+            "La regla funciona si define gatillos observables y excepciones explícitas."
+          ],
+          "challenge": "Escribe una regla ex ante que te impida una decisión de inversión impulsiva."
+        },
+        {
+          "id": "behavioral-outcome-bias",
+          "title": "Outcome bias: una buena decisión puede terminar mal",
+          "kind": "case",
+          "duration": "8 min",
+          "level": "Aplicado",
+          "author": "Kahneman · teoría de decisión",
+          "summary": "Separar calidad del proceso de decisión y calidad del resultado para poder aprender de verdad.",
+          "application": "Decision journal y experimentos.",
+          "applicationShort": "decision quality",
+          "tags": [
+            "outcome bias",
+            "decision journal",
+            "learning"
+          ],
+          "body": [
+            "El azar puede producir un buen outcome a partir de una mala decisión y viceversa.",
+            "Evaluar decisiones sólo por P&L o conversión observada genera aprendizaje defectuoso.",
+            "Un decision journal registra información disponible, hipótesis, probabilidades y regla antes de conocer el resultado."
+          ],
+          "challenge": "Elige una decisión pasada y evalúa su proceso sin usar el resultado como argumento."
+        }
+      ]
+    }
+  ]
+}
