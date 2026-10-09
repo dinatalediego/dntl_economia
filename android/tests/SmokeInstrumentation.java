@@ -47,7 +47,24 @@ public class SmokeInstrumentation extends Instrumentation {
             check(a.museum.length() >= 180, "museum");
             check(a.atlas.optJSONArray("Lima").length() == 50, "districts");
           });
+      try (InputStream in = getContext().getAssets().open("atlas-demo-v1.zip")) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        byte[] buf = new byte[8192]; int n;
+        while ((n = in.read(buf)) != -1) bytes.write(buf, 0, n);
+        AtlasPack demo = AtlasPack.parse(bytes.toByteArray());
+        check("SYNTHETIC".equals(demo.data.optString("classification")), "synthetic fixture label");
+        check(demo.data.optJSONArray("rows").length() == 18, "pack rows");
+        check(demo.scenario.optJSONArray("scenarios").length() == 6, "pack scenarios");
+      }
+      try { AtlasPack.parse(new byte[] {1, 2, 3}); throw new AssertionError("bad pack accepted"); }
+      catch (Exception expected) {}
       shot("home");
+      Intent productsIntent = new Intent(getTargetContext(), AtlasProductsActivity.class);
+      productsIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+      Activity products = startActivitySync(productsIntent);
+      waitForIdleSync();
+      shot("products-empty");
+      runOnMainSync(products::finish);
       runOnMainSync(
           () -> {
             a.screen = "Atlas";

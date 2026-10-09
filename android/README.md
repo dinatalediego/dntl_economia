@@ -1,4 +1,4 @@
-# DNTL Economía · Atlas 0.2.0
+# DNTL Economía · Atlas 0.3.0
 
 Aplicación Android nativa offline (Java / Android SDK, Android 8 o superior).
 Reconstrucción del proyecto Android perdido; reutiliza el catálogo del repositorio.
@@ -6,7 +6,7 @@ La web existente no se modifica. No es el código exacto de la antigua edición 
 
 ## Instalar
 
-Descargar `releases/android/dntl-economia-atlas-0.2.0.zip`, extraer y abrir el APK.
+La compilación fuente 0.3.0 añade el espacio Productos. El ZIP anterior 0.2.0 no incluye el importador. Genera un APK 0.3.0 con el procedimiento de abajo; el ZIP privado se importa por separado.
 Paquete: `com.dinatale.economia.atlas`. Se instala junto a la versión 0.1.0.
 No desinstalar la anterior si contiene notas: sus datos no se migran automáticamente.
 La firma es de desarrollo. No es una publicación en Play Store.
@@ -23,6 +23,9 @@ La firma es de desarrollo. No es una publicación en Play Store.
 - Accesos a Jesús María, Miraflores, San Isidro y Surquillo.
 - Notas y etapas: explorado, guardado, puedo explicarlo, lo apliqué.
 - Temas claro/oscuro, tres tamaños de letra, exportación/importación JSON.
+- Productos analíticos offline: importar ZIP v1 (data/model/story/scenario), validar SHA-256, clasificación, períodos e inventario antes de instalar.
+- Etiqueta PRIVATE/SYNTHETIC visible, historial mensual, indicadores, MAE, límites del modelo y control de escenarios no causales.
+- Pack almacenado en el sandbox de la app, separado de notas y respaldos; opción de eliminarlo. No requiere conexión ni permiso de almacenamiento.
 - Importación con confirmación: se agregan registros ausentes; notas y etapas
   locales prevalecen. Preferencias se restauran. Límite de archivo: 2 MB.
 - Borrar historial conserva notas, etapas y ajustes.
@@ -31,6 +34,7 @@ La firma es de desarrollo. No es una publicación en Play Store.
 
 - `app/src/main/java/.../MainActivity.java`: pantallas y flujo de sesión.
 - `Store.java`: persistencia y respaldo validado.
+- `AtlasPack.java` / `AtlasProductsActivity.java`: validador y consumidor offline del pack v1.
 - `MapView.java`: dibujo y selección de polígonos sin servicios externos.
 - `app/src/main/assets`: catálogos y datos geográficos versionados.
 - `scripts/build.sh`: compilación sin Gradle ni dependencias de terceros.
@@ -49,7 +53,7 @@ export SIGNING_KEY=/ruta/privada/atlas-development.keystore
 ./scripts/build.sh
 ```
 
-Resultado: `build/dntl-economia-atlas-0.2.0.apk`.
+Resultado: `build/dntl-economia-atlas-0.3.0.apk`. Reutiliza exactamente la clave de la instalación para actualizarla.
 La clave privada se guarda fuera del repositorio. Para actualizar una instalación
 Atlas hay que reutilizarla. Alias `androiddebugkey`, contraseña estándar de
 DESARROLLO `android`. El respaldo privado se entrega por separado, jamás publicar.
