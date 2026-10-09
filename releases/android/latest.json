@@ -1,0 +1,10 @@
+{
+  "version": "0.2.0",
+  "package": "com.dinatale.economia.atlas",
+  "file": "dntl-economia-atlas-0.2.0.zip",
+  "apk_sha256": "45fe9cacceb480cec2283771a7210501db023760ba7a4981ac97deb9f73a57e1",
+  "zip_sha256": "b82ca35e2935252eee3507e5b280711ddb6ce859c1e7a8ea48a20b0458318e4a",
+  "minimum_android": 8,
+  "status": "development",
+  "device_verification": "pending"
+}
