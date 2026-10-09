@@ -238,3 +238,12 @@ node --test tests/economics-memory.test.js
 ```
 
 La North Star sigue siendo **outcomes revisados / aplicaciones registradas**, pero ahora puede medirse longitudinalmente entre dispositivos.
+
+
+## Android · Atlas 0.2.0
+
+Nueva edición Android independiente: [proyecto y compilación](android/README.md),
+[verificación](android/VERIFICATION.md) y
+[ZIP para el celular](releases/android/dntl-economia-atlas-0.2.0.zip).
+Incluye intención de sesión, ajustes, mapas offline, notas y progreso exportable.
+Se instala junto a 0.1.0; no migra automáticamente sus notas.
