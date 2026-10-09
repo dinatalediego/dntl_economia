@@ -246,7 +246,7 @@ public class MainActivity extends Activity {
     HorizontalScrollView hs = new HorizontalScrollView(this);
     hs.setHorizontalScrollBarEnabled(false);
     nav = new LinearLayout(this);
-    for (String tab : new String[] {"Inicio", "Aprender", "Museo", "Atlas", "Progreso"}) {
+    for (String tab : new String[] {"Inicio", "Aprender", "Museo", "Atlas", "Progreso", "Productos"}) {
       Button b = new Button(this);
       b.setAllCaps(false);
       b.setText(tab);
@@ -255,6 +255,10 @@ public class MainActivity extends Activity {
       nav.addView(b);
       b.setOnClickListener(
           v -> {
+            if (tab.equals("Productos")) {
+              startActivity(new Intent(this, AtlasProductsActivity.class));
+              return;
+            }
             screen = tab;
             selected = null;
             render();
@@ -762,7 +766,7 @@ public class MainActivity extends Activity {
                 .show());
     paragraph(
         body,
-        "DNTL Economía · Atlas 0.2.0\n"
+        "DNTL Economía · Atlas 0.3.0\n"
             + "Edición independiente de la app 0.1.0. Las notas de aquella app no se migran"
             + " automáticamente.\n"
             + "Contenido y mapas disponibles sin conexión. Los enlaces externos requieren internet."

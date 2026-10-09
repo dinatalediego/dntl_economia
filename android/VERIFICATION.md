@@ -1,4 +1,13 @@
-# Verificación · 0.2.0 · 2026-10-09
+# Verificación · Atlas Android
+
+## Estado de 0.3.0 (código en rama)
+
+- Añadidos parser/validador de ZIP Atlas v1, selector Productos y pruebas instrumentadas con la demo sintética compartida.
+- Añadida comprobación Python de contrato/hash de esa fixture al CI manual.
+- No compilado en este entorno: faltan JDK y Android SDK. No se afirma firma, APK nuevo ni prueba visual de 0.3.0.
+- La demo incluida en pruebas está clasificada SYNTHETIC; no contiene datos de CRM. Los packs PRIVATE se generan y transfieren localmente, nunca se versionan.
+
+## Verificación anterior · 0.2.0 · 2026-10-09
 
 - Compilación Java / D8 / AAPT2: correcta con JDK 17, plataforma 35,
   Build Tools 35.0.0; API mínima 26.
@@ -18,6 +27,7 @@
 
 ```bash
 python3 -m unittest discover -s tests -v
+python3 -m unittest discover -s tests -p 'test_*.py' -v
 # Después de scripts/build.sh, con las mismas variables de entorno:
 ./scripts/build-tests.sh
 adb install -r build/dntl-economia-atlas-0.2.0.apk

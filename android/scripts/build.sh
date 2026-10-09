@@ -13,5 +13,5 @@ jar cf build/classes.jar -C build/classes .
 cp build/resources.apk build/unsigned.apk
 (cd build/dex && zip -q ../unsigned.apk classes*.dex)
 "$BUILD_TOOLS/zipalign" -f -p 4 build/unsigned.apk build/aligned.apk
-"$BUILD_TOOLS/apksigner" sign --ks "$SIGNING_KEY" --ks-key-alias androiddebugkey --ks-pass pass:android --key-pass pass:android --out build/dntl-economia-atlas-0.2.0.apk build/aligned.apk
+"$BUILD_TOOLS/apksigner" sign --ks "$SIGNING_KEY" --ks-key-alias androiddebugkey --ks-pass pass:android --key-pass pass:android --out build/dntl-economia-atlas-0.3.0.apk build/aligned.apk
 "$BUILD_TOOLS/apksigner" verify --verbose build/dntl-economia-atlas-0.2.0.apk
